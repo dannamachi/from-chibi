@@ -10,6 +10,7 @@
 * python main.py
 
 ### version
+* v1.7: add content, adjust initial archives
 * v1.6: break down help function into multiple commands, add contact info
 * v1.5: add support for timing, fix command bug
 * v1.4: add support for timing and events
