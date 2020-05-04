@@ -100,6 +100,7 @@ print("=====================================")
 print("Year: 7204")
 print("Session: 4498032")
 print("Connection status: Good")
+print("Address: cat_fish@vsp.tc")
 print("Message: Save Chibi! Press help to get started")
 print("=====================================")
 while not end_game:
@@ -155,6 +156,14 @@ while not end_game:
     print(command_status)
     print("")
     print("Time: " + str(total_time))
+    print("Enter read ",end="")
+    if total_time > 24:
+        print("0610",end="")
+    elif total_time > 12:
+        print("0611",end="")
+    else:
+        print("0612",end="")
+    print(" to check new logs. Do this regularly")
     print("Press help to check available commands")
     # check dead
     for i in range(len(flag_dead)):

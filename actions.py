@@ -126,7 +126,7 @@ def reply(*args):
             reply_ids.append(repcode)
 
     if len(args) == 3:
-        result = "Enter reply " + log_id + " followed by reply code: "
+        result = "Enter reply " + log_id + " followed by reply code. For eg: reply abcdef a "
         for code in reply_ids:
             result += "\n" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
         return result, current_time
@@ -239,8 +239,8 @@ def read(*args):
         result = "Block " + block_id + ": "
         for i in range(len(log_list)):
             log_id = log_list[i]
-            result += "\n" + get_log_info(log_id,is_old_block)
-            result += "\n" + get_log_content(log_id,is_old_block)
+            result += "\n\n" + get_log_info(log_id,is_old_block)
+            result += "\n\t" + get_log_content(log_id,is_old_block)
         return result, current_time
 
 
@@ -363,11 +363,12 @@ def help(flags, current_time):
     tips = "NOTE: Ensure you already have root access - check demtube immediately otherwise"
     tips += "\nEnter dt to watch demtube"
     tips += "\nEnter work to delete bad data from earthline"
-    tips += "\nEnter read to check latest log received/sent"
+    tips += "\nEnter read to check only the latest log received/sent"
     tips += "\nEnter read [block id] to read all logs in a block (first 4 numbers of log id)"
     tips += "\nEnter decrypt [block id] to unlock old logs"
-    tips += "\nEnter reply [log id] to reply to log, make sure to reply to logs quickly"
-    tips += "\nReply to a log to save its attachment"
+    tips += "\nEnter reply [log id] to check if you can reply to a log"
+    tips += "\nIf you can, please reply ASAP"
+    tips += "\nEnter reply [log id] to save attachment from a log"
     tips += "\nEnter quit to quit the session"
     if is_flag_triggered(flags,"Change Time"):
         tips += "\n! Enter time [UID] to change the time of another terminal"
