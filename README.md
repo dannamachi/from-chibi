@@ -1,12 +1,13 @@
-# From Chibi
+## From Chibi
+#### Do you have what it takes to save Chibi?
 
-## text-based, console-inspired adventure game 
-## in Python
+### text-based, console-inspired adventure game 
+### in Python
 
-## how to run
-### install python 3
-### cmd/bash
-### cd to extracted folder
-### python main.py
+### how to run
+#### install python 3
+#### cmd/bash
+#### cd to extracted folder
+#### python main.py
 
-### v1.1: base game
+#### v1.1: base game
