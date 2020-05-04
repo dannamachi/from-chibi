@@ -91,7 +91,7 @@ LOGS = {\
     # Block 0503
     "050301" : "Hey, did anything happen? DemTube was going crazy over some incident",\
     "050302" : "Some stupid crossers led the bots to the hidden market so sale of enol is suspended indefinitely. Those trash bots",\
-    "050303" : "Well Demrys can't really break down Enol anyway, even if we are semi-organic. You can learn to mix an alternative using Ymoria, it's really not that bad",\
+    "050303" : "Well Demrys can't really break down Enol anyway. You can learn to mix an alternative using Ymoria, it's really not that bad",\
     "050304" : "Shut your trap, you don't understand since all you do is drink ymoria and do stupid shits like b-painting! And you take fucking forever to kill a virus from the 6500s!!",\
     "050305" : "I'm sorry, I didn't mean to meddle... I'm almost done with the virus, no more clogging your memory I promise. I'm sorry",\
     "050306" : "<Draft> I'm sorry, I actually like your b-paints, and you can keep sending me logs I",\

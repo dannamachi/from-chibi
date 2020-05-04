@@ -51,7 +51,7 @@ WORK = {\
     # 17 - 16
     16 : "You are killing us off! There is no aeternum here!!",\
     # 15 - 14
-    14 : "The culprit of the 6570 Cybermite is not G.Luca",\
+    14 : "The culprit of the 6570 Cybermite is not LUCA",\
     # 13 - 12
     12 : "Could the Oriental Human United Kingdom (OHUK) still exist?",\
     # 11 - 10

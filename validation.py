@@ -44,7 +44,7 @@ def check_help(*args):
     '''
     Returns bool if argument list is valid for help(flags,current_time)
     '''
-    return len(args) == 2
+    return len(args) == 2 or len(args) == 3
 
 def check_decode(*args):
     '''

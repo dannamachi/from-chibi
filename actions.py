@@ -205,6 +205,14 @@ def get_log_content(log_id, is_old):
     else:
         return logs_new.LOGS_NEW[log_id]
 
+def address_to_name(address_string):
+    '''
+    Returns name corresponding to address
+    '''
+    if address_string in list(actions_help.ADDRESS_TO_NAME.keys()):
+        return actions_help.ADDRESS_TO_NAME[address_string]
+    return "Unknown"
+
 def get_log_info(log_id, is_old):
     '''
     Returns sender/recipient string of log
@@ -220,11 +228,11 @@ def get_log_info(log_id, is_old):
             if log_id in logs.LOGS_RECIPIENT[address]:
                 receiver = address
                 break
-        return "Log " + log_id + " From " + sender + " To " + receiver + ": "
+        return "Log " + log_id + " From " + address_to_name(sender) + " To " + address_to_name(receiver) + ": "
     else:
         for address in logs_new.LOGS_NEW_ADDRESS.keys():
             if log_id in logs_new.LOGS_NEW_ADDRESS[address]:
-                return "Log " + log_id + " " + address + ": "
+                return "Log " + log_id + " " + address_to_name(address) + ": "
         return "Log " + log_id + " Unknown: "
 
 def log_reply_status(log_id, current_time):
@@ -423,52 +431,53 @@ def contact(flags, current_time, wavelength):
     current_time -= 1
     return "Network not found", current_time
 
-def help(flags, current_time):
+def help(*args):
     '''
     Returns game tips
     '''
-    tips = "NOTE: Ensure you already have root access. Check notes for details\n"
-    tips += "\nEnter notes to read all notes, or notes[general/dt/work] to read notes in that section\n"
-    tips += "\nEnter dt to watch demtube. Your main source of info"
-    tips += "\nEnter work to delete bad data from earthline"
-    tips += "\nEnter read to check only the latest log received/sent"
-    tips += "\nEnter read [block id] to read all logs in a block (first 4 numbers of log id)"
-    tips += "\nEnter decrypt [block id] to unlock old logs"
-    tips += "\nEnter reply [log id] to check if you can reply to a log. Reply regularly!"
-    tips += "\nEnter reply [log id] to save attachment from a log"
-    tips += "\nEnter quit to quit the session"
-    if is_flag_triggered(flags,"Change Time"):
-        tips += "\n! Enter time [UID] to change the time of another terminal"
-    if is_flag_triggered(flags,"Can Root Access"):
-        tips += "\n! Enter root to get root access"
-    if is_flag_triggered(flags,"Remote Access"):
-        tips += "\n! Enter remote [UID] [password] to remote access another terminal"
-    if is_flag_triggered(flags,"Decoder"):
-        tips += "\n! Enter decode [file name] [key] to decode a file"
-    if is_flag_triggered(flags,"Decode Cohab's relic"):
-        tips += "\n! Enter overspace to connect to Overspace"
-    tips += "\n\nArchive status:"
-    for key in list(blocks.BLOCKS.keys()):
-        tips += "\n\t" + str(key)
-        if blocks.BLOCKS[key]: tips += " - Unlocked"
-        else: tips += " - Locked"
-    tips += "\n\nFiles in memory:"
-    tips += "\n\t3-layer-soccer.bpt thank-you.bpt debris-full-sky.bpt cat_playing_soccer.bpt "
-    if is_flag_triggered(flags,"p5-9"):
-        tips += "\n\tdo.bpt not.bpt forget.bpt "
-    for item in list(decodes.KEYFLAG.keys()):
-        if decodes.KEYFLAG[item]:
-            tips += item + " "
-    if is_flag_triggered(flags,"Remote Access"):
-        tips += "remote.exe "
-    if is_flag_triggered(flags,"Change Time"):
-        tips += "time.exe "
-    if is_flag_triggered(flags,"Decoder"):
-        tips += "decode.exe "
-    if is_flag_triggered(flags,"Decode Cohab's relic"):
-        tips += "overspace.exe "
-    
-    return tips, current_time
+    flags = args[0]
+    current_time = args[1]
+    if len(args) == 2:
+        tips  = "You are a Virtual Police Officer, UID Nekoi, address cat_fish@vsp.tc"
+        tips += "\nYour job is to regularly delete old logs from earthline database - you can read the schedule by entering 'notes work'"
+        tips += "\nAs a security officer, you are closely watched by the channel admin and regulatory bots - read your logs regularly and reply on time"
+        tips += "\nDemTube is the universal platform for entertainment and learning - you can read the schedule by entering 'notes dt'"
+        tips += "\n3u38u@#83i23[mission:contactoverspace]9wdsijnc9ds9ds9xd[selfreplication:donotforgetlastpiece]l984mednsc"
+        return tips, current_time
+    else:
+        key = args[2]
+        if not (key in ["archive","files","commands","contacts"]):
+            return "Invalid syntax", current_time
+        if key == "contacts":
+            tips = actions_help.get_contacts()
+            return tips, current_time
+        if key == "archive":
+            tips = "Archive status:"
+            for key in list(blocks.BLOCKS.keys()):
+                tips += "\n\t" + str(key)
+                if blocks.BLOCKS[key]: tips += " - Unlocked"
+                else: tips += " - Locked"
+            return tips, current_time
+        if key == "files":
+            tips = "Files in memory:"
+            tips += "\n\t3-layer-soccer.bpt thank-you.bpt debris-full-sky.bpt cat_playing_soccer.bpt "
+            if is_flag_triggered(flags,"p5-9"):
+                tips += "\n\tdo.bpt not.bpt forget.bpt "
+            for item in list(decodes.KEYFLAG.keys()):
+                if decodes.KEYFLAG[item]:
+                    tips += item + " "
+            if is_flag_triggered(flags,"Remote Access"):
+                tips += "remote.exe "
+            if is_flag_triggered(flags,"Change Time"):
+                tips += "time.exe "
+            if is_flag_triggered(flags,"Decoder"):
+                tips += "decode.exe "
+            if is_flag_triggered(flags,"Decode Cohab's relic"):
+                tips += "overspace.exe "
+            return tips, current_time
+        if key == "commands":
+            tips = actions_help.get_possible_commands(flags)
+            return tips, current_time
 
 def decode(flags, current_time, filename,key):
     '''
