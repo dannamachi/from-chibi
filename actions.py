@@ -126,7 +126,7 @@ def reply(*args):
             reply_ids.append(repcode)
 
     if len(args) == 3:
-        result = "Enter reply " + log_id + " followed by reply code. For eg: reply abcdef a "
+        result = "Enter reply " + log_id + " followed by reply code. For eg: reply 061001 a "
         for code in reply_ids:
             result += "\n" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
         return result, current_time
@@ -206,6 +206,20 @@ def get_log_info(log_id, is_old):
                 return "Log " + log_id + " " + address + ": "
         return "Log " + log_id + " Unknown: "
 
+def log_reply_status(log_id, current_time):
+    '''
+    Returns 0 is no reply needed, 1 is reply needed, 2 if reply expired
+    '''
+    # narrow down log that can be replied to 
+    if not (log_id in logs_new.LOG_NEED_REPLIES.keys()):
+        return 0
+    # narrow down log that can be replied to (using log time)
+    time_list = list(filter(lambda item: current_time - 4 <= item,logs_new.LOG_TIME.keys()))
+    time_window = min(time_list,key=lambda item: item - current_time)
+    if not (log_id in logs_new.LOG_TIME[time_window]):
+        return 2
+    return 1
+
 def read(*args):
     '''
     Returns string of result, whether it is read block or read log
@@ -216,7 +230,13 @@ def read(*args):
         log_id = read_log(flags,current_time)
         result = ""
         result += get_log_info(log_id,False)
-        result += "\n" + get_log_content(log_id,False)
+        result += "\n\t" + get_log_content(log_id,False)
+        # reply status
+        reply_status = log_reply_status(log_id,current_time)
+        if reply_status == 2:
+            result += "\n\tReply EXPIRED"
+        elif reply_status == 1:
+            result += show_possible_replies(flags,current_time,log_id)
         return result, current_time
     else:
         block_id = args[2]
@@ -241,7 +261,30 @@ def read(*args):
             log_id = log_list[i]
             result += "\n\n" + get_log_info(log_id,is_old_block)
             result += "\n\t" + get_log_content(log_id,is_old_block)
+            # reply status
+            reply_status = log_reply_status(log_id,current_time)
+            if reply_status == 2:
+                result += "\n\tReply EXPIRED"
+            elif reply_status == 1:
+                result += show_possible_replies(flags,current_time,log_id)
         return result, current_time
+
+def show_possible_replies(flags, current_time, log_id):
+    '''
+    Returns string of possible replies to a log
+    '''
+    reply_id = logs_new.LOG_LINK_REPLIES[log_id]
+    reply_ids = []
+    # filter replies by flags
+    possible_reply_codes = list(filter(lambda item: can_reply(flags,item), list(logs_new.LOG_REPLIES.keys())))
+    # filter replies by log_id
+    for repcode in possible_reply_codes:
+        if repcode[:6] == reply_id and repcode[6] != "i":
+            reply_ids.append(repcode)
+    result = "\nEnter reply " + log_id + " followed by reply code. For eg: reply 061001 a "
+    for code in reply_ids:
+        result += "\n\t" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
+    return result
 
 
 def read_log(flags,current_time):
@@ -361,7 +404,7 @@ def help(flags, current_time):
     Returns game tips
     '''
     tips = "NOTE: Ensure you already have root access - check demtube immediately otherwise"
-    tips += "\nEnter dt to watch demtube"
+    tips += "\nEnter dt to watch demtube. Your main source of info"
     tips += "\nEnter work to delete bad data from earthline"
     tips += "\nEnter read to check only the latest log received/sent"
     tips += "\nEnter read [block id] to read all logs in a block (first 4 numbers of log id)"
