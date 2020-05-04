@@ -60,8 +60,7 @@ def get_possible_commands(flags):
     tips += "\nEnter work to delete log from earthline database"
     tips += "\nEnter read to check only the latest log received/sent"
     tips += "\nEnter read [block id] to read all logs in a block (first 4 numbers of log id)"
-    tips += "\nEnter decrypt [block id] to unlock old logs"
-    tips += "\nEnter reply [log id] to check if you can reply to a log"
+    tips += "\nEnter decrypt [block id] to unlock archives"
     tips += "\nEnter reply [log id] to save attachment from a new log"
     tips += "\nEnter quit to quit the session"
     if is_flag_triggered(flags,"Change Time"):
