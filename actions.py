@@ -500,4 +500,4 @@ def root(flags, current_time):
         flags["Root Access"] = True
         # update time
         current_time -= 2
-        return "Attempting to gain root access. Success. You are now the root user. UID Nekoi", current_time
+        return "Attempting to gain root access. Success. Syncing time settings. Success. Welcome back, Nekoi", current_time

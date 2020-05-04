@@ -97,6 +97,30 @@ action_flags = {\
     10: ["Root Access","Decoder"],\
 }
 
+def print_helpful_note(isRoot):
+    '''
+    Prints helpful note and time (reverse time if isRoot)
+    '''
+    print("<Enter read ",end="")
+    if total_time > 24:
+        day_int = 3
+        time_offset = 24
+        print("0610",end="")
+    elif total_time > 12:
+        day_int = 2
+        time_offset = 12
+        print("0611",end="")
+    else:
+        day_int = 1
+        time_offset = 0
+        print("0612",end="")
+    print(" to check new logs. Do this regularly>")
+    print("<Press help to check available commands>")
+    if not isRoot:
+        print("<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">")
+    else:
+        print("<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">")
+
 print("=====================================")
 print("Security warning (Level 5): Change detected in memory database")
 print("Security warning (Level 2): Change detected in time display")
@@ -166,22 +190,9 @@ while not end_game:
     print("")
     print(command_status)
     print("")
-    print("<Enter read ",end="")
-    if total_time > 24:
-        day_int = 3
-        time_offset = 24
-        print("0610",end="")
-    elif total_time > 12:
-        day_int = 2
-        time_offset = 12
-        print("0611",end="")
-    else:
-        day_int = 1
-        time_offset = 0
-        print("0612",end="")
-    print(" to check new logs. Do this regularly>")
-    print("<Press help to check available commands>")
-    print("<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">")
+    # print helpful note & time
+    isRoot = "Root Access" in list(flags.keys())
+    print_helpful_note(isRoot)
     # check dead
     for i in range(len(flag_dead)):
         if flag_dead[i] in flags:
