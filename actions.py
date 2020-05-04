@@ -459,13 +459,12 @@ def help(*args):
                 else: tips += " - Locked"
             return tips, current_time
         if key == "files":
-            tips = "Files in memory:"
-            tips += "\n\t3-layer-soccer.bpt thank-you.bpt debris-full-sky.bpt cat_playing_soccer.bpt "
-            if is_flag_triggered(flags,"p5-9"):
-                tips += "\n\tdo.bpt not.bpt forget.bpt "
+            tips = "Files in memory:\n\t"
             for item in list(decodes.KEYFLAG.keys()):
                 if decodes.KEYFLAG[item]:
                     tips += item + " "
+            if is_flag_triggered(flags,"p5-9"):
+                tips += "\n\tdo.bpt not.bpt forget.bpt "
             if is_flag_triggered(flags,"Remote Access"):
                 tips += "remote.exe "
             if is_flag_triggered(flags,"Change Time"):

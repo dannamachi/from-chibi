@@ -17,14 +17,14 @@ end_statuses = {\
     7 : "Code integrity: True; Mission success: True; Message: You did it!"\
 }
 end_messages = {\
-    0 : "You've managed to save Chibi! Want to try to figure out what exactly is Chibi's identity? Maybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert",\
-    1 : "You've managed to save Chibi and tell the truth to Luv! You're almost there - try to decode everything you have! Search for a way to do something that shouldn't be possible at first glance..",\
+    0 : "You've managed to save CHIBI! Want to try to figure out what exactly is CHIBI's identity? Maybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert. Files of the same author tend to have the same decoding key",\
+    1 : "You've managed to save CHIBI and tell the truth to Luv! You're almost there - try to decode everything you have! Search for a way to do something that shouldn't be possible at first glance..",\
     2 : "You are missing some files... try to look around and save attachments",\
-    3 : "You've exposed Chibi to the authorities... don't be so honest in replying next time",\
+    3 : "You've exposed CHIBI to the authorities... don't be so honest in replying next time",\
     4 : "You've acted too suspicious and drew suspicion from authorities. Try to reply more often/differently next time",\
     5 : "You've drawn suspicion to yourself either by replying wrongly or doing something you shouldn't be doing",\
-    6 : "You've exposed Chibi and also drawn suspicion to yourself. The authorities had to take care of you. Don't reply so honestly next time.",\
-    7 : "You've managed to fulfill Chibi's mission! Do you understand what Chibi is now?"\
+    6 : "You've exposed CHIBI and also drawn suspicion to yourself. The authorities had to take care of you. Don't reply so honestly next time",\
+    7 : "You've managed to fulfill CHIBI's mission! Do you understand what CHIBI is now?"\
 }
 end_result = 0
 
@@ -142,7 +142,7 @@ print("Year: 7204")
 print("Session: 4498032")
 print("Connection status: Good")
 print("Address: cat_fish@vsp.tc")
-print("Message: Save Chibi! Press help to get started")
+print("Message: Save CHIBI! Time is running out!Press help to get started")
 print("=====================================")
 while not end_game:
     command_status = "Command succeeded"

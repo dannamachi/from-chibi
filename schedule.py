@@ -1,10 +1,10 @@
 DEMTUBE = {\
     # 36 - 34 (0 - 2)
-    34 : "How to regain root access",\
+    34 : "Here's a way to remind yourself of how to get root access",\
     # 33 - 33 (3 - 3)
-    33 : "Cohabitation era logs found",\
+    33 : "Cohabitation era logs found!!!",\
     # 32 - 32 (4 - 4)
-    32 : "Stop drinking Enol!",\
+    32 : "Enol vs Ymoria",\
     # 31 - 28 (5 - 8)
     28 : "Encryption types",\
     # 27 - 26 (9 - 10)
@@ -12,11 +12,11 @@ DEMTUBE = {\
     # 25 - 22 (11 - 14)
     22 : "The new rikitts and ripupps",
     # 21 - 20 (15 - 16)
-    20 : "Beware of terminal crossers",\
+    20 : "Cannot send package via radiowaves? Your admin is onto you",\
     # 19 - 18 (17 - 18)
-    15  : "How did the 7th Cyber War end?",\
+    15  : "Beware of virus spreading through log attachment!",\
     # 17 - 16 (19 - 20)
-    14 : "Effects of a code wipe",\
+    14 : "No AI is capable of self-recovery from a code wipe - PROVEN",\
     # 15 - 12 (21 - 24)
     12 : "Backups and how to decrypt them faster",\
     # 11 - 8 (25 - 28)

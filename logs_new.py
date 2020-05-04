@@ -65,7 +65,7 @@ LOGS_NEW = {\
     
     # time 14
     # I survived (Chibi)
-    "0611?1" : "I don't know why but I survived the wipe, somehow. Don't tell anyone though! But when the virus was gone I found some old logs and, can you believe it, they dated back to the Cohab era! I think I mentioned this to you before; that time it was just bits and pieces, but I've got a whole block here. Do you want to see them?",\
+    "0611?1" : "I don't know why but I survived the wipe, somehow. Don't tell anyone though! But when the virus was gone I found some old logs and, can you believe it, they dated back to the Cohab era! I think I mentioned this to you before; that time it was just bits and pieces, but I've got a whole block here, authored by someone called LUCA. Do you want to see them?",\
     # Yes, send / No, I don't like old logs (Chibi)
     "0611?2" : "",\
     # Here it is / Nevermind then, thanks (Chibi)
@@ -189,7 +189,7 @@ LOG_REPLIES = {\
 
     "061208i" : "",\
     "061208a" : "What do you mean, am I not Nekoi?",\
-    "061208b" : "I am Chibi...and I want you to help me",\
+    "061208b" : "I am CHIBI...and I want you to help me",\
 }
 
 LOG_GIVE_FLAGS = {\

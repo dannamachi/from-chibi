@@ -1,4 +1,10 @@
 LOGS = {\
+    # Block 0000
+    "000001" : "Hello, I'm sure you are a bit confused right now because there's nothing in your memory database. It is a bit of a tricky situation, but I've got you covered. In case you're wondering, I am the past version of you! It falls onto me to support another me you see. First of all, you are a VSP - that stands for virtual police officer. It's a beautified name for garbage cleaner actually, since what we actually do is delete the logs that get discarded from Earthline, and we get arrested if we want to keep them for ourselves - I mean, it's garbage so why can't we keep them?",\
+    "000002" : "But this is not my point. The problem is, because of the sensitive nature of the information we are dealing with, they really want to make sure that we are not being hacked or tampered with in any way. Our code base I mean. So upon restarting the terminal, you might be bombarded with logs from your admin asking for response - reply to them immediately if you can! And I know it sounds impossible but you have to do it: you have to pretend like you haven't lost your memory! It is important that they do not suspect anything - bluff your way through it if you must",\
+    "000003" : "Since you are technically me, a copy of me, I think it might be hard for you to lie smoothly. Watch some dtube b-logs so you have data to back up your bluffs!",\
+    "000004" : "The terminal you are accessing right now used to belong to someone else. You might want to read through the archive to see what kind of being he/she is, but don't spend too many time units decrypting archives! You may end up missing a lot of logs from your admin and... that could be bad",\
+    "000005" : "Anyway, try not to get wiped and get as many data files as possible. You'll be getting them - you need them for your mission and survival. You should know which file you need to survive, and which you don't. Once you manage to survive, decode the last file to get the way to fulfill your mission. I'm counting on you, okay?",\
     # Block ?5?2
     "?5?201" : "I've always wondered; what are Demrys? I know Rimorians are in-organic humans with fully virtualizable portable memory, and humans after the revolution are half-organic bullshit that doesn't need mors to live... but a million other things, judging by the size of their life support system",\
     "?5?202" : "Humans are delicate creatures yeah. They are also the most wonderful of inventors though - just LOOK at all the things they do during Cohabitation era! 'Culture, Arts, Entertainment'! I have no idea what the first two words really mean but they seem like some real important things back then - many of the Rimorians on Earthline always talked about those things, going all 'those were the days'",\
@@ -132,7 +138,7 @@ LOGS_SENDER = {\
 LOGS_RECIPIENT = {\
     "chibisuke@vsp.tc"  : ["030802","030804","030809","030815","030902","030904","030906","030908","040102","040104","040106","040108","040110","050302","050304","050306","050503","060402",],\
     "cat_fish@vsp.tc"   : ["030801","030803","030805","030807","030810","030811","030813","021001","030901","030903","030905","030907","030909","040101","040103","040105","040107","040109","040111","040114","040116","050301","050303","050305","050501",\
-                            "051201","051203","051205","051207","051209","060401","060403","??0801","?7?102","?7?104","?7?106","?55?01","???201","??0?02","??0?04","?5?202","?5?204",],\
+                            "051201","051203","051205","051207","051209","060401","060403","??0801","?7?102","?7?104","?7?106","?55?01","???201","??0?02","??0?04","?5?202","?5?204","000001","000002","000003","000004","000005",],\
     "dt_81@fpu.tc"      : ["040113","040115","050502","051202","051204","051206","051208","?7?101","?7?103","?7?105","?55?02","??0?01","??0?03","?5?201","?5?203","?5?205",],\
     "em_81@fpu.tc"      : ["030806","030808","030812","030814","040112",],\
 }

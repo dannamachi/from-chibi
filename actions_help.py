@@ -28,7 +28,7 @@ ADDRESS_TO_NAME = {\
 CONTACT_COMMENTS = {\
     "chibisuke@vsp.tc"   : "kid who's got a virus, just bear with him for a while",\
     "cat_fish@vsp.tc"    : "always awesome",\
-    "dt_81@fpu.tc"       : "history nerd, knows too much for her own good",\
+    "dt_81@fpu.tc"       : "history nerd, knows too much for her own good, expert with numbers",\
     "em_81@fpu.tc"       : "channel admin, likes kitts, cannot drink but drinks anyway",\
 }
 
@@ -73,5 +73,5 @@ def get_possible_commands(flags):
     if is_flag_triggered(flags,"Decoder"):
         tips += "\n! Enter decode [file name] [key] to decode a file"
     if is_flag_triggered(flags,"Decode Cohab's relic"):
-        tips += "\n! Enter overspace to connect to Overspace"
+        tips += "\n! Enter overspace to connect to Overspace - make sure your connection is uninterrupted"
     return tips
