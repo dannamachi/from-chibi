@@ -9,14 +9,15 @@ import logs_new
 import blocks
 import remote
 import decodes
+import actions_help
 
 flag_demtube_triggers = {\
     34 : "Can Root Access",\
-    28 : "Remote Access",\
-    30 : "Pre-war?",\
+    26 : "Remote Access",\
+    28 : "Pre-war?",\
     22 : "Animals",\
-    14 : "Fast Decrypt",\
-    12 : "Decoder",\
+    12 : "Fast Decrypt",\
+    8  : "Decoder",\
 }
 
 flag_work_triggers = {\
@@ -26,6 +27,26 @@ flag_work_triggers = {\
 flag_contact = 0
 
 contact_red = ["266694:990002::", "9933:12:45900:009::", "11111:111:1111:1::"]
+
+def notes(*args):
+    '''
+    Returns string of helpful notes
+    '''
+    current_time = args[1]
+    if len(args) == 2:
+        return actions_help.GENERAL_HELP + "\n\n" + actions_help.DEMTUBE_HELP + "\n\n" + actions_help.WORK_HELP, current_time
+    else:
+        key = args[2]
+        if key in ["general","dt","work"]:
+            if key == "general":
+                return actions_help.GENERAL_HELP, current_time
+            elif key == "dt":
+                return actions_help.DEMTUBE_HELP, current_time
+            else:
+                return actions_help.WORK_HELP, current_time
+        else:
+            return "Notes not found", current_time
+
 
 def save(flags,current_time):
     '''
@@ -126,7 +147,7 @@ def reply(*args):
             reply_ids.append(repcode)
 
     if len(args) == 3:
-        result = "Enter reply " + log_id + " followed by reply code. For eg: reply 061001 a "
+        result = "Enter reply " + log_id + " followed by reply code. For eg: reply" + log_id + " a "
         for code in reply_ids:
             result += "\n" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
         return result, current_time
@@ -213,6 +234,9 @@ def log_reply_status(log_id, current_time):
     # narrow down log that can be replied to 
     if not (log_id in logs_new.LOG_NEED_REPLIES.keys()):
         return 0
+    # narrow down log that is already replied
+    if not logs_new.LOG_NEED_REPLIES[log_id]: 
+        return 0
     # narrow down log that can be replied to (using log time)
     time_list = list(filter(lambda item: current_time - 4 <= item,logs_new.LOG_TIME.keys()))
     time_window = min(time_list,key=lambda item: item - current_time)
@@ -281,7 +305,7 @@ def show_possible_replies(flags, current_time, log_id):
     for repcode in possible_reply_codes:
         if repcode[:6] == reply_id and repcode[6] != "i":
             reply_ids.append(repcode)
-    result = "\nEnter reply " + log_id + " followed by reply code. For eg: reply 061001 a "
+    result = "\nEnter reply " + log_id + " followed by reply code. For eg: reply " + log_id + " a "
     for code in reply_ids:
         result += "\n\t" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
     return result
@@ -355,7 +379,7 @@ def work(flags, current_time):
     '''
     Returns string of data cleaned up
     '''
-    hour_list = sorted(list(schedule.DEMTUBE.keys()),reverse=True)
+    hour_list = sorted(list(schedule.WORK.keys()),reverse=True)
     for i in range(len(hour_list)):
         if current_time >= hour_list[i]:
             # raise linked flag
@@ -403,14 +427,14 @@ def help(flags, current_time):
     '''
     Returns game tips
     '''
-    tips = "NOTE: Ensure you already have root access - check demtube immediately otherwise"
+    tips = "NOTE: Ensure you already have root access. Check notes for details\n"
+    tips += "\nEnter notes to read all notes, or notes[general/dt/work] to read notes in that section\n"
     tips += "\nEnter dt to watch demtube. Your main source of info"
     tips += "\nEnter work to delete bad data from earthline"
     tips += "\nEnter read to check only the latest log received/sent"
     tips += "\nEnter read [block id] to read all logs in a block (first 4 numbers of log id)"
     tips += "\nEnter decrypt [block id] to unlock old logs"
-    tips += "\nEnter reply [log id] to check if you can reply to a log"
-    tips += "\nIf you can, please reply ASAP"
+    tips += "\nEnter reply [log id] to check if you can reply to a log. Reply regularly!"
     tips += "\nEnter reply [log id] to save attachment from a log"
     tips += "\nEnter quit to quit the session"
     if is_flag_triggered(flags,"Change Time"):
@@ -429,12 +453,21 @@ def help(flags, current_time):
         if blocks.BLOCKS[key]: tips += " - Unlocked"
         else: tips += " - Locked"
     tips += "\n\nFiles in memory:"
-    tips += "\n\t3-layer-soccer.bpt thank-you.bpt debris-full-sky.bpt cat_playing_soccer.bpt"
+    tips += "\n\t3-layer-soccer.bpt thank-you.bpt debris-full-sky.bpt cat_playing_soccer.bpt "
     if is_flag_triggered(flags,"p5-9"):
         tips += "\n\tdo.bpt not.bpt forget.bpt "
     for item in list(decodes.KEYFLAG.keys()):
         if decodes.KEYFLAG[item]:
             tips += item + " "
+    if is_flag_triggered(flags,"Remote Access"):
+        tips += "remote.exe "
+    if is_flag_triggered(flags,"Change Time"):
+        tips += "time.exe "
+    if is_flag_triggered(flags,"Decoder"):
+        tips += "decode.exe "
+    if is_flag_triggered(flags,"Decode Cohab's relic"):
+        tips += "overspace.exe "
+    
     return tips, current_time
 
 def decode(flags, current_time, filename,key):

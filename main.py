@@ -51,6 +51,7 @@ action_cmd = {\
     12 : "load",\
     13 : "quit",\
     14 : "reply",\
+    15 : "notes",\
 }
 
 action_validation = {
@@ -68,6 +69,7 @@ action_validation = {
     11 : validation.check_save,\
     12 : validation.check_load,\
     14 : validation.check_reply,\
+    15 : validation.check_notes,\
 }
 
 action_command_call = {\
@@ -85,17 +87,22 @@ action_command_call = {\
     11 : actions.save,\
     12 : actions.load,\
     14 : actions.reply,\
+    15 : actions.notes,\
 }
 
 action_flags = {\
-    4 : ["Can Root Access"],\
     5 : ["Root Access","Remote Access"],\
     6 : ["Root Access","Change Time"],\
     7 : ["Root Access","Decode Cohab's relic"],\
     10: ["Root Access","Decoder"],\
 }
 
-
+print("=====================================")
+print("Security warning (Level 5): Change detected in memory database")
+print("Security warning (Level 2): Change detected in time display")
+print("Security warning (Level 2): Change detected in message display")
+print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
+print("Establishing connection...")
 print("=====================================")
 print("Year: 7204")
 print("Session: 4498032")
@@ -127,14 +134,18 @@ while not end_game:
             break
         # check for commands that need flags
         if command_int in list(action_flags.keys()):
-            for flag in action_flags[command_int]:
-                if not (flag in list(flags.keys())):
-                    command_status = "Command cannot be run"
-                    break
+            if not ("Root Access" in list(flags.keys())):
+                command_status = "Root access needed. Enter root"
+            else:
+                for flag in action_flags[command_int]:
+                    if not (flag in list(flags.keys())):
+                        command_status = "Command not recognized. Are you missing any package/script? Watch dtube or find files via logs"
+                        break
         # check for argument list
-        argument_list = command_list[1:]
-        if not action_validation[command_int](flags,total_time,*argument_list):
-            command_status = "Invalid syntax"
+        if command_status == "Command succeeded":
+            argument_list = command_list[1:]
+            if not action_validation[command_int](flags,total_time,*argument_list):
+                command_status = "Invalid syntax"
         # run command
         if command_status == "Command succeeded":
             command_status, total_time = action_command_call[command_int](flags,total_time,*argument_list)
@@ -155,16 +166,22 @@ while not end_game:
     print("")
     print(command_status)
     print("")
-    print("Time: " + str(total_time))
-    print("Enter read ",end="")
+    print("<Enter read ",end="")
     if total_time > 24:
+        day_int = 3
+        time_offset = 24
         print("0610",end="")
     elif total_time > 12:
+        day_int = 2
+        time_offset = 12
         print("0611",end="")
     else:
+        day_int = 1
+        time_offset = 0
         print("0612",end="")
-    print(" to check new logs. Do this regularly")
-    print("Press help to check available commands")
+    print(" to check new logs. Do this regularly>")
+    print("<Press help to check available commands>")
+    print("<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">")
     # check dead
     for i in range(len(flag_dead)):
         if flag_dead[i] in flags:

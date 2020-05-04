@@ -1,3 +1,9 @@
+def check_notes(*args):
+    '''
+    Returns bool if argument list is valid for notes(flags,current_time) or notes(flags,current_time,key)
+    '''
+    return len(args) == 2 or len(args) == 3
+
 def check_dt(*args):
     '''
     Returns bool if argument list is valid for demtube(flags,current_time)
