@@ -10,10 +10,11 @@
 * python main.py
 
 ### version
-* v1.7: add content, adjust initial archives
-* v1.6: break down help function into multiple commands, add contact info
-* v1.5: add support for timing, fix command bug
-* v1.4: add support for timing and events
-* v1.3: add support for replies
-* v1.2: add helpful reminder, add log display spacing
-* v1.1: base game
+* v1.7.5: add content, adjust requirement, adjust schedule, fix archive bug
+* v1.7.0: add content, adjust initial archives
+* v1.6.0: break down help function into multiple commands, add contact info
+* v1.5.0: add support for timing, fix command bug
+* v1.4.0: add support for timing and events
+* v1.3.0: add support for replies
+* v1.2.0: add helpful reminder, add log display spacing
+* v1.1.0: base game
