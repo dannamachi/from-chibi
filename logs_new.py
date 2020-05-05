@@ -45,7 +45,7 @@ LOGS_NEW = {\
     # Just one thing (Chibi)
     "061101" : "I'm sorry, there's no time. The sweepers are coming... please, I just need you to keep these b-paints for me, and give it to me post-wipe. I..I don't want to forget <attached: do.bpt not.bpt forget.bpt>",\
     # that was a close call (Cass)
-    "061102" : "That was a close call - the bots were scanning so many terminals because of those idiots that publicized those Cohab logs - what amateurs. A bunch of officers got wiped for not responding in time already. Glad that you're still around",\
+    "061102" : "That was a close call - the bots were scanning so many terminals because of those idiots that publicized those Cohab logs - what amateurs. A bunch of officers got wiped for not responding in time already. Glad that you're still around. By the way, remember our last discussion about the true culprit of Cybermite? You-know-who doesn't seem like a bad guy in these logs I've found, and it is so much more likely that the government put the blame on someone else. What do you think?",\
 
     # time 18
     # Just an update (Luv)
@@ -55,13 +55,13 @@ LOGS_NEW = {\
     
     # time 16
     # I survived (Chibi)
-    "061105" : "I don't know why but I survived the wipe, somehow. Don't tell anyone though! But when the virus was gone I found some old logs and, can you believe it, they dated back to the Cohab era! I think I mentioned this to you before; that time it was just bits and pieces, but I've got a whole block here. Do you want to see them?",\
+    "061105" : "I don't know why but I survived the wipe, somehow. Don't tell anyone though! But when the virus was gone I found some old logs and, can you believe it, they dated back to the Cohab era! I think I mentioned this to you before; that time it was just bits and pieces, but I've got a whole block here, authored by someone called LUCA. Do you want to see them?",\
     # Yes, send / No, I don't like old logs (Chibi)
     "061106" : "",\
     
     # time 15
     # I thought they were gone (Cass)
-    "061107" : "I thought they were gone, but the sweepers are still around! They'll catch you if they see any suspicious package being passed around, so be careful",\
+    "061107" : "You didn't reply to my last log! Are you out looking for enol again - it's not gonna be possible in the short term, I told you! But anyway, I've done more digging around and I think it's VERY likely that the Cybermite incident was not caused by you-know-who. Look in your own archive if you forgot who I'm talking about - sometimes I think you drink so much enol that it affects your data retention. This could be a good distraction for you - why not look around for files left behind by you-know-who? The admin might have them and you are really chummy with him for some weird reason",\
     
     # time 14
     # I survived (Chibi)
@@ -83,7 +83,7 @@ LOGS_NEW = {\
     # You don't get it! (Luv) (Luca's relic)
     "061201" : "You just don't get it. Okay. You already knew who my creator was - he was a bastard who wiped thousands and thousands of AIs - but his taste for rikitts is unrelated. Just look at this <attached: catgirl.bpt>",\
     # Did you watch it (Cass)
-    "061202" : "Did you watch the latest b-log? Encoding before the war! Humans used to encode letters using something called 'utf-8', it's quite fascinating. Is there any number you wanna try and decode?",\
+    "061202" : "Did you watch the latest b-log? Encoding before the war! Humans used to encode letters using something called 'utf-8', it's quite fascinating. Is there any secret number you wanna try and reverse the encoding on? The result could potentially be decode passwords to files - but who knows?",\
     # Luv's number / Cass's number / chibisuke (Cass)
     "061203" : "",\
 
@@ -189,7 +189,7 @@ LOG_REPLIES = {\
 
     "061208i" : "",\
     "061208a" : "What do you mean, am I not Nekoi?",\
-    "061208b" : "I am CHIBI...and I want you to help me",\
+    "061208b" : "I don't know what I am either, but I have a mission. Please read this... and help me <attached: Cohab.clf>",\
 }
 
 LOG_GIVE_FLAGS = {\
@@ -285,8 +285,8 @@ LOG_TIME = {\
     16 : ["061103","061104"],\
     15 : ["061105","061106"],\
     14 : ["061107"],\
-    12 : ["061108","0611?1","0611?2"],\
-    10 : ["061109","061110","0611?3"],\
+    12 : ["061108","0611?1","0611?2","061109"],\
+    10 : ["061110","0611?3"],\
     8  : ["061201","061202","061203"],\
     3  : ["061204","061205","061206"],\
     0  : ["061207"],\

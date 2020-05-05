@@ -1,13 +1,16 @@
 BLOCKS = {\
     "0000" : True,\
-    "0308" : False,\
-    "0210" : False,\
-    "0309" : False,\
-    "0401" : False,\
-    "0503" : False,\
+}
+
+BLOCKS_ROOT = {\
+    "0308" : True,\
+    "0210" : True,\
+    "0309" : True,\
+    "0401" : True,\
+    "0503" : True,\
     "0505" : False,\
     "0512" : False,\
-    "0604" : False,\
+    "0604" : True,\
     "??08" : False,\
     "?7?1" : False,\
     "?55?" : False,\
@@ -16,6 +19,12 @@ BLOCKS = {\
     "?*??" : False,\
     "*???" : False,\
     "?5?2" : False,\
+}
+
+BLOCKS_SPECIAL_TWO = {\
+    "**00" : True,\
+    "**?0" : True,\
+    "***0" : True,\
 }
 
 BLOCKS_NEW = {\

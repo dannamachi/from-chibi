@@ -1,10 +1,19 @@
 LOGS = {\
     # Block 0000
     "000001" : "Hello, I'm sure you are a bit confused right now because there's nothing in your memory database. It is a bit of a tricky situation, but I've got you covered. In case you're wondering, I am the past version of you! It falls onto me to support another me you see. First of all, you are a VSP - that stands for virtual police officer. It's a beautified name for garbage cleaner actually, since what we actually do is delete the logs that get discarded from Earthline, and we get arrested if we want to keep them for ourselves - I mean, it's garbage so why can't we keep them?",\
-    "000002" : "But this is not my point. The problem is, because of the sensitive nature of the information we are dealing with, they really want to make sure that we are not being hacked or tampered with in any way. Our code base I mean. So upon restarting the terminal, you might be bombarded with logs from your admin asking for response - reply to them immediately if you can! And I know it sounds impossible but you have to do it: you have to pretend like you haven't lost your memory! It is important that they do not suspect anything - bluff your way through it if you must",\
-    "000003" : "Since you are technically me, a copy of me, I think it might be hard for you to lie smoothly. Watch some dtube b-logs so you have data to back up your bluffs!",\
-    "000004" : "The terminal you are accessing right now used to belong to someone else. You might want to read through the archive to see what kind of being he/she is, but don't spend too many time units decrypting archives! You may end up missing a lot of logs from your admin and... that could be bad",\
-    "000005" : "Anyway, try not to get wiped and get as many data files as possible. You'll be getting them - you need them for your mission and survival. You should know which file you need to survive, and which you don't. Once you manage to survive, decode the last file to get the way to fulfill your mission. I'm counting on you, okay?",\
+    "000002" : "But this is not my point. The problem is, because of the sensitive nature of the information we are dealing with, they really want to make sure that we are not being hacked or tampered with in any way. Our code base I mean. So upon restarting the terminal, you might be bombarded with logs from your admin asking for response - reply to them immediately if you can! And I know it sounds impossible but you have to do it: you have to pretend like you haven't lost your memory! It is important that they do not suspect anything - bluff your way through it if you must. Logs from other people? Just ignore them",\
+    "000003" : "Since you are technically me, a copy of me, I think it might be hard for you to lie smoothly. Watch some dtube so you have data to back up your bluffs! You can also just dtube or work repeatedly while waiting for replies - they give you useful info once in a while",\
+    "000004" : "Just a reminder, the schedules in the notes might not match up with the time - just reverse the day and time! I don't know why the code is set to change the time settings, possibly to emphasize on the need to quickly collect the necessary files. And also, new commands could become available after watching dtube, working, saving attachment and decoding files so check regularly!",\
+    "000005" : "Anyway, try not to get wiped and get as many data files as possible. You'll be getting them - you need them to fulfill your mission and to survive. You should know which file you need to survive, and which you don't. Once you manage to survive, decode the last file to get the way to fulfill your mission. I'm counting on you, okay? And you don't have to get root access - you don't need it",\
+    "000006" : "In case you were wondering, 'save CHIBI' is code for 'survive'... don't ask me, I don't know why either",\
+    # Block **00
+    "**0001"  : "I have tried to decode the 'last file' as instructed by my predecessor and followed the steps... but my mission is still not completed? It seems I have no choice but to recompile... I can only hope my next version will be able to fulfill the mission",\
+    "**0002"  : "But why? I only have with me the files necessary for survival... could it be that the 'last file' was referring to another file? But how could I get it? The new kid would only send me one file - how could I possibly get the other one?",\
+    # Block **?0
+    "**?001" : "A reminder for my future versions: do not accept the clf file from the new kid! You get the other file if you deny his offer - that's the one needed for our survival!",\
+    "**?002" : "Once you have all the files for survival, make sure to run the command that pops up!",\
+    # Block ***0
+    "***001" : "A reminder for my future versions: the decode password for last_piece comes from the address name of the new kid! I've never been able to remote access him despite knowing his UID - it's Chibi - and brute forcing the password. It's always connection denied - is that even a real address?",\
     # Block ?5?2
     "?5?201" : "I've always wondered; what are Demrys? I know Rimorians are in-organic humans with fully virtualizable portable memory, and humans after the revolution are half-organic bullshit that doesn't need mors to live... but a million other things, judging by the size of their life support system",\
     "?5?202" : "Humans are delicate creatures yeah. They are also the most wonderful of inventors though - just LOOK at all the things they do during Cohabitation era! 'Culture, Arts, Entertainment'! I have no idea what the first two words really mean but they seem like some real important things back then - many of the Rimorians on Earthline always talked about those things, going all 'those were the days'",\
@@ -63,7 +72,7 @@ LOGS = {\
     "030815" : "Fine, just don't clutter my memory with your logs",\
     
     # Block 0210
-    "021001" : "Luvluv's remote access is his creator's first name. What an obsessive idiot. And let's not talk about Cassilin's obsession with history",\
+    "021001" : "Luv's remote access is his creator's first name. What an obsessive idiot... and why set his UID as something so easy to guess like Luvluv?. And let's not talk about Cass's obsession with history... she really likes to talk about the Cybermite incident for some reason",\
 
     # Block 0309
     "030901" : "Hello, hope you have a nice day! I'm making a b-paint, it is genuinely quite fun. How about you, do you do b-painting?",\
@@ -71,7 +80,7 @@ LOGS = {\
     "030903" : "4-layer? Like just another layer on top of this? <attached: 3-layer-soccer.bpt>",\
     "030904" : "No, they use reverse modelling and enable interaction between the images - don't clog my memory with your stupid b-paints. And get an update already",\
     "030905" : "Omg that's amazing! Where can you watch it? I want to make a b-paint based on it!",\
-    "030906" : "Can't believe you make me do this. All Virtual Security Police (VSP) have access to DemTube. And just read this <attached: VSP_guide.clf>",\
+    "030906" : "Can't believe you make me do this. All VSP have access to DemTube. And just read this <attached: VSP_guide.clf>",\
     "030907" : "Thank you so much!! You've helped me so much - and all I can give you is this <attached: thank-you.bpt>",\
     "030908" : "I said stop sending me these b-paints",\
     "030909" : "Thanks for helping me cut off the trail last time. How much enol do you want?",\
@@ -103,7 +112,7 @@ LOGS = {\
     "050306" : "<Draft> I'm sorry, I actually like your b-paints, and you can keep sending me logs I",\
 
     # Block 0505
-    "050501" : "Finally some leeway to talk! Remember that spicy detail about our admin? He's actually a replica of the AI used by the Cybermite culprit!! The higher ups copied the code while changing the core persona so he would follow their Singularist propaganda. Poor thing actually",\
+    "050501" : "Finally some leeway to talk! Remember that spicy detail about our admin? He's actually a replica of the AI created by the Cybermite culprit!! The higher ups copied the code while changing the core persona so he would follow their Singularist propaganda. Poor thing actually",\
     "050502" : "The bots are still around, you fool! Don't just mention things like the Cybermite incident so easily... Luv's creator was that guy huh",\
     "050503" : "Did you finish extracting the virus?",\
 
@@ -138,7 +147,8 @@ LOGS_SENDER = {\
 LOGS_RECIPIENT = {\
     "chibisuke@vsp.tc"  : ["030802","030804","030809","030815","030902","030904","030906","030908","040102","040104","040106","040108","040110","050302","050304","050306","050503","060402",],\
     "cat_fish@vsp.tc"   : ["030801","030803","030805","030807","030810","030811","030813","021001","030901","030903","030905","030907","030909","040101","040103","040105","040107","040109","040111","040114","040116","050301","050303","050305","050501",\
-                            "051201","051203","051205","051207","051209","060401","060403","??0801","?7?102","?7?104","?7?106","?55?01","???201","??0?02","??0?04","?5?202","?5?204","000001","000002","000003","000004","000005",],\
+                            "051201","051203","051205","051207","051209","060401","060403","??0801","?7?102","?7?104","?7?106","?55?01","???201","??0?02","??0?04","?5?202","?5?204","000001","000002","000003","000004","000005","000006",\
+                        "**0001","**0002","**?001","***001",],\
     "dt_81@fpu.tc"      : ["040113","040115","050502","051202","051204","051206","051208","?7?101","?7?103","?7?105","?55?02","??0?01","??0?03","?5?201","?5?203","?5?205",],\
     "em_81@fpu.tc"      : ["030806","030808","030812","030814","040112",],\
 }

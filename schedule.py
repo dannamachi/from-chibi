@@ -44,10 +44,10 @@ WORK = {\
     24 : "This Singulari thing was a mistake",\
     # 23 - 22
     22 : "What is Overspace?",\
-    # 21 - 20
-    20 : "Why would anyone have to die in this world?",\
-    # 19 - 18
-    18 : "The terminal bugged when I changed the time",\
+    # 21 - 20 (3 - 4)
+    20 : "The terminal bugged when I changed the time",\
+    # 19 - 18 (5 - 6)
+    18 : "Why would anyone have to die in this world?",\
     # 17 - 16
     16 : "You are killing us off! There is no aeternum here!!",\
     # 15 - 14

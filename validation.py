@@ -87,3 +87,9 @@ def check_load(*args):
     Returns bool if argument list is valid for load(flags,current_time)
     '''
     return len(args) == 2
+
+def check_chibi(*args):
+    '''
+    Returns bool is argument list is valid for chibi(flags,current_time)
+    '''
+    return len(args) == 2

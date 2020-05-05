@@ -7,9 +7,9 @@ import decodes
 ### endings
 end_game = False
 end_statuses = {\
-    0 : "Code integrity: True; Mission success: False; Message: Good enough",\
-    1 : "Code integrity: True; Mission success: False; Message: Thank you",\
-    2 : "Missing log files. Missing log files...",\
+    0 : "Code integrity: True; Mission success: False; Message: At least you survive",\
+    1 : "Code integrity: True; Mission success: False; Message: Thank you for passing on the truth about LUCA",\
+    2 : "Code integrity: False; Message: Code files not assembled, program failure",\
     3 : "Report: Malware detected (Severity:8); Action: Security analysis; Initializing analysis...",\
     4 : "Report: Malware detected (Severity:6); Action: Log erasure; Initializing erasure...",\
     5 : "Report: Malware detected (Severity:3); Action: Code transfer; Initializing transfer...",\
@@ -17,14 +17,14 @@ end_statuses = {\
     7 : "Code integrity: True; Mission success: True; Message: You did it!"\
 }
 end_messages = {\
-    0 : "You've managed to save CHIBI! Want to try to figure out what exactly is CHIBI's identity? Maybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert. Files of the same author tend to have the same decoding key",\
-    1 : "You've managed to save CHIBI and tell the truth to Luv! You're almost there - try to decode everything you have! Search for a way to do something that shouldn't be possible at first glance..",\
-    2 : "You are missing some files... try to look around and save attachments",\
+    0 : "You've managed to save CHIBI! Want to try to fulfill the mission? Maybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert. Files of the same author tend to have the same decoding key. And if you think you have every file possible... are you sure? Don't be naive and believe everything you are told, and try to talk to other people",\
+    1 : "You've managed to save CHIBI and tell the truth to Luv! You're almost there - did you decode every files possible? Run every command possible?",\
+    2 : "You are either missing files... or forgetting to run a specific command that's needed for your survival",\
     3 : "You've exposed CHIBI to the authorities... don't be so honest in replying next time",\
     4 : "You've acted too suspicious and drew suspicion from authorities. Try to reply more often/differently next time",\
     5 : "You've drawn suspicion to yourself either by replying wrongly or doing something you shouldn't be doing",\
     6 : "You've exposed CHIBI and also drawn suspicion to yourself. The authorities had to take care of you. Don't reply so honestly next time",\
-    7 : "You've managed to fulfill CHIBI's mission! Do you understand what CHIBI is now?"\
+    7 : "You've managed to fulfill CHIBI's main mission while also surviving! Do you understand what CHIBI is now? If you haven't... have you tried to decode all the files?"\
 }
 end_result = 0
 
@@ -44,6 +44,12 @@ flags = {}
 
 flag_dead = [ "WIPED", "RELOCATED", "KILLED", "DISCOVERED", "DISAPPEARED" ]
 
+day_check = {\
+    "Day 1"  : False,\
+    "Day 2"  : False,\
+    "Day 3"  : False,\
+}
+
 ### actions
 action_cmd = {\
     0  : "dt",\
@@ -62,6 +68,7 @@ action_cmd = {\
     13 : "quit",\
     14 : "reply",\
     15 : "notes",\
+    16 : "chibi",\
 }
 
 action_validation = {
@@ -80,6 +87,7 @@ action_validation = {
     12 : validation.check_load,\
     14 : validation.check_reply,\
     15 : validation.check_notes,\
+    16 : validation.check_chibi,\
 }
 
 action_command_call = {\
@@ -98,13 +106,17 @@ action_command_call = {\
     12 : actions.load,\
     14 : actions.reply,\
     15 : actions.notes,\
+    16 : actions.chibi,\
 }
 
 action_flags = {\
+    1 : ["Root Access"],\
+    4 : ["Can Root Access"],\
     5 : ["Root Access","Remote Access"],\
     6 : ["Root Access","Change Time"],\
     7 : ["Root Access","Decode Cohab's relic"],\
-    10: ["Root Access","Decoder"],\
+    10: ["Decoder"],\
+    16: ["Assembled"]
 }
 
 def print_helpful_note(isRoot):
@@ -130,11 +142,14 @@ def print_helpful_note(isRoot):
         print("<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">")
     else:
         print("<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">")
+    if "Assembled" in list(flags.keys()) and not ("Another CHIBI" in list(flags.keys())):
+        print("Message: all code files detected, please run special command")
 
 print("=====================================")
 print("Security warning (Level 5): Change detected in memory database")
 print("Security warning (Level 2): Change detected in time display")
 print("Security warning (Level 2): Change detected in message display")
+print("Security warning (Level 2): Change detected in help display")
 print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
 print("Establishing connection...")
 print("=====================================")
@@ -142,7 +157,7 @@ print("Year: 7204")
 print("Session: 4498032")
 print("Connection status: Good")
 print("Address: cat_fish@vsp.tc")
-print("Message: Save CHIBI! Time is running out!Press help to get started")
+print("Message: mskmcdjsnjnsce[Save CHIBI! Time is running out!]jfnejfnscnjd[Press help to get started]")
 print("=====================================")
 while not end_game:
     command_status = "Command succeeded"
@@ -168,8 +183,8 @@ while not end_game:
             break
         # check for commands that need flags
         if command_int in list(action_flags.keys()):
-            if not ("Root Access" in list(flags.keys())):
-                command_status = "Root access needed. Enter root"
+            if not ("Root Access" in list(flags.keys())) and "Root Access" in list(action_flags[command_int]):
+                command_status = "Root access needed"
             else:
                 for flag in action_flags[command_int]:
                     if not (flag in list(flags.keys())):
@@ -189,14 +204,21 @@ while not end_game:
             logs_new.LOGS_NEW[key[:6]] = logs_new.LOG_VARIATIONS[key]
     # update new block status
     # update new day
-    if total_time <= 24:
+    if total_time <= 24 and not day_check["Day 1"]:
         blocks.BLOCKS_NEW["0611"] = True 
         if not ("Another day" in list(flags.keys())):
             flags["WIPED"] = True
-    if total_time <= 12:
+            day_check["Day 1"] = True
+    if total_time <= 12 and not day_check["Day 2"]:
         blocks.BLOCKS_NEW["0612"] = True
-        if not ("p5-9" in list(flags.keys())) or not decodes.KEYFLAG["last_piece.bpt"]:
+        if not ("Another CHIBI" in list(flags.keys())):
             flags["DISAPPEARED"] = True
+            day_check["Day 2"] = True
+    if total_time <= 0 and not day_check["Day 3"]:
+        end_game = True
+    # update special command
+    if "p5-9" in list(flags.keys()) and decodes.KEYFLAG["last_piece.bpt"] and not ("Assembled" in list(flags.keys())):
+        flags["Assembled"] = True
     print("")
     print(command_status)
     print("")
@@ -215,8 +237,6 @@ while not end_game:
             end_result = 7
             end_game = True
             break
-    if total_time == 0:
-        break
 
 # ending resolution
 if end_result == -1:

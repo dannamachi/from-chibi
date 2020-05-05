@@ -21,12 +21,26 @@ flag_demtube_triggers = {\
 }
 
 flag_work_triggers = {\
-    18 : "Change Time",\
+    20 : "Change Time",\
 }
 
 flag_contact = 0
 
 contact_red = ["266694:990002::", "9933:12:45900:009::", "11111:111:1111:1::"]
+
+def chibi(*args):
+    '''
+    Returns string of result
+    '''
+    flags = args[0]
+    current_time = args[1]
+    if not is_flag_triggered(flags,"Another CHIBI"):
+        tips =  "File assembling in progress... Success. Running self replication sequence... Success. Scanning network for next target... Success. Initializing persona code 'chibisuke'... Success. Initializing file transfer to target... Success. Message: mission not fulfilled, please run mission"
+        flags["Another CHIBI"] = True
+        current_time -= 2
+    else:
+        tips = "Code assembled. File transfer already in progress. Message: mission not fulfilled, please run mission"
+    return tips, current_time
 
 def notes(*args):
     '''
@@ -178,17 +192,30 @@ def demtube(flags,current_time):
             current_time -= 1
             return "Watching: " + schedule.DEMTUBE[hour_list[i]], current_time
 
+def update_block_status(block_id,group_id):
+    '''
+    Updates block status
+    '''
+    if group_id == 0:
+        blocks.BLOCKS[block_id] = True
+    if group_id == 2:
+        blocks.BLOCKS_SPECIAL_TWO[block_id] = True
+    if group_id == 3:
+        blocks.BLOCKS_ROOT[block_id] = True
+
 def decrypt(flags,current_time,block_id):
     '''
     Returns string of result
     '''
-    block_list = list(blocks.BLOCKS.keys())
-    if not (block_id in block_list): 
+    block_group = is_in_which_block_group(block_id)
+    if not (block_group in [0,1,2,3]): 
         return "Block not found", current_time
-    if blocks.BLOCKS[block_id]: 
+    if block_group == 1:
+        return "That block is not encrypted", current_time
+    if can_block_be_read(flags,block_id,block_group,current_time):
         return "Block already decrypted", current_time
     # update block list
-    blocks.BLOCKS[block_id] = True
+    update_block_status(block_id,block_group)
     # update time
     if is_flag_triggered(flags,"Fast Decrypt"): 
         current_time -= 1
@@ -252,6 +279,32 @@ def log_reply_status(log_id, current_time):
         return 2
     return 1
 
+def can_block_be_read(flags, block_id, group_id, current_time):
+    '''
+    Return bool whether block can be read
+    '''
+    if group_id == 0:
+        return blocks.BLOCKS[block_id]
+    if group_id == 2:
+        return blocks.BLOCKS_SPECIAL_TWO[block_id] and current_time <= 24
+    if group_id == 3:
+        return blocks.BLOCKS_ROOT[block_id] and is_flag_triggered(flags, "Root Access")
+    return False
+
+def is_in_which_block_group(block_id):
+    '''
+    Returns integer indicating which block group does block id belongs to
+    '''
+    if block_id in list(blocks.BLOCKS.keys()):
+        return 0 # original blocks
+    if block_id in list(blocks.BLOCKS_NEW.keys()):
+        return 1 # new blocks
+    if block_id in list(blocks.BLOCKS_SPECIAL_TWO.keys()):
+        return 2 # day 2+ blocks
+    if block_id in list(blocks.BLOCKS_ROOT.keys()):
+        return 3 # root blocks
+    return -1
+
 def read(*args):
     '''
     Returns string of result, whether it is read block or read log
@@ -273,21 +326,19 @@ def read(*args):
     else:
         block_id = args[2]
         # check whether new or old block
-        old_block_list = list(blocks.BLOCKS.keys())
-        new_block_list = list(blocks.BLOCKS_NEW.keys())
-        is_old_block = block_id in old_block_list
-        is_new_block = block_id in new_block_list
+        block_group = is_in_which_block_group(block_id)
+        is_old_block = not (block_group == 1)
         # return result if not found
-        if not is_new_block and not is_old_block: 
-            return "ID not found", current_time
+        if block_group == -1:
+            return "Block not found", current_time
         # return result of if locked
         if is_old_block:
-            if not blocks.BLOCKS[block_id]:
-                return "Block is locked, need to decrypt", current_time
+            if not can_block_be_read(flags,block_id,block_group,current_time):
+                return "Block may be locked or inaccessible", current_time
         else:
             if not blocks.BLOCKS_NEW[block_id]:
-                return "Block is unavailable", current_time
-        log_list = read_block(flags,current_time,block_id,is_old_block)
+                return "Block is unavailable at this time", current_time
+        log_list = read_block(flags,current_time,block_id,is_old_block,block_group)
         result = "Block " + block_id + ": "
         for i in range(len(log_list)):
             log_id = log_list[i]
@@ -348,15 +399,13 @@ def can_log_exist(flags,log_id):
     flag_needed = logs_new.LOG_NEED_FLAGS[log_id]
     return flag_needed in flags
 
-def read_block(flags,current_time,block_id,is_old):
+def read_block(flags,current_time,block_id,is_old,group_id):
     '''
     Returns list of log IDs
     '''
     block_list = []
     
     if is_old:
-        # return empty list if locked
-        if not blocks.BLOCKS[block_id]: return block_list
         # get all matching log IDs
         id_list = sorted(list(logs.LOGS.keys()))
         for i in range(len(id_list)):
@@ -442,7 +491,9 @@ def help(*args):
         tips += "\nYour job is to regularly delete old logs from earthline database - you can read the schedule by entering 'notes work'"
         tips += "\nAs a security officer, you are closely watched by the channel admin and regulatory bots - read your logs regularly and reply on time"
         tips += "\nDemTube is the universal platform for entertainment and learning - you can read the schedule by entering 'notes dt'"
-        tips += "\n3u38u@#83i23[mission:contactoverspace]9wdsijnc9ds9ds9xd[selfreplication:donotforgetlastpiece]l984mednsc"
+        tips += "\nEnter 'help commands' for a list of possible commands"
+        tips += "\n181us[enterread0000]a15fqcfascafcq"
+        tips += "\n3u38u@#83i23[mission:contactoverspace]9wdsijnc9ds9ds9xd[survive:donotforgetlastpiece]l984mednsc"
         return tips, current_time
     else:
         key = args[2]
@@ -452,11 +503,25 @@ def help(*args):
             tips = actions_help.get_contacts()
             return tips, current_time
         if key == "archive":
-            tips = "Archive status:"
+            tips = "Archive status:\nSome blocks may not be accessible unless you have root access"
+            # basic blocks
             for key in list(blocks.BLOCKS.keys()):
                 tips += "\n\t" + str(key)
                 if blocks.BLOCKS[key]: tips += " - Unlocked"
                 else: tips += " - Locked"
+            # day 2 blocks
+            if current_time <= 24:
+                for key in list(blocks.BLOCKS_SPECIAL_TWO.keys()):
+                    tips += "\n\t" + str(key)
+                    if blocks.BLOCKS_SPECIAL_TWO[key]: tips += " - Unlocked"
+                    else: tips += " - Locked"
+            # root blocks
+            if is_flag_triggered(flags,"Root Access"):
+                tips += "\nHidden blocks:"
+                for key in list(blocks.BLOCKS_ROOT.keys()):
+                    tips += "\n\t" + str(key)
+                    if blocks.BLOCKS_ROOT[key]: tips += " - Unlocked"
+                    else: tips += " - Locked"
             return tips, current_time
         if key == "files":
             tips = "Files in memory:\n\t"
@@ -471,6 +536,8 @@ def help(*args):
                 tips += "time.exe "
             if is_flag_triggered(flags,"Decoder"):
                 tips += "decode.exe "
+            if is_flag_triggered(flags,"Assembled"):
+                tips += "chibi.exe "
             if is_flag_triggered(flags,"Decode Cohab's relic"):
                 tips += "overspace.exe "
             return tips, current_time
