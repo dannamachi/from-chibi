@@ -10,6 +10,9 @@
 * python main.py
 
 ### version
+* v2.0.0: add restart option, add decrypt info
+* v1.9.0: adjust content, change decrypt system
+* v1.8.0: add saving and loading
 * v1.7.5: add content, adjust requirement, adjust schedule, fix archive bug
 * v1.7.0: add content, adjust initial archives
 * v1.6.0: break down help function into multiple commands, add contact info
