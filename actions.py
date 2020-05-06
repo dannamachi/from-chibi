@@ -42,6 +42,16 @@ flag_contact = 0
 
 contact_red = ["266694:990002::", "9933:12:45900:009::", "11111:111:1111:1::"]
 
+def set_restart_point(flags,current_time):
+    '''
+    Saves (auto) restart point to save file
+    Returns success
+    '''
+    save_success = saving.save_data_to_file(flags,current_time,flag_contact,\
+            day_check,decrypt_track,blocks.BLOCKS,blocks.BLOCKS_ROOT,blocks.BLOCKS_SPECIAL_TWO,blocks.BLOCKS_SPECIAL_THREE,blocks.BLOCKS_NEW,\
+            decodes.KEYFLAG,logs_new.LOGS_NEW,logs_new.LOG_NEED_REPLIES,logs_new.LOG_ATTACHMENT,"restart")
+    return save_success
+
 def chibi(*args):
     '''
     Returns string of result
@@ -130,12 +140,15 @@ def load(*args):
             tips += "\nEnter load [slot index] to load from a save slot"
         return tips, current_time
     else:
-        try:
-            slot_index = int(args[2])
-            if not (slot_index in range(saving.TOTAL_SAVE_SLOT)):
-                return 'Invalid slot index', current_time
-        except:
-            return 'Slot index must be a number', current_time
+        if args[2] != 'restart':
+            try:
+                slot_index = int(args[2])
+                if not (slot_index in range(saving.TOTAL_SAVE_SLOT)):
+                    return 'Invalid slot index', current_time
+            except:
+                return 'Slot index must be a number', current_time
+        else:
+            slot_index = args[2]
         # check data can be loaded
         DATA_SAVES = saving.read_data_from_file()
         if DATA_SAVES['Success'] != 1:
@@ -233,6 +246,7 @@ def save_attachment(flags,current_time,log_id):
             if is_flag_triggered(flags,"Cohab") or is_flag_triggered(flags,"Cohab@"): decodes.KEYFLAG["Cohab.clf"] = True
             if is_flag_triggered(flags,"Bpaint") or is_flag_triggered(flags,"Bpaint@"): decodes.KEYFLAG["last_piece.bpt"] = True
         return "Attachment saved", current_time
+    return "No attachment found", current_time
 
 def reply(*args):
     '''
@@ -250,20 +264,6 @@ def reply(*args):
     time_window = min(time_list,key=lambda item: item - current_time)
     if not (log_id in logs_new.LOG_TIME[time_window]):
         return "Cannot reply to that log at this time", current_time
-    # narrow down log with attachment
-    if log_id in logs_new.LOG_ATTACHMENT.keys():
-        logs_new.LOG_ATTACHMENT[log_id] = True
-        if log_id == "061101":
-            flags["p5-9"] = True
-            decodes.KEYFLAG["do.bpt"] = True
-            decodes.KEYFLAG["not.bpt"] = True
-            decodes.KEYFLAG["forget.bpt"] = True
-        elif log_id == "061201":
-            decodes.KEYFLAG["catgirl.bpt"] = True
-        else:
-            if is_flag_triggered(flags,"Cohab") or is_flag_triggered(flags,"Cohab@"): decodes.KEYFLAG["Cohab.clf"] = True
-            if is_flag_triggered(flags,"Bpaint") or is_flag_triggered(flags,"Bpaint@"): decodes.KEYFLAG["last_piece.bpt"] = True
-        return "Attachment saved", current_time
     # narrow down log that can be replied to
     if not (log_id in logs_new.LOG_NEED_REPLIES.keys()):
         return "Cannot reply to that log", current_time
@@ -373,9 +373,10 @@ def address_to_name(address_string):
     '''
     Returns name corresponding to address
     '''
-    if address_string in list(actions_help.ADDRESS_TO_NAME.keys()):
-        return actions_help.ADDRESS_TO_NAME[address_string]
-    return "Unknown"
+    return address_string
+    # if address_string in list(actions_help.ADDRESS_TO_NAME.keys()):
+    #     return actions_help.ADDRESS_TO_NAME[address_string]
+    # return "Unknown"
 
 def get_log_info(log_id, is_old):
     '''
@@ -647,11 +648,11 @@ def help(*args):
         return tips, current_time
     else:
         key = args[2]
-        if not (key in ["archive","files","commands","contacts"]):
+        if not (key in ["archive","files","commands"]):
             return "Invalid syntax", current_time
-        if key == "contacts":
-            tips = actions_help.get_contacts()
-            return tips, current_time
+        # if key == "contacts":
+        #     tips = actions_help.get_contacts()
+        #     return tips, current_time
         if key == "archive":
             tips = "Archive status:\nSome blocks may not be accessible unless you have root access"
             # basic blocks
@@ -688,8 +689,6 @@ def help(*args):
             for item in list(decodes.KEYFLAG.keys()):
                 if decodes.KEYFLAG[item]:
                     tips += item + " "
-            if is_flag_triggered(flags,"p5-9"):
-                tips += "\n\tdo.bpt not.bpt forget.bpt "
             if is_flag_triggered(flags,"Remote Access"):
                 tips += "remote.exe "
             if is_flag_triggered(flags,"Change Time"):

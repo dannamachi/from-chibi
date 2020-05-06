@@ -106,6 +106,7 @@ action_command_call = {\
     14 : actions.reply,\
     15 : actions.notes,\
     16 : actions.chibi,\
+    17 : actions.save_attachment,\
 }
 
 action_flags = {\
@@ -159,119 +160,146 @@ def print_helpful_note(isRoot):
 
 # SAVE INITIALIZING
 # saving.initialize_save()
+actions.set_restart_point(flags,total_time)
 
-# GAME START
-
-print("=====================================")
-print("Security warning (Level 5): Change detected in memory database")
-print("Security warning (Level 2): Change detected in time display")
-print("Security warning (Level 2): Change detected in message display")
-print("Security warning (Level 2): Change detected in help display")
-print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
-print_intro()
-while not end_game:
-    command_status = "Command succeeded"
-    # get user input
-    user_command = input("Nekoi>> ").strip()
-    # break down command
-    command_int = -1
-    command_list = user_command.split(' ')
-    # check for too many arguments
-    if len(command_list) > 4:
-        command_status = "Too many arguments"
-    # check if command word matches
-    for i in list(action_cmd.keys()):
-        if command_list[0] == action_cmd[i]:
-            command_int = i
-            break
-    if command_int == -1:
-        command_status = "Command not found"
-    else:
-        # check for quit
-        if command_int == 13:
-            end_result = -1
-            break
-        # check for commands that need flags
-        if command_int in list(action_flags.keys()):
-            if not ("Root Access" in list(flags.keys())) and "Root Access" in list(action_flags[command_int]):
-                command_status = "Root access needed"
-            else:
-                for flag in action_flags[command_int]:
-                    if not (flag in list(flags.keys())):
-                        command_status = "Command not recognized. Are you missing any package/script? Watch dtube or find files via logs"
-                        break
-        # check for argument list
-        if command_status == "Command succeeded":
-            argument_list = command_list[1:]
-            if not action_validation[command_int](flags,total_time,*argument_list):
-                command_status = "Invalid syntax"
-        # run command
-        previous_time = total_time
-        if command_status == "Command succeeded":
-            command_status, total_time = action_command_call[command_int](flags,total_time,*argument_list)
-        time_spent = previous_time - total_time
-    # update decrypting status
-    if command_int == 12: time_spent = 0
-    remove_list = []
-    for item in list(actions.decrypt_track.keys()):
-        actions.decrypt_track[item] -= time_spent
-        if actions.decrypt_track[item] <= 0:
-            actions.update_block_status(item,actions.is_in_which_block_group(item))
-            remove_list.append(item)
-    for item in remove_list:
-        actions.decrypt_track.pop(item, None)
-    # update block variation
-    for key in logs_new.LOG_VARIATIONS.keys():
-        if logs_new.LOG_NEED_FLAGS[key] in list(flags.keys()):
-            logs_new.LOGS_NEW[key[:6]] = logs_new.LOG_VARIATIONS[key]
-    # update new block status
-    # update new day
-    if total_time <= 24 and not day_check["Day 1"]:
-        blocks.BLOCKS_NEW["0611"] = True 
-        if not ("Another day" in list(flags.keys())):
-            flags["WIPED"] = True
-        day_check["Day 1"] = True
-    if total_time <= 12 and not day_check["Day 2"]:
-        blocks.BLOCKS_NEW["0612"] = True
-        if not ("Another CHIBI" in list(flags.keys())):
-            flags["DISAPPEARED"] = True
-        day_check["Day 2"] = True
-    if total_time <= 0 and not day_check["Day 3"]:
-        end_game = True
-    # update special command
-    if "p5-9" in list(flags.keys()) and decodes.KEYFLAG["last_piece.bpt"] and not ("Assembled" in list(flags.keys())):
-        flags["Assembled"] = True
-    print("")
-    print(command_status)
-    print("")
-    # print helpful note & time
-    isRoot = "Root Access" in list(flags.keys())
-    print_helpful_note(isRoot)
-    # check dead
-    for i in range(len(flag_dead)):
-        if flag_dead[i] in flags:
-            print("Disconnected - " + flag_dead[i])
-            end_result = flag_dead_link[i]
-            end_game = True
-            break
-    # check end game
-    if "MISSION END" in list(flags.keys()):
-            end_result = 7
-            end_game = True
-            break
-
-# ending resolution
-if end_result == -1:
-    print("See you soon!")
-else:
+# RESTART LOOP
+not_quit = True
+while not_quit:
+    # GAME START
     print("=====================================")
-    if end_result in list(flag_dead_link.values()):
-        print(end_statuses[end_result])
-    else:
-        if "Luca's secret" in list(flags.keys()):
-            end_result = 1
+    print("Security warning (Level 5): Change detected in memory database")
+    print("Security warning (Level 2): Change detected in time display")
+    print("Security warning (Level 2): Change detected in message display")
+    print("Security warning (Level 2): Change detected in help display")
+    print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
+    print_intro()
+    while not end_game:
+        command_status = "Command succeeded"
+        # get user input
+        user_command = input("Nekoi>> ").strip()
+        # break down command
+        command_int = -1
+        command_list = user_command.split(' ')
+        # check for too many arguments
+        if len(command_list) > 4:
+            command_status = "Too many arguments"
+        # check if command word matches
+        for i in list(action_cmd.keys()):
+            if command_list[0] == action_cmd[i]:
+                command_int = i
+                break
+        if command_int == -1:
+            command_status = "Command not found"
+        else:
+            # check for quit
+            if command_int == 13:
+                end_result = -1
+                not_quit = False
+                break
+            # check for commands that need flags
+            if command_int in list(action_flags.keys()):
+                if not ("Root Access" in list(flags.keys())) and "Root Access" in list(action_flags[command_int]):
+                    command_status = "Root access needed"
+                else:
+                    for flag in action_flags[command_int]:
+                        if not (flag in list(flags.keys())):
+                            command_status = "Command not recognized. Are you missing any package/script? Watch dtube or find files via logs"
+                            break
+            # check for argument list
+            if command_status == "Command succeeded":
+                argument_list = command_list[1:]
+                if not action_validation[command_int](flags,total_time,*argument_list):
+                    command_status = "Invalid syntax"
+            # run command
+            previous_time = total_time
+            if command_status == "Command succeeded":
+                command_status, total_time = action_command_call[command_int](flags,total_time,*argument_list)
+            time_spent = previous_time - total_time
+        # update decrypting status
+        if command_int == 12: time_spent = 0
+        remove_list = []
+        for item in list(actions.decrypt_track.keys()):
+            actions.decrypt_track[item] -= time_spent
+            if actions.decrypt_track[item] <= 0:
+                actions.update_block_status(item,actions.is_in_which_block_group(item))
+                remove_list.append(item)
+        for item in remove_list:
+            actions.decrypt_track.pop(item, None)
+        # update block variation
+        for key in logs_new.LOG_VARIATIONS.keys():
+            if logs_new.LOG_NEED_FLAGS[key] in list(flags.keys()):
+                logs_new.LOGS_NEW[key[:6]] = logs_new.LOG_VARIATIONS[key]
+        # update new block status
+        # update new day
+        if total_time <= 24 and not day_check["Day 1"]:
+            blocks.BLOCKS_NEW["0611"] = True 
+            if not ("Another day" in list(flags.keys())):
+                flags["WIPED"] = True
+            day_check["Day 1"] = True
+        if total_time <= 12 and not day_check["Day 2"]:
+            blocks.BLOCKS_NEW["0612"] = True
+            if not ("Another CHIBI" in list(flags.keys())):
+                flags["DISAPPEARED"] = True
+            day_check["Day 2"] = True
+        if total_time <= 0 and not day_check["Day 3"]:
+            end_game = True
+        # update special command
+        if "p5-9" in list(flags.keys()) and decodes.KEYFLAG["last_piece.bpt"] and not ("Assembled" in list(flags.keys())):
+            flags["Assembled"] = True
+        print("")
+        print(command_status)
+        print("")
+        # print helpful note & time
+        isRoot = "Root Access" in list(flags.keys())
+        print_helpful_note(isRoot)
+        # decryption noti
+        if len(remove_list) > 0:
+            print('<Some block(s) have finished decrypting>')
+        # check dead
+        for i in range(len(flag_dead)):
+            if flag_dead[i] in flags:
+                print("Disconnected - " + flag_dead[i])
+                end_result = flag_dead_link[i]
+                end_game = True
+                break
+        # check end game
         if "MISSION END" in list(flags.keys()):
-            end_result = 7
-        print(end_statuses[end_result])
-    print("=====================================")
-    print(end_messages[end_result])
+                end_result = 7
+                end_game = True
+                break
+
+    # ending resolution
+    if end_result == -1:
+        print("See you soon!")
+    else:
+        print("=====================================")
+        if end_result in list(flag_dead_link.values()):
+            print(end_statuses[end_result])
+        else:
+            if "Luca's secret" in list(flags.keys()):
+                end_result = 1
+            if "MISSION END" in list(flags.keys()):
+                end_result = 7
+            print(end_statuses[end_result])
+        print("=====================================")
+        print(end_messages[end_result])
+    
+    # restart
+    if not_quit:
+        print("=====================================")
+        print("Restarting sequence. Type 'proceed' or 'terminate' to continue")
+        while True:
+            choice = input(">> ").strip()
+            if choice in ["proceed",'terminate']:
+                break
+            print("Invalid input. Type 'proceed' or 'terminate'")
+        if choice == 'terminate':
+            not_quit = False
+            print('See you soon!')
+        else:
+            print('Sequence executed. Please wait...')
+            command_status, total_time = actions.load(flags,total_time,'restart')
+            end_result = 0
+            end_game = False
+            print("=====================================")
+            

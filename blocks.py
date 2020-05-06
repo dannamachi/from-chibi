@@ -32,7 +32,7 @@ BLOCKS_SPECIAL_THREE = {\
 }
 
 BLOCKS_NEW = {\
-    "0610" : False,\
+    "0610" : True,\
     "0611" : False,\
     "0612" : False,\
 }

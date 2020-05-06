@@ -51,7 +51,7 @@ def get_possible_commands(flags):
     '''
     Returns string with possible commands
     '''
-    tips = "Enter help for general info, or help [commands/files/archive/contacts] for specific info"
+    tips = "Enter help for general info, or help [commands/files/archive] for specific info"
     tips += "\nEnter notes to read all notes, or notes [general/dt/work] for specific notes"
     tips += "\nEnter dt to watch demtube"
     tips += "\nEnter work to do your job"
