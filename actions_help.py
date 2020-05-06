@@ -59,6 +59,9 @@ def get_possible_commands(flags):
     tips += "\nEnter read [block id] to read all logs in a block"
     tips += "\nEnter decrypt [block id] to unlock blocks in archive"
     tips += "\nEnter download [log id] to save attachment"
+    tips += "\nEnter save or load to see save slots available for saving/loading"
+    tips += "\nEnter save [slot id] or load [slot id] to save or load respectively"
+    tips += "\nEnter load restart to restart the game"
     tips += "\nEnter quit to quit the session"
     if is_flag_triggered(flags,"Change Time"):
         tips += "\n! Enter time [UID] to change the time of another terminal"

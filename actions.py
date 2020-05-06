@@ -173,6 +173,8 @@ def load(*args):
         logs_new.LOG_ATTACHMENT = load_dictionary(DATA_SAVES[slot_index]["LOGSATTACHMENT"],logs_new.LOG_ATTACHMENT)
         end_result = 0
 
+        if slot_index == 'restart':
+            return 'Game restarted', current_time
         return 'Loaded slot ' + str(slot_index), current_time
         
     return "This function is not yet supported", current_time

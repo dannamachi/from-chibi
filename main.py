@@ -123,6 +123,12 @@ def print_intro():
     '''
     Prints intro text
     '''
+    print("=====================================")
+    print("Security warning (Level 5): Change detected in memory database")
+    print("Security warning (Level 2): Change detected in time display")
+    print("Security warning (Level 2): Change detected in message display")
+    print("Security warning (Level 2): Change detected in help display")
+    print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
     print("Establishing connection...")
     print("=====================================")
     print("Year: 7204")
@@ -164,16 +170,12 @@ actions.set_restart_point(flags,total_time)
 
 # RESTART LOOP
 not_quit = True
+command_status = 'Game restarted'
 while not_quit:
     # GAME START
-    print("=====================================")
-    print("Security warning (Level 5): Change detected in memory database")
-    print("Security warning (Level 2): Change detected in time display")
-    print("Security warning (Level 2): Change detected in message display")
-    print("Security warning (Level 2): Change detected in help display")
-    print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
-    print_intro()
     while not end_game:
+        if command_status == 'Game restarted':
+            print_intro()
         command_status = "Command succeeded"
         # get user input
         user_command = input("Nekoi>> ").strip()
@@ -251,7 +253,8 @@ while not_quit:
         print("")
         # print helpful note & time
         isRoot = "Root Access" in list(flags.keys())
-        print_helpful_note(isRoot)
+        if command_status != 'Game restarted':
+            print_helpful_note(isRoot)
         # decryption noti
         if len(remove_list) > 0:
             print('<Some block(s) have finished decrypting>')
@@ -299,7 +302,6 @@ while not_quit:
         else:
             print('Sequence executed. Please wait...')
             command_status, total_time = actions.load(flags,total_time,'restart')
-            end_result = 0
             end_game = False
             print("=====================================")
             
