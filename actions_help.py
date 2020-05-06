@@ -58,6 +58,7 @@ def get_possible_commands(flags):
     tips += "\nEnter read to check only the latest log received/sent"
     tips += "\nEnter read [block id] to read all logs in a block"
     tips += "\nEnter decrypt [block id] to unlock blocks in archive"
+    tips += "\nEnter decode [file name] [key] to decode a file"
     tips += "\nEnter download [log id] to save attachment"
     tips += "\nEnter save or load to see save slots available for saving/loading"
     tips += "\nEnter save [slot id] or load [slot id] to save or load respectively"
@@ -69,8 +70,6 @@ def get_possible_commands(flags):
         tips += "\n! Enter root to get root access"
     if is_flag_triggered(flags,"Remote Access"):
         tips += "\n! Enter remote [UID] [password] to remote access another terminal"
-    if is_flag_triggered(flags,"Decoder"):
-        tips += "\n! Enter decode [file name] [key] to decode a file"
     if is_flag_triggered(flags,"Assembled"):
         tips += "\n! Enter chibi to run special command"
     if is_flag_triggered(flags,"Decode Cohab's relic"):
