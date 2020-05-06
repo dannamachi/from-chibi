@@ -18,9 +18,9 @@ DEMTUBE = {\
     # 17 - 16 (19 - 20)
     14 : "No AI is capable of self-recovery from a code wipe - PROVEN",\
     # 15 - 12 (21 - 24)
-    12 : "Backups and how to decrypt them faster",\
+    12 : "Is immortality a good thing?",\
     # 11 - 8 (25 - 28)
-    8 : "Can you hide logs within your code?",\
+    8 : "Decode your files quickly today!",\
     # 7 - 6 (29 - 30)
     6  : "Encoding before the war",\
     # 5 - 4 (31 - 32)

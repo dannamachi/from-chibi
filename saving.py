@@ -68,8 +68,8 @@ def read_save():
     return tips
 
 def save_data_to_file(\
-    flags, current_time, flag_contact, day_check,\
-    blocks, blocks_root, blocks_two, blocks_new,\
+    flags, current_time, flag_contact, day_check, decrypt_track,\
+    blocks, blocks_root, blocks_two, blocks_three, blocks_new,\
     keyflag, logs_new, logs_need_replies, log_attachment,\
     slot_index):
     '''
@@ -88,9 +88,11 @@ def save_data_to_file(\
     DATA_SAVES[slot_index]["TIME"] = current_time
     DATA_SAVES[slot_index]["CONTACTCOUNT"] = flag_contact
     DATA_SAVES[slot_index]["DAYCHECK"] = day_check
+    DATA_SAVES[slot_index]["DECRYPT"] = decrypt_track
     DATA_SAVES[slot_index]["BLOCKS"] = blocks
     DATA_SAVES[slot_index]["BLOCKSROOT"] = blocks_root
     DATA_SAVES[slot_index]["BLOCKSTWO"] = blocks_two
+    DATA_SAVES[slot_index]["BLOCKSTHREE"] = blocks_three
     DATA_SAVES[slot_index]["BLOCKSNEW"] = blocks_new
     DATA_SAVES[slot_index]["DECODES"] = keyflag
     DATA_SAVES[slot_index]["LOGSNEW"] = logs_new

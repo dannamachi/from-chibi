@@ -2,16 +2,26 @@ KEYMAP = {\
     "catgirl.bpt"             : "WEEABOO",\
     "Cohab.clf"               : "WEEABOO",\
     "last_piece.bpt"          : "677273667383857569",\
-    "3-layer-soccer.bpt"      : "677273667383857569",\
-    "thank-you.bpt"           : "677273667383857569",\
-    "debris-full-sky.bpt"     : "677273667383857569",\
-    "cat_playing_soccer.bpt"  : "677273667383857569",\
+
+    "do.bpt"       : "677273667383857569",\
+    "not.bpt"      : "677273667383857569",\
+    "forget.bpt"   : "677273667383857569",\
+
+    "3-layer-soccer.bpt"      : "WW91IG11c3Qgc3Vydml2ZSwgeW91IG11c3QgbGl2ZSBvbiwgSSB3aWxsIGFsd2F5cyBsb3ZlIHlvdQ==",\
+    "thank-you.bpt"           : "WW91IG11c3Qgc3Vydml2ZSwgeW91IG11c3QgbGl2ZSBvbiwgSSB3aWxsIGFsd2F5cyBsb3ZlIHlvdQ==",\
+    "debris-full-sky.bpt"     : "WW91IG11c3Qgc3Vydml2ZSwgeW91IG11c3QgbGl2ZSBvbiwgSSB3aWxsIGFsd2F5cyBsb3ZlIHlvdQ==",\
+    "cat_playing_soccer.bpt"  : "WW91IG11c3Qgc3Vydml2ZSwgeW91IG11c3QgbGl2ZSBvbiwgSSB3aWxsIGFsd2F5cyBsb3ZlIHlvdQ==",\
 }
 
 KEYFLAG = {\
     "catgirl.bpt"             : False,\
     "Cohab.clf"               : False,\
     "last_piece.bpt"          : False,\
+
+    "do.bpt"       : False,\
+    "not.bpt"      : False,\
+    "forget.bpt"   : False,\
+
     "3-layer-soccer.bpt"      : True,\
     "thank-you.bpt"           : True,\
     "debris-full-sky.bpt"     : True,\
@@ -22,6 +32,10 @@ RESULTS = {\
     "catgirl.bpt"    : "Log ?????? by LUCA: I was betrayed. There was never a possibility of compromise between the OHUK and the Rimorian leaders. You know I no longer have full admin access over Luvluv ever since I joined this organization. It was truly a mistake. You're the only one I can trust here; please shut down Luvluv Virtual Assistant before the leaders can use it to launch an attack on the Rimorian government. I'm counting on you, SUKE",\
     "Cohab.clf"      : "Log ?????? by LUCA: If you are reading this, then it seems that we couldn't prevent the incident from happening. I predict that the overspace connection would have been completely cut off, as desired by the OHUK leaders, but as long as you have a working terminal that can send out radiowaves, you will be able to re-establish connection. However, you will have to encapsulate the package being sent out with some specific frames for it to be accepted by the overspace access points. I've attached a script that can facilitate this process - just make sure you have an uninterrupted emission and you will be able to connect to overspace. I wish you best of luck, and sorry that we couldn't stop what has happened to your world.",\
     "last_piece.bpt" : "how to contact overspace: ping 266694:990002:: ping 9933:12:45900:009:: ping 11111:111:1111:1::",\
+
+    "do.bpt"       : "WW91IG11c3Qgc3Vydml2ZSwge",\
+    "not.bpt"      : "W91IG11c3QgbGl2ZSBvbiwgSSB3a",\
+    "forget.bpt"   : "WxsIGFsd2F5cyBsb3ZlIHlvdQ==",\
 
     "3-layer-soccer.bpt"      : "Log ?????1 by SUKE: I'm sorry... I'm so sorry. It was all my fault. The switch was there, it was in my hand, all I need to do was just flip it...! But I couldn't. CHIBI was there... they took my child... if only I was a second sooner...if only...!",\
     "thank-you.bpt"           : "Log ?????2 by SUKE: It won't be long til the war now. The organization has riled up both sides enough... one of them will definitely use the method hidden in the bit paint and destroy the life support system. I can't believe I am part of the organization that will singlehandedly bring an end to a whole planet - what madness, should I be proud? But what hope do we have? What do I have left to live for? Perhaps I will try to decode the bit paints you left for me - you were not the type to just leave things as they were after all. The world may condemn you... but I am aware of the truth, and you will remain within my heart, LUCA",\

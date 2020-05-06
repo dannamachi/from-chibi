@@ -8,11 +8,9 @@ DEMTUBE_HELP ="""Demtube schedule:
     D1 5 - 8   : encryption (note: good for bluffing)
     D1 9 - 10  : remote access tech (note: good for getting secret numbers)
     D2 0 - 2   : weird machines (note: Luv's favourite)
-    D2 9 - 12  : decryption tech
     D3 1 - 4   : decoding tech"""
 
 WORK_HELP ="""Log to delete:
-    D1 9 - 10  : scandal from 6100
     D2 1 - 2   : something hidden by the govt
     D2 3 - 4   : prank to change the time (note: get them to send stuff twice)
     D2 9 - 10  : the truth of cybermite (note: does Luv need to know this?)
@@ -60,7 +58,7 @@ def get_possible_commands(flags):
     tips += "\nEnter read to check only the latest log received/sent"
     tips += "\nEnter read [block id] to read all logs in a block"
     tips += "\nEnter decrypt [block id] to unlock blocks in archive"
-    tips += "\nEnter reply [log id] to save attachment (cannot save files from archive)"
+    tips += "\nEnter download [log id] to save attachment"
     tips += "\nEnter quit to quit the session"
     if is_flag_triggered(flags,"Change Time"):
         tips += "\n! Enter time [UID] to change the time of another terminal"

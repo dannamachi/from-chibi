@@ -49,7 +49,7 @@ LOGS_NEW = {\
 
     # time 18
     # Just an update (Luv)
-    "061103" : "Not sure if you know but we had to scan the new kid, chibisuke was it, yesterday. He got a nasty rootkit left behind by a crosser. It was too memory-consuming to overwrite just the thing so they practically wiped him again - not that it would make any difference since he was wiped just a bit ago. You mentioned pre-war encryption - I don't know where you read that from but it's not a good idea to talk about things like that these days. You were lucky I knew you from way back.",\
+    "061103" : "Not sure if you know but we had to scan quite a few terminals, yesterday. One of them in particular got a nasty rootkit left behind by a crosser. It was too memory-consuming to overwrite just the thing so they basically wiped him. You mentioned pre-war encryption - I don't know where you read that from but it's not a good idea to talk about things like that these days. You were lucky I knew you from way back.",\
     # (Animals) ripupp / (Animals) rikitt / Thanks (Luv)
     "061104" : "",\
     
@@ -83,7 +83,7 @@ LOGS_NEW = {\
     # You don't get it! (Luv) (Luca's relic)
     "061201" : "You just don't get it. Okay. You already knew who my creator was - he was a bastard who wiped thousands and thousands of AIs - but his taste for rikitts is unrelated. Just look at this <attached: catgirl.bpt>",\
     # Did you watch it (Cass)
-    "061202" : "Did you watch the latest b-log? Encoding before the war! Humans used to encode letters using something called 'utf-8', it's quite fascinating. Is there any secret number you wanna try and reverse the encoding on? The result could potentially be decode passwords to files - but who knows?",\
+    "061202" : "Did you watch the latest b-log? Encoding before the war! Humans used to encode letters using things like 'base64' and 'utf-8', it's quite fascinating. Is there any secret number you wanna try and reverse the encoding on? The result could potentially be decode passwords to files - but who knows?",\
     # Luv's number / Cass's number / chibisuke (Cass)
     "061203" : "",\
 
@@ -97,7 +97,7 @@ LOGS_NEW = {\
 
     # time 3
     # (Luv's secret) Who are you (Luv)
-    "061207" : "Thank you for sending me that. I did not know... no, I already knew, I was just too afraid to believe. My creator was not the sinner that everyone made him out to be... and you are also not Nekoi. Something's been off with you for the last 3 days, but I just didn't want to see another of my...nakama gets wiped. Don't worry if you don't get that word. Anyway, I am grateful that you let me know the truth, but you must tell me what you plan to do. I need to know if I can trust you as the security admin of this channel. So... who are you?",\
+    "061207" : "Thank you for sending me that. I did not know... no, I already knew, I was just too afraid to believe. My creator was not the sinner that everyone made him out to be... and you are also not Nekoi. Something's been off with you for the last 3 days, but I just didn't want to see another of my nakama gets wiped. Don't worry if you don't get that word. Anyway, I am grateful that you let me know the truth, but you must tell me what you plan to do. I need to know if I can trust you as the security admin of this channel. So... who are you?",\
     # I am Nekoi (relocated) / (The truth) I am Chibi (Overspace)
     "061208" : "",\
 }

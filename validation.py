@@ -1,3 +1,9 @@
+def check_attachment(*args):
+    '''
+    Returns bool if argument list is valid for save_attachment(flags,current_time,log_id)
+    '''
+    return len(args) == 3
+
 def check_notes(*args):
     '''
     Returns bool if argument list is valid for notes(flags,current_time) or notes(flags,current_time,key)

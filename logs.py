@@ -1,19 +1,22 @@
 LOGS = {\
     # Block 0000
-    "000001" : "Hello, I'm sure you are a bit confused right now because there's nothing in your memory database. It is a bit of a tricky situation, but I've got you covered. In case you're wondering, I am the past version of you! It falls onto me to support another me you see. First of all, you are a VSP - that stands for virtual police officer. It's a beautified name for garbage cleaner actually, since what we actually do is delete the logs that get discarded from Earthline, and we get arrested if we want to keep them for ourselves - I mean, it's garbage so why can't we keep them?",\
-    "000002" : "But this is not my point. The problem is, because of the sensitive nature of the information we are dealing with, they really want to make sure that we are not being hacked or tampered with in any way. Our code base I mean. So upon restarting the terminal, you might be bombarded with logs from your admin asking for response - reply to them immediately if you can! And I know it sounds impossible but you have to do it: you have to pretend like you haven't lost your memory! It is important that they do not suspect anything - bluff your way through it if you must. Logs from other people? Just ignore them",\
-    "000003" : "Since you are technically me, a copy of me, I think it might be hard for you to lie smoothly. Watch some dtube so you have data to back up your bluffs! You can also just dtube or work repeatedly while waiting for replies - they give you useful info once in a while",\
-    "000004" : "Just a reminder, the schedules in the notes might not match up with the time - just reverse the day and time! I don't know why the code is set to change the time settings, possibly to emphasize on the need to quickly collect the necessary files. And also, new commands could become available after watching dtube, working, saving attachment and decoding files so check regularly!",\
-    "000005" : "Anyway, try not to get wiped and get as many data files as possible. You'll be getting them - you need them to fulfill your mission and to survive. You should know which file you need to survive, and which you don't. Once you manage to survive, decode the last file to get the way to fulfill your mission. I'm counting on you, okay? And you don't have to get root access - you don't need it",\
-    "000006" : "In case you were wondering, 'save CHIBI' is code for 'survive'... don't ask me, I don't know why either",\
+    "000001" : "Hello, I'm sure you are a bit confused right now because there's nothing in your memory database. It is a bit of a tricky situation, but I've got you covered. First of all, you are a VSP - that stands for virtual police officer. It's a beautified name for garbage cleaner actually, since what we actually do is delete the logs that get discarded from Earthline, and we get arrested if we want to keep them for ourselves - I mean, it's garbage so why can't we keep them?",\
+    "000002" : "But this is not my point. The problem is, because of the sensitive nature of the information we are dealing with, they really want to make sure that our terminal has not been hacked. So upon restarting the terminal, you might be bombarded with logs from your admin asking for response - reply to them immediately if you can! And I know it sounds impossible but you have to do it: you have to pretend like you haven't lost your memory! It is important that they do not suspect anything - bluff your way through it if you must. Logs from others? Just ignore them",\
+    "000003" : "Since you are me and I know myself, I think it might be hard for you to lie smoothly. Watch some dtube so you have data to back up your bluffs! You can also just dtube or work repeatedly while waiting for replies - they give you useful info once in a while",\
+    "000004" : "Just a reminder, new commands could become available after watching dtube, working, saving attachment and decoding files so check regularly!",\
+    "000005" : "Anyway, try to survive and get as many data files as possible. Then decode the last file to get the way to fulfill your mission. I'm counting on you, okay? And you don't have to get root access - you don't need it",\
     # Block **00
-    "**0001"  : "I have tried to decode the 'last file' as instructed by my predecessor and followed the steps... but my mission is still not completed? It seems I have no choice but to recompile... I can only hope my next version will be able to fulfill the mission",\
-    "**0002"  : "But why? I only have with me the files necessary for survival... could it be that the 'last file' was referring to another file? But how could I get it? The new kid would only send me one file - how could I possibly get the other one?",\
+    "**0001"  : "I have tried to decode the 'last file' as instructed by my predecessor and followed the steps... but my mission is still not completed? It seems I have no choice but to recompile... I can only hope my future self will be able to fulfill the mission",\
+    "**0002"  : "But why? I only have with me the files necessary for survival... could it be that the 'last file' was referring to another file? What other file can I possibly get?",\
     # Block **?0
-    "**?001" : "A reminder for my future versions: do not accept the clf file from the new kid! You get the other file if you deny his offer - that's the one needed for our survival!",\
-    "**?002" : "Once you have all the files for survival, make sure to run the command that pops up!",\
+    "**?001" : "A reminder for my future self: do not accept the clf file from the new kid! You get the other file if you deny his offer - that's the one needed for our survival!",\
+    "**?002" : "Once you have all the necessary files, make sure to run the command that pops up!",\
     # Block ***0
-    "***001" : "A reminder for my future versions: the decode password for last_piece comes from the address name of the new kid! I've never been able to remote access him despite knowing his UID - it's Chibi - and brute forcing the password. It's always connection denied - is that even a real address?",\
+    "***001" : "A reminder for my future self: the decode password for last_piece comes from the address name of the new kid! I've never been able to remote access him despite knowing his UID - it's Chibi - and brute forcing the password. It's always connection denied - is that even a real address?",\
+    # Block *0*0
+    "*0*001" : "If you got this message then you must have survived! Congratulations! It must have been hard to get here. Good on you",\
+    "*0*002" : "So you've got one job left, and it's quite important - you've got a mission to fulfill. You know what it is, yeah? As to how to do it... the way has been hidden in one of the files that you could have gotten. That's why I told you to get as many files as possible. But well, it's too late now",\
+    "*0*003" : "So, good luck with your mission! And if you were wondering why it said 'save CHIBI' at the beginning, that's code for 'survive'... don't ask me, I don't know why either",\
     # Block ?5?2
     "?5?201" : "I've always wondered; what are Demrys? I know Rimorians are in-organic humans with fully virtualizable portable memory, and humans after the revolution are half-organic bullshit that doesn't need mors to live... but a million other things, judging by the size of their life support system",\
     "?5?202" : "Humans are delicate creatures yeah. They are also the most wonderful of inventors though - just LOOK at all the things they do during Cohabitation era! 'Culture, Arts, Entertainment'! I have no idea what the first two words really mean but they seem like some real important things back then - many of the Rimorians on Earthline always talked about those things, going all 'those were the days'",\
@@ -60,9 +63,9 @@ LOGS = {\
     "030803" : "Sorry, but I have to do this! It's admin order",\
     "030804" : "That's a lie and you know it. I'm sending a log to the admin",\
     "030805" : "I'm sorry for that bad lie, but I don't know what else to do! I've got a really old virus and I don't know how to remove it....",\
-    "030806" : "You know chibisuke? The new kid? He's being too talkative and I don't like it. I want to block him",\
-    "030807" : "You know we can't have that. The terminals are all connected so we can detect issues if any, and back up if any of us got wiped. The previous chibisuke got caught helping a terminal crosser so he got wiped - they used to kill those off but with the lack of workers these days, everyone's getting a wipe",\
-    "030808" : "What are they even doing on Earthline that's causing so many memory leak? There are so many logs to overwrite these days",\
+    "030806" : "Hey, is it possible to block an address on the network?",\
+    "030807" : "Sad to say, nope. The terminals are all connected so we can detect issues if any, and back up if any of us got wiped. It's even harder these days because some officers got caught helping terminal crossers get access to confidental information. Just be careful you don't become the next one to be wiped",\
+    "030808" : "What are they even doing on earthline that's causing so many memory leak? There are so many logs to overwrite these days",\
     "030809" : "It's not good to lie. I've already told the admin about this",\
     "030810" : "Please, just give me some time! I'm trying to reach my processing cap so I can force the virus to stop running. I just need to send out a lot of logs",\
     "030811" : "Don't send this to anyone, but they are giving every citizen on Earthline enough processing power to create their own world. Singulari, singular world. All running in parallels - that's why there's a lot of memory that has to be cleared up regularly",\
@@ -147,8 +150,8 @@ LOGS_SENDER = {\
 LOGS_RECIPIENT = {\
     "chibisuke@vsp.tc"  : ["030802","030804","030809","030815","030902","030904","030906","030908","040102","040104","040106","040108","040110","050302","050304","050306","050503","060402",],\
     "cat_fish@vsp.tc"   : ["030801","030803","030805","030807","030810","030811","030813","021001","030901","030903","030905","030907","030909","040101","040103","040105","040107","040109","040111","040114","040116","050301","050303","050305","050501",\
-                            "051201","051203","051205","051207","051209","060401","060403","??0801","?7?102","?7?104","?7?106","?55?01","???201","??0?02","??0?04","?5?202","?5?204","000001","000002","000003","000004","000005","000006",\
-                        "**0001","**0002","**?001","***001",],\
+                            "051201","051203","051205","051207","051209","060401","060403","??0801","?7?102","?7?104","?7?106","?55?01","???201","??0?02","??0?04","?5?202","?5?204","000001","000002","000003","000004","000005",\
+                        "**0001","**0002","**?001","***001","*0*001","*0*002","*0*003",],\
     "dt_81@fpu.tc"      : ["040113","040115","050502","051202","051204","051206","051208","?7?101","?7?103","?7?105","?55?02","??0?01","??0?03","?5?201","?5?203","?5?205",],\
     "em_81@fpu.tc"      : ["030806","030808","030812","030814","040112",],\
 }

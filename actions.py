@@ -34,6 +34,10 @@ day_check = {\
     "Day 3"  : False,\
 }
 
+decrypt_track = {\
+
+}
+
 flag_contact = 0
 
 contact_red = ["266694:990002::", "9933:12:45900:009::", "11111:111:1111:1::"]
@@ -91,7 +95,7 @@ def save(*args):
         except:
             return 'Slot index must be a number', current_time
         save_success = saving.save_data_to_file(flags,current_time,flag_contact,\
-            day_check,blocks.BLOCKS,blocks.BLOCKS_ROOT,blocks.BLOCKS_SPECIAL_TWO,blocks.BLOCKS_NEW,\
+            day_check,decrypt_track,blocks.BLOCKS,blocks.BLOCKS_ROOT,blocks.BLOCKS_SPECIAL_TWO,blocks.BLOCKS_SPECIAL_THREE,blocks.BLOCKS_NEW,\
             decodes.KEYFLAG,logs_new.LOGS_NEW,logs_new.LOG_NEED_REPLIES,logs_new.LOG_ATTACHMENT,slot_index)
         if save_success:
             return 'Successfully saved to slot ' + str(slot_index), current_time
@@ -117,7 +121,7 @@ def load(*args):
     '''
     Loads game
     '''
-    global flag_contact, day_check, end_result
+    global flag_contact, day_check, end_result, decrypt_track
     flags = args[0]
     current_time = args[1]
     if len(args) == 2:
@@ -144,9 +148,11 @@ def load(*args):
         current_time = DATA_SAVES[slot_index]["TIME"]
         flag_contact = DATA_SAVES[slot_index]["CONTACTCOUNT"]
         day_check = load_dictionary(DATA_SAVES[slot_index]["DAYCHECK"],day_check)
+        decrypt_track = load_dictionary(DATA_SAVES[slot_index]["DECRYPT"],decrypt_track)
         blocks.BLOCKS = load_dictionary(DATA_SAVES[slot_index]["BLOCKS"],blocks.BLOCKS)
         blocks.BLOCKS_ROOT = load_dictionary(DATA_SAVES[slot_index]["BLOCKSROOT"],blocks.BLOCKS_ROOT)
         blocks.BLOCKS_SPECIAL_TWO = load_dictionary(DATA_SAVES[slot_index]["BLOCKSTWO"],blocks.BLOCKS_SPECIAL_TWO)
+        blocks.BLOCKS_SPECIAL_THREE = load_dictionary(DATA_SAVES[slot_index]["BLOCKSTHREE"],blocks.BLOCKS_SPECIAL_THREE)
         blocks.BLOCKS_NEW = load_dictionary(DATA_SAVES[slot_index]["BLOCKSNEW"],blocks.BLOCKS_NEW)
         decodes.KEYFLAG = load_dictionary(DATA_SAVES[slot_index]["DECODES"],decodes.KEYFLAG)
         logs_new.LOGS_NEW = load_dictionary(DATA_SAVES[slot_index]["LOGSNEW"],logs_new.LOGS_NEW)
@@ -201,6 +207,33 @@ def can_reply(flags,reply_id):
         return is_flag_triggered(flags,flag_needed)
     return True
 
+def save_attachment(flags,current_time,log_id):
+    '''
+    Returns string of result
+    '''
+    # narrow down wrong id
+    if len(log_id) != 6:
+        return "Invalid log id", current_time
+    # narrow down log that can be replied to (using log time)
+    time_list = list(filter(lambda item: current_time - 4 <= item,logs_new.LOG_TIME.keys()))
+    time_window = min(time_list,key=lambda item: item - current_time)
+    if not (log_id in logs_new.LOG_TIME[time_window]):
+        return "Cannot save attachment from that log at this time", current_time
+    # narrow down log with attachment
+    if log_id in logs_new.LOG_ATTACHMENT.keys():
+        logs_new.LOG_ATTACHMENT[log_id] = True
+        if log_id == "061101":
+            flags["p5-9"] = True
+            decodes.KEYFLAG["do.bpt"] = True
+            decodes.KEYFLAG["not.bpt"] = True
+            decodes.KEYFLAG["forget.bpt"] = True
+        elif log_id == "061201":
+            decodes.KEYFLAG["catgirl.bpt"] = True
+        else:
+            if is_flag_triggered(flags,"Cohab") or is_flag_triggered(flags,"Cohab@"): decodes.KEYFLAG["Cohab.clf"] = True
+            if is_flag_triggered(flags,"Bpaint") or is_flag_triggered(flags,"Bpaint@"): decodes.KEYFLAG["last_piece.bpt"] = True
+        return "Attachment saved", current_time
+
 def reply(*args):
     '''
     Returns either string of result or possible replies to make
@@ -222,6 +255,9 @@ def reply(*args):
         logs_new.LOG_ATTACHMENT[log_id] = True
         if log_id == "061101":
             flags["p5-9"] = True
+            decodes.KEYFLAG["do.bpt"] = True
+            decodes.KEYFLAG["not.bpt"] = True
+            decodes.KEYFLAG["forget.bpt"] = True
         elif log_id == "061201":
             decodes.KEYFLAG["catgirl.bpt"] = True
         else:
@@ -286,26 +322,43 @@ def update_block_status(block_id,group_id):
         blocks.BLOCKS_SPECIAL_TWO[block_id] = True
     if group_id == 3:
         blocks.BLOCKS_ROOT[block_id] = True
+    if group_id == 4:
+        blocks.BLOCKS_SPECIAL_THREE[block_id] = True
+
+def can_block_be_decrypted(flags, current_time, block_id):
+    '''
+    Returns bool whether block can be decrypted
+    '''
+    if block_id in blocks.BLOCKS_ROOT and not is_flag_triggered(flags,'Root Access'):
+        return False
+    if block_id in blocks.BLOCKS_SPECIAL_TWO and current_time > 24:
+        return False
+    if block_id in blocks.BLOCKS_SPECIAL_THREE and current_time > 12:
+        return False
+    return True
 
 def decrypt(flags,current_time,block_id):
     '''
     Returns string of result
     '''
     block_group = is_in_which_block_group(block_id)
-    if not (block_group in [0,1,2,3]): 
+    if not (block_group in [0,1,2,3,4]): 
         return "Block not found", current_time
     if block_group == 1:
         return "That block is not encrypted", current_time
     if can_block_be_read(flags,block_id,block_group,current_time):
         return "Block already decrypted", current_time
-    # update block list
-    update_block_status(block_id,block_group)
-    # update time
-    if is_flag_triggered(flags,"Fast Decrypt"): 
-        current_time -= 1
-    else:
-        current_time -= 2
-    return "Block " + block_id + " has been decrypted", current_time
+    # check whether block can be decrypted
+    if len(list(decrypt_track.keys())) == 6:
+        return "Decrypt capacity full", current_time
+    if not can_block_be_decrypted(flags,current_time,block_id):
+        return "Block is inaccessible", current_time
+    # check if alr decrypting
+    if block_id in list(decrypt_track.keys()):
+        return "Block is already being decrypted - " + str(decrypt_track[block_id]) + " units left", current_time
+    # set timer tracker
+    decrypt_track[block_id] = 8
+    return "Block " + block_id + " has been added to the decryption queue - " + str(decrypt_track[block_id]) + " units left", current_time
 
 def get_log_content(log_id, is_old):
     '''
@@ -348,17 +401,24 @@ def get_log_info(log_id, is_old):
 
 def log_reply_status(log_id, current_time):
     '''
-    Returns 0 is no reply needed, 1 is reply needed, 2 if reply expired
+    Returns 0 is no reply needed, 1 is reply needed, 2 if reply expired, 3 if attachment expired
     '''
+    # narrow down log that can be replied to (using log time)
+    time_list = list(filter(lambda item: current_time - 4 <= item,logs_new.LOG_TIME.keys()))
+    time_window = min(time_list,key=lambda item: item - current_time)
+    # check if its a reply or attachment needed
+    if log_id in list(logs_new.LOG_ATTACHMENT.keys()):
+        if log_id in logs_new.LOG_TIME[time_window]:
+            return 0
+        else:
+            return 3
     # narrow down log that can be replied to 
     if not (log_id in logs_new.LOG_NEED_REPLIES.keys()):
         return 0
     # narrow down log that is already replied
     if not logs_new.LOG_NEED_REPLIES[log_id]: 
         return 0
-    # narrow down log that can be replied to (using log time)
-    time_list = list(filter(lambda item: current_time - 4 <= item,logs_new.LOG_TIME.keys()))
-    time_window = min(time_list,key=lambda item: item - current_time)
+
     if not (log_id in logs_new.LOG_TIME[time_window]):
         return 2
     return 1
@@ -373,6 +433,8 @@ def can_block_be_read(flags, block_id, group_id, current_time):
         return blocks.BLOCKS_SPECIAL_TWO[block_id] and current_time <= 24
     if group_id == 3:
         return blocks.BLOCKS_ROOT[block_id] and is_flag_triggered(flags, "Root Access")
+    if group_id == 4:
+        return blocks.BLOCKS_SPECIAL_THREE[block_id] and current_time <= 12
     return False
 
 def is_in_which_block_group(block_id):
@@ -387,6 +449,8 @@ def is_in_which_block_group(block_id):
         return 2 # day 2+ blocks
     if block_id in list(blocks.BLOCKS_ROOT.keys()):
         return 3 # root blocks
+    if block_id in list(blocks.BLOCKS_SPECIAL_THREE.keys()):
+        return 4 # day 3+ blocks
     return -1
 
 def read(*args):
@@ -406,6 +470,8 @@ def read(*args):
             result += "\n\tReply EXPIRED"
         elif reply_status == 1:
             result += show_possible_replies(flags,current_time,log_id)
+        elif reply_status == 3:
+            result += "\n\tAttachment EXPIRED"
         return result, current_time
     else:
         block_id = args[2]
@@ -558,7 +624,7 @@ def contact(flags, current_time, wavelength):
     # update flag count
     if wavelength in contact_red:
         flag_contact += 1
-    if flag_contact == 10:
+    if flag_contact == 3:
         flags["WIPED"] = True
     # update time
     current_time -= 1
@@ -592,19 +658,29 @@ def help(*args):
             for key in list(blocks.BLOCKS.keys()):
                 tips += "\n\t" + str(key)
                 if blocks.BLOCKS[key]: tips += " - Unlocked"
+                elif key in list(decrypt_track.keys()): tips += " - Decrypting (" + str(decrypt_track[key]) + " units left)"
                 else: tips += " - Locked"
             # day 2 blocks
             if current_time <= 24:
                 for key in list(blocks.BLOCKS_SPECIAL_TWO.keys()):
                     tips += "\n\t" + str(key)
                     if blocks.BLOCKS_SPECIAL_TWO[key]: tips += " - Unlocked"
+                    elif key in list(decrypt_track.keys()): tips += " - Decrypting (" + str(decrypt_track[key]) + " units left)"
                     else: tips += " - Locked"
+            if current_time <= 12:
+                for key in list(blocks.BLOCKS_SPECIAL_THREE.keys()):
+                    tips += "\n\t" + str(key)
+                    if blocks.BLOCKS_SPECIAL_THREE[key]: tips += " - Unlocked"
+                    elif key in list(decrypt_track.keys()): tips += " - Decrypting (" + str(decrypt_track[key]) + " units left)"
+                    else: tips += " - Locked"
+            # day 3 blocks
             # root blocks
             if is_flag_triggered(flags,"Root Access"):
                 tips += "\nHidden blocks:"
                 for key in list(blocks.BLOCKS_ROOT.keys()):
                     tips += "\n\t" + str(key)
                     if blocks.BLOCKS_ROOT[key]: tips += " - Unlocked"
+                    elif key in list(decrypt_track.keys()): tips += " - Decrypting (" + str(decrypt_track[key]) + " units left)"
                     else: tips += " - Locked"
             return tips, current_time
         if key == "files":
@@ -645,7 +721,10 @@ def decode(flags, current_time, filename,key):
     elif filename == "Cohab.clf":
         flags["Decode Cohab's relic"] = True
     # update time
-    current_time -= 2
+    if is_flag_triggered(flags,'Decoder'):
+        current_time -= 1
+    else:
+        current_time -= 2
     return decodes.RESULTS[filename], current_time
 
 def root(flags, current_time):

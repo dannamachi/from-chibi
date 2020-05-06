@@ -15,7 +15,7 @@ end_statuses = {\
     4 : "Report: Malware detected (Severity:6); Action: Log erasure; Initializing erasure...",\
     5 : "Report: Malware detected (Severity:3); Action: Code transfer; Initializing transfer...",\
     6 : "Report: Malware detected (Severity:10); Action: Code corruption; Initialization corruption...",\
-    7 : "Code integrity: True; Mission success: True; Message: You did it!"\
+    7 : "Code integrity: True; Mission success: True; Message: You did it!; Special Message: decode ? do+not+forget"\
 }
 end_messages = {\
     0 : "You've managed to save CHIBI! Want to try to fulfill the mission? Maybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert. Files of the same author tend to have the same decoding key. And if you think you have every file possible... are you sure? Don't be naive and believe everything you are told, and try to talk to other people",\
@@ -66,6 +66,7 @@ action_cmd = {\
     14 : "reply",\
     15 : "notes",\
     16 : "chibi",\
+    17 : "download",\
 }
 
 action_validation = {
@@ -85,6 +86,7 @@ action_validation = {
     14 : validation.check_reply,\
     15 : validation.check_notes,\
     16 : validation.check_chibi,\
+    17 : validation.check_attachment,\
 }
 
 action_command_call = {\
@@ -107,13 +109,12 @@ action_command_call = {\
 }
 
 action_flags = {\
-    1 : ["Root Access"],\
+    # 1 : ["Root Access"],\
     4 : ["Can Root Access"],\
     5 : ["Root Access","Remote Access"],\
     6 : ["Root Access","Change Time"],\
     7 : ["Root Access","Decode Cohab's relic"],\
-    10: ["Decoder"],\
-    16: ["Assembled"]
+    16: ["Assembled"],\
 }
 
 # text
@@ -205,8 +206,20 @@ while not end_game:
             if not action_validation[command_int](flags,total_time,*argument_list):
                 command_status = "Invalid syntax"
         # run command
+        previous_time = total_time
         if command_status == "Command succeeded":
             command_status, total_time = action_command_call[command_int](flags,total_time,*argument_list)
+        time_spent = previous_time - total_time
+    # update decrypting status
+    if command_int == 12: time_spent = 0
+    remove_list = []
+    for item in list(actions.decrypt_track.keys()):
+        actions.decrypt_track[item] -= time_spent
+        if actions.decrypt_track[item] <= 0:
+            actions.update_block_status(item,actions.is_in_which_block_group(item))
+            remove_list.append(item)
+    for item in remove_list:
+        actions.decrypt_track.pop(item, None)
     # update block variation
     for key in logs_new.LOG_VARIATIONS.keys():
         if logs_new.LOG_NEED_FLAGS[key] in list(flags.keys()):
