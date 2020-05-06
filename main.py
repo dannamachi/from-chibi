@@ -3,6 +3,7 @@ import validation
 import blocks
 import logs_new
 import decodes
+import saving
 
 ### endings
 end_game = False
@@ -26,7 +27,7 @@ end_messages = {\
     6 : "You've exposed CHIBI and also drawn suspicion to yourself. The authorities had to take care of you. Don't reply so honestly next time",\
     7 : "You've managed to fulfill CHIBI's main mission while also surviving! Do you understand what CHIBI is now? If you haven't... have you tried to decode all the files?"\
 }
-end_result = 0
+end_result = actions.end_result
 
 flag_dead_link = {\
     0  : 4,\
@@ -44,11 +45,7 @@ flags = {}
 
 flag_dead = [ "WIPED", "RELOCATED", "KILLED", "DISCOVERED", "DISAPPEARED" ]
 
-day_check = {\
-    "Day 1"  : False,\
-    "Day 2"  : False,\
-    "Day 3"  : False,\
-}
+day_check = actions.day_check
 
 ### actions
 action_cmd = {\
@@ -119,6 +116,20 @@ action_flags = {\
     16: ["Assembled"]
 }
 
+# text
+def print_intro():
+    '''
+    Prints intro text
+    '''
+    print("Establishing connection...")
+    print("=====================================")
+    print("Year: 7204")
+    print("Session: 4498032")
+    print("Connection status: Good")
+    print("Address: cat_fish@vsp.tc")
+    print("Message: mskmcdjsnjnsce[Save CHIBI! Time is running out!]jfnejfnscnjd[Press help to get started]")
+    print("=====================================")
+
 def print_helpful_note(isRoot):
     '''
     Prints helpful note and time (reverse time if isRoot)
@@ -145,24 +156,22 @@ def print_helpful_note(isRoot):
     if "Assembled" in list(flags.keys()) and not ("Another CHIBI" in list(flags.keys())):
         print("Message: all code files detected, please run special command")
 
+# SAVE INITIALIZING
+# saving.initialize_save()
+
+# GAME START
+
 print("=====================================")
 print("Security warning (Level 5): Change detected in memory database")
 print("Security warning (Level 2): Change detected in time display")
 print("Security warning (Level 2): Change detected in message display")
 print("Security warning (Level 2): Change detected in help display")
 print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
-print("Establishing connection...")
-print("=====================================")
-print("Year: 7204")
-print("Session: 4498032")
-print("Connection status: Good")
-print("Address: cat_fish@vsp.tc")
-print("Message: mskmcdjsnjnsce[Save CHIBI! Time is running out!]jfnejfnscnjd[Press help to get started]")
-print("=====================================")
+print_intro()
 while not end_game:
     command_status = "Command succeeded"
     # get user input
-    user_command = input("Nekoi>> ")
+    user_command = input("Nekoi>> ").strip()
     # break down command
     command_int = -1
     command_list = user_command.split(' ')
@@ -208,12 +217,12 @@ while not end_game:
         blocks.BLOCKS_NEW["0611"] = True 
         if not ("Another day" in list(flags.keys())):
             flags["WIPED"] = True
-            day_check["Day 1"] = True
+        day_check["Day 1"] = True
     if total_time <= 12 and not day_check["Day 2"]:
         blocks.BLOCKS_NEW["0612"] = True
         if not ("Another CHIBI" in list(flags.keys())):
             flags["DISAPPEARED"] = True
-            day_check["Day 2"] = True
+        day_check["Day 2"] = True
     if total_time <= 0 and not day_check["Day 3"]:
         end_game = True
     # update special command

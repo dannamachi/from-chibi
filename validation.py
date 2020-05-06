@@ -78,15 +78,15 @@ def check_overspace(*args):
 
 def check_save(*args):
     '''
-    Returns bool if argument list is valid for save(flags,current_time)
+    Returns bool if argument list is valid for save(flags,current_time) or save(flags,current_time,index)
     '''
-    return len(args) == 2
+    return len(args) == 2 or len(args) == 3
 
 def check_load(*args):
     '''
-    Returns bool if argument list is valid for load(flags,current_time)
+    Returns bool if argument list is valid for load(flags,current_time) or load(flags,current_time,index)
     '''
-    return len(args) == 2
+    return len(args) == 2 or len(args) == 3
 
 def check_chibi(*args):
     '''

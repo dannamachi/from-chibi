@@ -10,6 +10,10 @@ import blocks
 import remote
 import decodes
 import actions_help
+import saving
+import json
+
+end_result = 0
 
 flag_demtube_triggers = {\
     34 : "Can Root Access",\
@@ -22,6 +26,12 @@ flag_demtube_triggers = {\
 
 flag_work_triggers = {\
     20 : "Change Time",\
+}
+
+day_check = {\
+    "Day 1"  : False,\
+    "Day 2"  : False,\
+    "Day 3"  : False,\
 }
 
 flag_contact = 0
@@ -62,16 +72,90 @@ def notes(*args):
             return "Notes not found", current_time
 
 
-def save(flags,current_time):
+def save(*args):
     '''
     Saves game
     '''
+    flags = args[0]
+    current_time = args[1]
+    if len(args) == 2:
+        tips = saving.read_save()
+        if tips != 'Unable to load save file':
+            tips += "\nEnter save [slot index] to save to/overwrite a save slot"
+        return tips, current_time
+    else:
+        try:
+            slot_index = int(args[2])
+            if not (slot_index in range(saving.TOTAL_SAVE_SLOT)):
+                return 'Invalid slot index', current_time
+        except:
+            return 'Slot index must be a number', current_time
+        save_success = saving.save_data_to_file(flags,current_time,flag_contact,\
+            day_check,blocks.BLOCKS,blocks.BLOCKS_ROOT,blocks.BLOCKS_SPECIAL_TWO,blocks.BLOCKS_NEW,\
+            decodes.KEYFLAG,logs_new.LOGS_NEW,logs_new.LOG_NEED_REPLIES,logs_new.LOG_ATTACHMENT,slot_index)
+        if save_success:
+            return 'Successfully saved to slot ' + str(slot_index), current_time
+        else:
+            return 'Unable to save', current_time
     return "This function is not yet supported", current_time
 
-def load(flags,current_time):
+def load_dictionary(dict_from, dict_to):
+    '''
+    Copies dict_from into dict_to
+    Returns dict_to
+    '''
+    # remove all flags not set in loaded data
+    for item in list(dict_to.keys()):
+        if not item in (list(dict_from.keys())):
+            dict_to.pop(item,None)
+    # adjust/add flags set in loaded data
+    for item in list(dict_from.keys()):
+        dict_to[item] = dict_from[item]
+    return dict_to
+
+def load(*args):
     '''
     Loads game
     '''
+    global flag_contact, day_check, end_result
+    flags = args[0]
+    current_time = args[1]
+    if len(args) == 2:
+        tips = saving.read_save()
+        if tips != 'Unable to load save file':
+            tips += "\nEnter load [slot index] to load from a save slot"
+        return tips, current_time
+    else:
+        try:
+            slot_index = int(args[2])
+            if not (slot_index in range(saving.TOTAL_SAVE_SLOT)):
+                return 'Invalid slot index', current_time
+        except:
+            return 'Slot index must be a number', current_time
+        # check data can be loaded
+        DATA_SAVES = saving.read_data_from_file()
+        if DATA_SAVES['Success'] != 1:
+            return 'Unable to load save file', current_time
+        slot_index = str(slot_index)
+        if DATA_SAVES[slot_index]['Filled'] != 1:
+            return 'No data in that slot', current_time
+        # load data
+        flags = load_dictionary(DATA_SAVES[slot_index]["FLAGS"],flags)
+        current_time = DATA_SAVES[slot_index]["TIME"]
+        flag_contact = DATA_SAVES[slot_index]["CONTACTCOUNT"]
+        day_check = load_dictionary(DATA_SAVES[slot_index]["DAYCHECK"],day_check)
+        blocks.BLOCKS = load_dictionary(DATA_SAVES[slot_index]["BLOCKS"],blocks.BLOCKS)
+        blocks.BLOCKS_ROOT = load_dictionary(DATA_SAVES[slot_index]["BLOCKSROOT"],blocks.BLOCKS_ROOT)
+        blocks.BLOCKS_SPECIAL_TWO = load_dictionary(DATA_SAVES[slot_index]["BLOCKSTWO"],blocks.BLOCKS_SPECIAL_TWO)
+        blocks.BLOCKS_NEW = load_dictionary(DATA_SAVES[slot_index]["BLOCKSNEW"],blocks.BLOCKS_NEW)
+        decodes.KEYFLAG = load_dictionary(DATA_SAVES[slot_index]["DECODES"],decodes.KEYFLAG)
+        logs_new.LOGS_NEW = load_dictionary(DATA_SAVES[slot_index]["LOGSNEW"],logs_new.LOGS_NEW)
+        logs_new.LOG_NEED_REPLIES = load_dictionary(DATA_SAVES[slot_index]["LOGSREPLY"],logs_new.LOG_NEED_REPLIES)
+        logs_new.LOG_ATTACHMENT = load_dictionary(DATA_SAVES[slot_index]["LOGSATTACHMENT"],logs_new.LOG_ATTACHMENT)
+        end_result = 0
+
+        return 'Loaded slot ' + str(slot_index), current_time
+        
     return "This function is not yet supported", current_time
 
 def overspace(flags,current_time):
