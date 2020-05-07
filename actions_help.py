@@ -17,7 +17,7 @@ WORK_HELP ="""Log to delete:
     D3 11 - 12 : suicide note from an aeternist"""
 
 ADDRESS_TO_NAME = {\
-    "chibisuke@vsp.tc"   : "new kid",\
+    "chibisuke@vsp.tc"   : "weird kid",\
     "cat_fish@vsp.tc"    : "me",\
     "dt_81@fpu.tc"       : "Cass",\
     "em_81@fpu.tc"       : "Luv",\
@@ -65,7 +65,7 @@ def get_possible_commands(flags):
     tips += "\nEnter load restart to restart the game"
     tips += "\nEnter quit to quit the session"
     if is_flag_triggered(flags,"Change Time"):
-        tips += "\n! Enter time [UID] to change the time of another terminal"
+        tips += "\n! Enter time [address] to change the time of another terminal"
     if is_flag_triggered(flags,"Can Root Access"):
         tips += "\n! Enter root to get root access"
     if is_flag_triggered(flags,"Remote Access"):

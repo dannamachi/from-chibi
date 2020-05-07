@@ -194,7 +194,7 @@ def time_change(flags,current_time,terminal_id):
     '''
     Returns string of result, and new time
     '''
-    if terminal_id != "Chibi":
+    if terminal_id != "chibisuke@vsp.tc":
         return "Error. Security warning", current_time
     else:
         if is_flag_triggered(flags,"Hack Chibi"):
@@ -603,7 +603,7 @@ def remote_access(flags, current_time, username, password):
     '''
     Returns string of result
     '''
-    if username == "Chibi": return remote.RESULTS["Chibi"], current_time
+    if username == "Ananth": return remote.RESULTS["Chibi"], current_time
     if username in list(remote.CREDENTIALS.keys()):
         if password == remote.CREDENTIALS[username]:
             # raise linked flag

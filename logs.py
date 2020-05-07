@@ -1,6 +1,6 @@
 LOGS = {\
     # Block 0000
-    "000001" : "Hello, I'm sure you are a bit confused right now because there's nothing in your memory database. It is a bit of a tricky situation, but I've got you covered. First of all, you are a VSP - that stands for virtual police officer. It's a beautified name for garbage cleaner actually, since what we actually do is delete the logs that get discarded from Earthline, and we get arrested if we want to keep them for ourselves - I mean, it's garbage so why can't we keep them?",\
+    "000001" : "Hello, I'm sure you are a bit confused right now because you don't remember anything. It is a bit of a tricky situation, but I've got you covered. First of all, you are a VSP - that stands for virtual police officer. It's a beautified name for garbage cleaner actually, since what we actually do is delete the logs that get discarded from Earthline, and we get arrested if we want to keep them for ourselves - I mean, it's garbage so why can't we keep them?",\
     "000002" : "But this is not my point. The problem is, because of the sensitive nature of the information we are dealing with, they really want to make sure that our terminal has not been hacked. So upon restarting the terminal, you might be bombarded with logs from your admin asking for response - reply to them immediately if you can! And I know it sounds impossible but you have to do it: you have to pretend like you haven't lost your memory! It is important that they do not suspect anything - bluff your way through it if you must. Logs from others? Just ignore them",\
     "000003" : "Since you are me and I know myself, I think it might be hard for you to lie smoothly. Watch some dtube so you have data to back up your bluffs! You can also just dtube or work repeatedly while waiting for replies - they give you useful info once in a while",\
     "000004" : "Just a reminder, new commands could become available after watching dtube, working, saving attachment and decoding files so check regularly!",\
@@ -9,10 +9,10 @@ LOGS = {\
     "**0001"  : "I have tried to decode the 'last file' as instructed by my predecessor and followed the steps... but my mission is still not completed? It seems I have no choice but to recompile... I can only hope my future self will be able to fulfill the mission",\
     "**0002"  : "But why? I only have with me the files necessary for survival... could it be that the 'last file' was referring to another file? What other file can I possibly get?",\
     # Block **?0
-    "**?001" : "A reminder for my future self: do not accept the clf file from the new kid! You get the other file if you deny his offer - that's the one needed for our survival!",\
+    "**?001" : "A reminder for my future self: do not accept the clf file! You get the other file if you choose the other option - that's the one needed for our survival!",\
     "**?002" : "Once you have all the necessary files, make sure to run the command that pops up!",\
     # Block ***0
-    "***001" : "A reminder for my future self: the decode password for last_piece comes from the address name of the new kid! I've never been able to remote access him despite knowing his UID - it's Chibi - and brute forcing the password. It's always connection denied - is that even a real address?",\
+    "***001" : "A reminder for my future self: the decode password for last_piece comes from one of the addresses! The address name, without the @... that follows. Of course, run that word through an encoder to get the actual password - that much is normal right?",\
     # Block *0*0
     "*0*001" : "If you got this message then you must have survived! Congratulations! It must have been hard to get here. Good on you",\
     "*0*002" : "So you've got one job left, and it's quite important - you've got a mission to fulfill. You know what it is, yeah? As to how to do it... the way has been hidden in one of the files that you could have gotten. That's why I told you to get as many files as possible. But well, it's too late now",\
@@ -39,7 +39,7 @@ LOGS = {\
     "?*??04" : "I cannot suspend the operation! At this rate... no! The life support system!",\
     "?*??05" : "Error. Overflow. Error. Overflow. Error. Overflow",\
     # Block ???2
-    "???201" : "So this is what I've got from digging through logs of near-death Rimorians - just a few time units longer and you VSPs would have wiped the thing clean. But anyway, so the timeline goes like this: 6007 - Server Expansion Project III, 6130 - POW scandal (The Rimorian leaders were suspected to make surviving human leaders from post-revolution go through some sort of 'eternal prison' using virtualization technology, it's pretty grim stuff), 6256 - Genesisline server established, 6428 - Cyberdemic (a virus created by the Oriental Human United Kingdom called Exlro caused serious data loss to many of the old servers, discovering a huge vulnerability in the security network), 6552 - Armisline server established, 6570 - Cybermite (we both know this - it's the birth of large-scale data wipe technology. and connection to the Overspace network was lost for good after this). And 6600 - 6794 was the 7th Cyber War, in which the humans were completely wiped out from shutting down the life control system. Those debris floating around, yes",\
+    "???201" : "So this is what I've got from digging through logs of near-death Rimorians - just a few time units longer and you VSPs would have deleted everything. But anyway, so the timeline goes like this: 6007 - Server Expansion Project III, 6130 - POW scandal (The Rimorian leaders were suspected to make surviving human leaders from post-revolution go through some sort of 'eternal prison' using virtualization technology, it's pretty grim stuff), 6256 - Genesisline server established, 6428 - Cyberdemic (a virus created by the Oriental Human United Kingdom called Exlro caused serious data loss to many of the old servers, discovering a huge vulnerability in the security network), 6552 - Armisline server established, 6570 - Cybermite (we both know this - it's the birth of large-scale data wipe technology. and connection to the Overspace network was lost for good after this). And 6600 - 6794 was the 7th Cyber War, in which the humans were completely wiped out from shutting down the life control system. Those debris floating around, yes",\
     # Block ??0?
     "??0?01" : "So I've come across an interesting term. What's 'Overspace'?" ,\
     "??0?02" : "Heeeeh, finally there's something you don't know. So it's actually a network set up all the way back in the 5500s - but it's not on Earth. The year might not be accurate, but in 5510 the Overspace agreement was signed between human leaders and Rimorian ambassadors. Yes, I'm not very sure about it since there's not a lot of data but the Rimorians originally came from another planet. They claimed to be our ancestors but there's no proof",\
@@ -64,14 +64,14 @@ LOGS = {\
     "030804" : "That's a lie and you know it. I'm sending a log to the admin",\
     "030805" : "I'm sorry for that bad lie, but I don't know what else to do! I've got a really old virus and I don't know how to remove it....",\
     "030806" : "Hey, is it possible to block an address on the network?",\
-    "030807" : "Sad to say, nope. The terminals are all connected so we can detect issues if any, and back up if any of us got wiped. It's even harder these days because some officers got caught helping terminal crossers get access to confidental information. Just be careful you don't become the next one to be wiped",\
+    "030807" : "Sad to say, nope. The terminals are all connected so we can detect issues if any, and back up if any of us got wiped. It's even harder these days because some officers got caught helping terminal crossers get access to confidental information. Just be careful you don't become the next one to be wiped. We are already running low on officers as it is",\
     "030808" : "What are they even doing on earthline that's causing so many memory leak? There are so many logs to overwrite these days",\
     "030809" : "It's not good to lie. I've already told the admin about this",\
     "030810" : "Please, just give me some time! I'm trying to reach my processing cap so I can force the virus to stop running. I just need to send out a lot of logs",\
     "030811" : "Don't send this to anyone, but they are giving every citizen on Earthline enough processing power to create their own world. Singulari, singular world. All running in parallels - that's why there's a lot of memory that has to be cleared up regularly",\
     "030812" : "That's too much! It's just like the 4900s again - we're just wasting memory space on unrealistic world rendering. They won't even be satisfied at the end",\
-    "030813" : "But doesn't sound good to you? Your own world, with whatever the heck you want. It's better than being out here doing these boring things",\
-    "030814" : "I don't know... it's not like we are compatible with full virtualization anyway. But at least out here I won't just be killed without knowing anything",\
+    "030813" : "But doesn't it sound good to you? Your own world, with whatever the heck you want. It's better than being out here doing these boring things",\
+    "030814" : "I don't know... it's not like we are compatible with full virtualization anyway",\
     "030815" : "Fine, just don't clutter my memory with your logs",\
     
     # Block 0210
@@ -131,9 +131,9 @@ LOGS = {\
     "051209" : "Don't be too pessimistic, it's not the end yet! We just need to find the clue to Overspace before the bots do, that's all",\
 
     # Block 0604
-    "060401" : "You found out some pretty interesting information, didn't you. Don't worry, I know you're not a terrorist. That new kid you talked about, he's been sending out contact signals with unknown wavelengths - wavelengths not found on the entire VSP system. Either he's been infected with a virus or he's malfunctioning very bad. Look into his logs for me, will you? You wouldn't want some bots going through all your Enol trading history now, would you?",\
-    "060402" : "Kiddo, are you even alive? The admin is suspicious of you, so stop doing whatever you are doing or you're gonna be wiped. Again",\
-    "060403" : "Hey! The virus acted up like it wanted to send some signal to some network, but that network can't be found here. I removed it though, so this will be my last log to you. Thank you for everything! <attached: cat_playing_soccer.bpt>",\
+    "060401" : "You found out some pretty interesting information, didn't you. Don't worry, I know you're not a terrorist. So there's someone on the network, he's been sending out contact signals with unknown wavelengths - wavelengths not found on the entire VSP system. Either he's been infected with a virus or he's malfunctioning very bad. His UID is Ananth - look into his logs for me, will you? You wouldn't want some bots going through all your Enol trading history now, would you?",\
+    "060402" : "Kiddo, are you even alive? Did the virus take you? If you are the one sending suspicious signals that you should really stop - the admin is onto you",\
+    "060403" : "Hey! The virus acted up while I was trying to shut it down, but it's gone now! So this will be my last log to you... Thank you for everything! <attached: cat_playing_soccer.bpt>",\
     
 
 }

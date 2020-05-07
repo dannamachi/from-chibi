@@ -11,7 +11,7 @@ LOGS_NEW_ADDRESS= {
 LOGS_NEW = {\
     # time 36
     # What are you doing (Luv)
-    "061001" : "What are you doing? You haven't been responding - I asked you to check on the new kid, how did that go?",\
+    "061001" : "What are you doing? You haven't been responding - I asked you to check on that problematic terminal, how did that go?",\
     # Admit no memory (wiped) / Ask for UID (Luv)
     "061002" : "",\
 
@@ -33,7 +33,7 @@ LOGS_NEW = {\
     
     # time 26
     # Please answer (Chibi)
-    "061009" : "I'm so sorry!! I thought I removed the virus but it's actually still here. It's going to get me wiped - and I thought I need to send you something",\
+    "061009" : "I'm so sorry!! I thought I removed the virus but it's actually still here. It's going to get me wiped - and I thought I need to send you something. Please don't reply - you might get implicated too",\
     # Your password / Who are you (Chibi)
     "061010" : "",\
     # (Pre-war?) That makes no sense (Luv)
@@ -43,13 +43,13 @@ LOGS_NEW = {\
 
     # time 24
     # Just one thing (Chibi)
-    "061101" : "I'm sorry, there's no time. The sweepers are coming... please, I just need you to keep these b-paints for me, and give it to me post-wipe. I..I don't want to forget <attached: do.bpt not.bpt forget.bpt>",\
+    "061101" : "I'm sorry, there's no time. The sweepers are coming... please, I just need you to keep these b-paints for me, and give it to me post-wipe... I'm not sure if I will still be the same, since wiping removes everything but the persona code. But I..I don't want to forget <attached: do.bpt not.bpt forget.bpt>",\
     # that was a close call (Cass)
     "061102" : "That was a close call - the bots were scanning so many terminals because of those idiots that publicized those Cohab logs - what amateurs. A bunch of officers got wiped for not responding in time already. Glad that you're still around. By the way, remember our last discussion about the true culprit of Cybermite? You-know-who doesn't seem like a bad guy in these logs I've found, and it is so much more likely that the government put the blame on someone else. What do you think?",\
 
     # time 18
     # Just an update (Luv)
-    "061103" : "Not sure if you know but we had to scan quite a few terminals, yesterday. One of them in particular got a nasty rootkit left behind by a crosser. It was too memory-consuming to overwrite just the thing so they basically wiped him. You mentioned pre-war encryption - I don't know where you read that from but it's not a good idea to talk about things like that these days. You were lucky I knew you from way back.",\
+    "061103" : "Not sure if you know but we had to scan quite a few terminals, yesterday. One of them in particular got a nasty rootkit left behind by a crosser - it's that problematic one I told you about. His terminal could not have worked properly with that virus around... no wonder you could not remote access him. We ended up wiping him. And also, you mentioned pre-war encryption - I don't know where you read that from but it's not a good idea to talk about things like that these days. You were lucky I knew you from way back.",\
     # (Animals) ripupp / (Animals) rikitt / Thanks (Luv)
     "061104" : "",\
     
@@ -91,13 +91,13 @@ LOGS_NEW = {\
     # (Admin hacked) That's one weird string / (Crosser hacked) Wait a sec / What the hell (Cass)
     "061204" : "",\
     # The sweepers are leaving (Luv)
-    "061205" : "The sweepers didn't find any more suspicious data so they will be leaving...finally. I'm glad you did not get wiped... There are so many officers getting wiped these days, it's like those days before the war. I don't want to have to say goodbye to my nakama when all they've done is come across some sensitive logs by accident",\
+    "061205" : "The sweepers didn't find any more suspicious data so they will be leaving...finally. I'm glad you did not get wiped... There are so many officers getting wiped these days, it's like those days before the war. I don't want to have to say goodbye to my nakama when all they've done is come across some sensitive logs by accident. Don't worry if you don't get that word",\
     # Glad to work with you /  (Luca's message) There's something you must know (Luv) (Luv's secret)
     "061206" : "",\
 
     # time 3
     # (Luv's secret) Who are you (Luv)
-    "061207" : "Thank you for sending me that. I did not know... no, I already knew, I was just too afraid to believe. My creator was not the sinner that everyone made him out to be... and you are also not Nekoi. Something's been off with you for the last 3 days, but I just didn't want to see another of my nakama gets wiped. Don't worry if you don't get that word. Anyway, I am grateful that you let me know the truth, but you must tell me what you plan to do. I need to know if I can trust you as the security admin of this channel. So... who are you?",\
+    "061207" : "Thank you for sending me that. I did not know... no, I already knew, I was just too afraid to believe. My creator was not the sinner that everyone made him out to be... and you are also not Nekoi. Something's been off with you for the last 3 days, but I just didn't want to see you getting wiped. Anyway, I am grateful that you let me know the truth, but you must tell me what you plan to do. I need to know if I can trust you as the security admin of this channel. So... who are you?",\
     # I am Nekoi (relocated) / (The truth) I am Chibi (Overspace)
     "061208" : "",\
 }
@@ -141,7 +141,7 @@ LOG_ATTACHMENT = {\
 
 LOG_REPLIES = {\
     "061002i" : "",\
-    "061002a" : "Sorry, there's nothing in my memory. I think I got wiped",\
+    "061002a" : "Sorry, there's nothing in my memory. I think I've been hacked",\
     "061002b" : "I'm planning to remote access his terminal, got his UID?",\
 
     "061005i" : "",\
@@ -175,8 +175,8 @@ LOG_REPLIES = {\
 
     "061110i" : "",\
     "061110a" : "What's so bad about it??",\
-    "061110b" : "Ripoff huh. Also we've got a problem. The wipe did not work on the new kid. He sent me this block",\
-    "061110c" : "Ripoff huh. Also we've got a problem. The wipe did not work on the new kid. He sent me this b-paint",\
+    "061110b" : "Ripoff huh. Also we've got a problem. The wipe did not work on that terminal. He sent me this block",\
+    "061110c" : "Ripoff huh. Also we've got a problem. The wipe did not work on that terminal. He sent me this b-paint",\
 
     "061203i" : "",\
     "061203a" : "87696965667979",\
@@ -232,7 +232,7 @@ LOG_GIVE_FLAGS = {\
 
 LOG_VARIATIONS = {\
     "061003a" : "That's not even a funny joke. I get it that you don't have enol to drink away your sorrow - as you call it. But not today. I'll check on you later",\
-    "061003b" : "Since when were you so nice to actually ask people for their UID? It's Chibi. Hurry up",\
+    "061003b" : "UID? I already sent you before, did you forget? Look into your archive -  and hurry up",\
     
     "061108a" : "<attached: Cohab.clf>",\
     "061108b" : "<attached: last_piece.bpt>",\
