@@ -10,6 +10,7 @@
 * python main.py
 
 ### version
+* v2.0.5: adjust content for plot consistency
 * v2.0.0: add restart option, add decrypt info
 * v1.9.0: adjust content, change decrypt system
 * v1.8.0: add saving and loading
