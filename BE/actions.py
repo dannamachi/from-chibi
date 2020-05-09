@@ -3,14 +3,14 @@ All action functions are called with flags and current_time as first two argumen
 All action functions are to update flags if necessary and current_time if the command goes through
 '''
 
-import schedule
-import logs
-import logs_new
-import blocks
-import remote
-import decodes
-import actions_help
-import saving
+import BE.schedule as schedule
+import BE.logs as logs
+import BE.logs_new as logs_new
+import BE.blocks as blocks
+import BE.remote as remote
+import BE.decodes as decodes
+import BE.actions_help as actions_help
+import BE.saving as saving
 import json
 
 end_result = 0

@@ -1,9 +1,9 @@
-import actions
-import validation
-import blocks
-import logs_new
-import decodes
-import saving
+import BE.actions as actions
+import BE.validation as validation
+import BE.blocks as blocks
+import BE.logs_new as logs_new
+import BE.decodes as decodes
+import BE.saving as saving
 
 ### endings
 end_game = False
@@ -166,10 +166,10 @@ def print_helpful_note(isRoot):
 
 # SAVE INITIALIZING
 # saving.initialize_save()
-actions.set_restart_point(flags,total_time)
+# actions.set_restart_point(flags,total_time)
 
 # RESTART LOOP
-not_quit = True
+not_quit = False
 command_status = 'Game restarted'
 while not_quit:
     # GAME START
