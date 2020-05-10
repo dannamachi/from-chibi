@@ -16,6 +16,8 @@ END_RESULT = 0
 END_STATUS = ""
 END_MESSAGE = ""
 TOTAL_TIME = old.total_time
+TIME_SPENT = 0
+DECRYPT_ENQUEUD = False
 FLAGS = old.flags
 
 
@@ -51,7 +53,7 @@ def run_game_command(comm_id, *args):
     '''
     Returns text, section id
     '''
-    global END_GAME, END_RESULT, END_MESSAGE, END_STATUS, TOTAL_TIME, FLAGS
+    global END_GAME, END_RESULT, END_MESSAGE, END_STATUS, TOTAL_TIME, FLAGS, TIME_SPENT, DECRYPT_ENQUEUD
     global IS_QUIT, IS_SAVING, IS_LOADING
     argument_list = [FLAGS,TOTAL_TIME,*args]
     # check quit
@@ -80,18 +82,9 @@ def run_game_command(comm_id, *args):
     # run command
     previous_time = TOTAL_TIME
     text, TOTAL_TIME = old.action_command_call[comm_id](*argument_list)
-    time_spent = previous_time - TOTAL_TIME
+    TIME_SPENT = previous_time - TOTAL_TIME
     # post command
-    # update decrypting status
-    if comm_id == 12: time_spent = 0
-    remove_list = []
-    for item in list(actions.decrypt_track.keys()):
-        actions.decrypt_track[item] -= time_spent
-        if actions.decrypt_track[item] <= 0:
-            actions.update_block_status(item,actions.is_in_which_block_group(item))
-            remove_list.append(item)
-    for item in remove_list:
-        actions.decrypt_track.pop(item, None)
+    DECRYPT_ENQUEUD = (comm_id == 1)
     # update block variation
     for key in logs_new.LOG_VARIATIONS.keys():
         if logs_new.LOG_NEED_FLAGS[key] in list(FLAGS.keys()):
@@ -133,7 +126,25 @@ def run_game_command(comm_id, *args):
     # check which section do info text go to
     return text, SECTION_MAPPING[comm_id]
 
-
+def update_helpful_note(helpful_section):
+    '''
+    Updates helpful section, also does decrypting update
+    Returns helpful section
+    '''
+    isRoot = "Root Access" in list(old.flags.keys())
+    remove_list = []
+    for item in list(actions.decrypt_track.keys()):
+        actions.decrypt_track[item] -= TIME_SPENT
+        if actions.decrypt_track[item] <= 0:
+            actions.update_block_status(item,actions.is_in_which_block_group(item))
+            remove_list.append(item)
+    for item in remove_list:
+        actions.decrypt_track.pop(item, None)
+    tips = old.print_helpful_note(TOTAL_TIME,isRoot)
+    if len(remove_list) > 0:
+        tips += "! Some block(s) have finished decrypting"
+    helpful_section.set_text(tips)
+    return helpful_section
 
 def is_special(comm_id):
     if comm_id == 11:

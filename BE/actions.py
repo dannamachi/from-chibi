@@ -283,7 +283,7 @@ def reply(*args):
             reply_ids.append(repcode)
 
     if len(args) == 3:
-        result = "Enter reply " + log_id + " followed by reply code. For eg: reply" + log_id + " a "
+        result = ">>> Enter reply " + log_id + " followed by reply code. For eg: reply" + log_id + " a "
         for code in reply_ids:
             result += "\n" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
         return result, current_time
@@ -470,11 +470,11 @@ def read(*args):
         # reply status
         reply_status = log_reply_status(log_id,current_time)
         if reply_status == 2:
-            result += "\n\tReply EXPIRED"
+            result += "\n\tREPLY EXPIRED"
         elif reply_status == 1:
             result += show_possible_replies(flags,current_time,log_id)
         elif reply_status == 3:
-            result += "\n\tAttachment EXPIRED"
+            result += "\n\tATTACHMENT EXPIRED"
         return result, current_time
     else:
         block_id = args[2]
@@ -517,7 +517,7 @@ def show_possible_replies(flags, current_time, log_id):
     for repcode in possible_reply_codes:
         if repcode[:6] == reply_id and repcode[6] != "i":
             reply_ids.append(repcode)
-    result = "\nEnter reply " + log_id + " followed by reply code. For eg: reply " + log_id + " a "
+    result = "\n>>> Enter reply " + log_id + " followed by reply code. For eg: reply " + log_id + " a "
     for code in reply_ids:
         result += "\n\t" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
     return result
@@ -645,8 +645,8 @@ def help(*args):
         tips += "\nAs a security officer, you are closely watched by the channel admin and regulatory bots - read your logs regularly and reply on time"
         tips += "\nDemTube is the universal platform for entertainment and learning - you can read the schedule by entering 'notes dt'"
         tips += "\nEnter 'help commands' for a list of possible commands"
-        tips += "\n181us[enterread0000]a15fqcfascafcq"
-        tips += "\n3u38u@#83i23[mission:contactoverspace]9wdsijnc9ds9ds9xd[survive:donotforgetlastpiece]l984mednsc"
+        tips += "\n???Enter read 000"
+        tips += "\n???Mission:contactoverspace ???Need:donotforgetlastpiece"
         return tips, current_time
     else:
         key = args[2]

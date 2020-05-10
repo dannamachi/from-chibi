@@ -10,15 +10,22 @@ class ReadSection(Section):
         self.start_line = 0
         self.end_line = 0
         self.max_row = 20
+        self.max_char = 28
+        self.updated = True
+
+    def set_stale(self):
+        if len(self.lines) != 0:
+            self.updated = False
 
     def set_text(self,text):
         self.text = text
-        self.lines = tools.divide_into_lines(self.text,30)
+        self.lines = tools.divide_into_lines(self.text,self.max_char)
         # scrolling variables
         self.start_line = 0
         self.end_line = self.start_line + self.max_row
         if self.end_line > len(self.lines):
             self.end_line = len(self.lines)
+        self.updated = True
 
     def shift_up_one_row(self):
         if self.start_line > 0:
@@ -36,6 +43,10 @@ class ReadSection(Section):
         '''
         rendered = {}
         index = 0
+        # add reminder
+        if not self.updated:
+            remind_img = font.render("This window may not be up to date",True,constants.RED)
+            rendered[remind_img] = (self.dimension[0] + 1,1)
         for i in range(self.start_line,self.end_line):
             line = self.lines[i]
             font_img = font.render(line,True,self.color)

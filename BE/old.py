@@ -138,31 +138,33 @@ def print_intro():
     print("Message: mskmcdjsnjnsce[Save CHIBI! Time is running out!]jfnejfnscnjd[Press help to get started]")
     print("=====================================")
 
-def print_helpful_note(isRoot):
+def print_helpful_note(total_time,isRoot):
     '''
     Prints helpful note and time (reverse time if isRoot)
     '''
-    print("<Enter read ",end="")
+    tips = "1. Enter read "
     if total_time > 24:
         day_int = 3
         time_offset = 24
-        print("0610",end="")
+        tips += "0610"
     elif total_time > 12:
         day_int = 2
         time_offset = 12
-        print("0611",end="")
+        tips += "0611"
     else:
         day_int = 1
         time_offset = 0
-        print("0612",end="")
-    print(" to check new logs. Do this regularly>")
-    print("<Press help commands to check available commands>")
+        tips += "0612"
+    tips += " to check new logs\n"
+    tips += "2. Enter help commands to check available commands\n"
     if not isRoot:
-        print("<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">")
+        tips = "<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">\n" + tips
     else:
-        print("<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">")
+        tips = "<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">\n" + tips
+    tips += "3. Windows are scrollable"
     if "Assembled" in list(flags.keys()) and not ("Another CHIBI" in list(flags.keys())):
-        print("Message: all code files detected, please run special command")
+        tips += "???Message: all code files detected, please run special command\n"
+    return tips
 
 # SAVE INITIALIZING
 # saving.initialize_save()

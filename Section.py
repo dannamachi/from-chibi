@@ -18,6 +18,9 @@ class Section(object):
     def has_id(self,num):
         return self.num == num
 
+    def set_stale(self):
+        pass
+
     def get_text(self):
         return self.text
 

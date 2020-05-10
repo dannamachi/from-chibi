@@ -10,6 +10,7 @@ from CommandSection import CommandSection
 from MessageSection import MessageSection
 from ReadSection import ReadSection
 from NoteSection import NoteSection
+from HelpfulSection import HelpfulSection
 
 pygame.init()
 
@@ -30,7 +31,8 @@ COMMANDLINE = CommandSection()
 MESSAGE = MessageSection()
 NOTES = NoteSection()
 READS = ReadSection()
-SECTIONS = [COMMANDLINE, MESSAGE, NOTES, READS]
+HELPS = HelpfulSection()
+SECTIONS = [COMMANDLINE, MESSAGE, NOTES, READS, HELPS]
 
 while not api.IS_QUIT:
     if deleting: 
@@ -47,15 +49,22 @@ while not api.IS_QUIT:
         if event.type == QUIT:
             api.IS_QUIT = True
         if event.type == MOUSEBUTTONDOWN:
+            # scrolling for reads
             if event.button == 4 and buttons.is_hovered(event.pos,constants.SECT_READ):
                 READS.shift_up_one_row()
             elif event.button == 5 and buttons.is_hovered(event.pos,constants.SECT_READ):
                 READS.shift_down_one_row()
+            # scrolling for notes
+            elif event.button == 4 and buttons.is_hovered(event.pos,constants.SECT_NOTE):
+                NOTES.shift_up_one_row()
+            elif event.button == 5 and buttons.is_hovered(event.pos,constants.SECT_NOTE):
+                NOTES.shift_down_one_row()
         if event.type == KEYDOWN:
             if event.key == K_RETURN:
                 COMMANDLINE.set_text(TEXTINPUT)
                 COMMANDLINE.process_command()
                 message_text, section_id = COMMANDLINE.run_command()
+                HELPS = api.update_helpful_note(HELPS)
                 TEXTINPUT = ""
             elif event.key == K_BACKSPACE:
                 if len(TEXTINPUT) > 0:
@@ -72,7 +81,10 @@ while not api.IS_QUIT:
         for section in SECTIONS:
             if section.has_id(section_id):
                 section.set_text(message_text)
-                break
+            elif api.TIME_SPENT != 0:
+                section.set_stale()
+            elif isinstance(section,NoteSection) and api.DECRYPT_ENQUEUD:
+                section.set_stale()
         section_id = -1
         message_text = ""
 
