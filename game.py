@@ -5,6 +5,7 @@ from pygame.rect import *
 
 import constants
 import api
+import buttons
 from CommandSection import CommandSection
 from MessageSection import MessageSection
 from ReadSection import ReadSection
@@ -45,6 +46,11 @@ while not api.IS_QUIT:
     for event in pygame.event.get():
         if event.type == QUIT:
             api.IS_QUIT = True
+        if event.type == MOUSEBUTTONDOWN:
+            if event.button == 4 and buttons.is_hovered(event.pos,constants.SECT_READ):
+                READS.shift_up_one_row()
+            elif event.button == 5 and buttons.is_hovered(event.pos,constants.SECT_READ):
+                READS.shift_down_one_row()
         if event.type == KEYDOWN:
             if event.key == K_RETURN:
                 COMMANDLINE.set_text(TEXTINPUT)

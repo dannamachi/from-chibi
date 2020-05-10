@@ -16,7 +16,7 @@ class NoteSection(Section):
         index = 0
         for line in lines:
             font_img = font.render(line,True,self.color)
-            font_loc = (self.dimension[0] + constants.OFF_NOTE[0], self.dimension[1] + constants.OFF_NOTE[1] + index * 30)
+            font_loc = (self.dimension[0] + constants.OFF_NOTE[0], self.dimension[1] + constants.OFF_NOTE[1] + index * 20)
             index += 1
             rendered[font_img] = font_loc
         return rendered

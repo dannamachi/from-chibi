@@ -2,6 +2,11 @@ import pygame
 import constants
 from pygame.rect import *
 
+SECTION_HOVER_ID = {\
+    constants.SECT_READ   : constants.RECT_READ,\
+    constants.SECT_NOTE   : constants.RECT_NOTE,\
+}
+
 BUTTON_DICT = {\
     "START GAME"  : constants.MAIN_START,\
     "LOAD GAME"   : constants.MAIN_LOAD,\
@@ -48,6 +53,12 @@ COLOR_LOAD_BUTTONS = {\
     constants.LOAD_LOAD   : constants.MAGENTA,\
     constants.LOAD_RETURN : constants.GREEN,\
 }
+
+def is_hovered(mouse_pos, section_id):
+    if section_id in list(SECTION_HOVER_ID.keys()):
+        rect = pygame.Rect(*SECTION_HOVER_ID[section_id])
+        return rect.collidepoint(mouse_pos)
+    return False
 
 def is_clicked(mouse_pos, button_name):
     if button_name in list(BUTTON_DICT.keys()):
