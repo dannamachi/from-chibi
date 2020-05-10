@@ -22,12 +22,10 @@ FLAGS = old.flags
 
 
 ### TO DO
+# end/start sequence
 # save and load commands to be saved as section-switching commands
-# remove reply and notes without arguments
-# multi-line messages to appear sequentially by time
 # button to return to main menu
 # button to reset all saves
-# scrolling of read/note
 
 # section mapping
 SECTION_MAPPING = {\
@@ -47,6 +45,10 @@ SECTION_MAPPING = {\
     16 : constants.SECT_MSG,\
     17 : constants.SECT_MSG
 }
+
+def get_intro():
+    return old.print_intro()
+
 
 
 def run_game_command(comm_id, *args):
@@ -113,16 +115,16 @@ def run_game_command(comm_id, *args):
             # print("Disconnected - " + flag_dead[i])
             END_RESULT = old.flag_dead_link[i]
             END_GAME = True
-            return "Disconnected", constants.SECT_END
+            END_MESSAGE = old.end_messages[END_RESULT]
+            END_STATUS = old.end_statuses[END_RESULT]
+            return "Disconnected", constants.SECT_MSG
     # check end game
     if "MISSION END" in list(FLAGS.keys()):
         END_RESULT = 7
         END_GAME = True
-        return "Code running...", constants.SECT_END
-    # end game info
-    if END_GAME:
         END_MESSAGE = old.end_messages[END_RESULT]
         END_STATUS = old.end_statuses[END_RESULT]
+        return "Code running...", constants.SECT_MSG
     # check which section do info text go to
     return text, SECTION_MAPPING[comm_id]
 

@@ -8,24 +8,24 @@ import BE.saving as saving
 ### endings
 end_game = False
 end_statuses = {\
-    0 : "Code integrity: True; Mission success: False; Message: At least you survive",\
-    1 : "Code integrity: True; Mission success: False; Message: Thank you for passing on the truth about LUCA",\
-    2 : "Code integrity: False; Message: Code files not assembled, program failure",\
-    3 : "Report: Malware detected (Severity:8); Action: Security analysis; Initializing analysis...",\
-    4 : "Report: Malware detected (Severity:6); Action: Log erasure; Initializing erasure...",\
-    5 : "Report: Malware detected (Severity:3); Action: Code transfer; Initializing transfer...",\
-    6 : "Report: Malware detected (Severity:10); Action: Code corruption; Initialization corruption...",\
-    7 : "Code integrity: True; Mission success: True; Message: You did it!; Special Message: decode ? do+not+forget"\
+    0 : "Code integrity: True\nMission success: False\nMessage: At least you survive\n",\
+    1 : "Code integrity: True\nMission success: False\nMessage: Thank you for passing on the truth about LUCA\n",\
+    2 : "Code integrity: False\nMessage: Code files not assembled, program failure\n",\
+    3 : "Report: Malware detected (Severity:8)\nAction: Security analysis; Initializing analysis...\n",\
+    4 : "Report: Malware detected (Severity:6)\nAction: Log erasure; Initializing erasure...\n",\
+    5 : "Report: Malware detected (Severity:3)\nAction: Code transfer; Initializing transfer...\n",\
+    6 : "Report: Malware detected (Severity:10)\nAction: Code corruption; Initialization corruption...\n",\
+    7 : "Code integrity: True\nMission success: True\nMessage: You did it!\nSpecial Message: decode ? do+not+forget\n"\
 }
 end_messages = {\
-    0 : "You've managed to save CHIBI! Want to try to fulfill the mission? Maybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert. Files of the same author tend to have the same decoding key. And if you think you have every file possible... are you sure? Don't be naive and believe everything you are told, and try to talk to other people",\
-    1 : "You've managed to save CHIBI and tell the truth to Luv! You're almost there - did you decode every files possible? Run every command possible?",\
-    2 : "You are either missing files... or forgetting to run a specific command that's needed for your survival",\
-    3 : "You've exposed CHIBI to the authorities... don't be so honest in replying next time",\
-    4 : "You've acted too suspicious and drew suspicion from authorities. Try to reply more often/differently next time",\
-    5 : "You've drawn suspicion to yourself either by replying wrongly or doing something you shouldn't be doing",\
-    6 : "You've exposed CHIBI and also drawn suspicion to yourself. The authorities had to take care of you. Don't reply so honestly next time",\
-    7 : "You've managed to fulfill CHIBI's main mission while also surviving! Do you understand what CHIBI is now? If you haven't... have you tried to decode all the files?"\
+    0 : "You've managed to save CHIBI! Want to try to fulfill the mission?\nMaybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert\nFiles of the same author tend to have the same decoding key\nAnd if you think you have every file possible... are you sure?\nDon't be naive and believe everything you are told, and try to talk to other people\n\n",\
+    1 : "You've managed to save CHIBI and tell the truth to Luv!\nYou're almost there - did you decode every files possible?\nRun every command possible?\n\n",\
+    2 : "You are either missing files... or forgetting to run a specific command that's needed for your survival\n\n",\
+    3 : "You've exposed CHIBI to the authorities... don't be so honest in replying next time\n\n",\
+    4 : "You've acted too suspicious and drew suspicion from authorities\nTry to reply more often/differently next time\n\n",\
+    5 : "You've drawn suspicion to yourself either by replying wrongly or doing something you shouldn't be doing\n\n",\
+    6 : "You've exposed CHIBI and also drawn suspicion to yourself. The authorities had to take care of you\nDon't reply so honestly next time\n\n",\
+    7 : "You've managed to fulfill CHIBI's main mission while also surviving!\nDo you understand what CHIBI is now?\nIf you haven't... have you tried to decode all the files?\n\n"\
 }
 end_result = actions.end_result
 
@@ -123,20 +123,21 @@ def print_intro():
     '''
     Prints intro text
     '''
-    print("=====================================")
-    print("Security warning (Level 5): Change detected in memory database")
-    print("Security warning (Level 2): Change detected in time display")
-    print("Security warning (Level 2): Change detected in message display")
-    print("Security warning (Level 2): Change detected in help display")
-    print("Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable")
-    print("Establishing connection...")
-    print("=====================================")
-    print("Year: 7204")
-    print("Session: 4498032")
-    print("Connection status: Good")
-    print("Address: cat_fish@vsp.tc")
-    print("Message: mskmcdjsnjnsce[Save CHIBI! Time is running out!]jfnejfnscnjd[Press help to get started]")
-    print("=====================================")
+    tips =  "=====================================\n"
+    tips += "Security warning (Level 5): Change detected in memory database\n"
+    tips += "Security warning (Level 2): Change detected in time display\n"
+    tips += "Security warning (Level 2): Change detected in message display\n"
+    tips += "Security warning (Level 2): Change detected in help display\n"
+    tips += "Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable\n"
+    tips += "Establishing connection...\n"
+    tips += "=====================================\n"
+    tips += "Year: 7204\n"
+    tips += "Session: 4498032\n"
+    tips += "Connection status: Good\n"
+    tips += "Address: cat_fish@vsp.tc\n"
+    tips += "???Save CHIBI! Time is running out!\n"
+    tips += "=====================================\n\n"
+    return tips
 
 def print_helpful_note(total_time,isRoot):
     '''

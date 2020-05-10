@@ -12,7 +12,7 @@ class CommandSection(Section):
         self.color = constants.GREEN
 
     def set_text(self,text):
-        if len(text) < 50:
+        if len(text) < 70:
             self.text = text
 
     def reverse_one_command(self):

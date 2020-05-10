@@ -7,6 +7,7 @@ class MessageSection(Section):
         Section.__init__(self, constants.SECT_MSG, constants.RECT_MSG)
         self.color = constants.GREEN
         self.updated = True
+        self.max_char = 70
 
     def set_text(self,text):
         self.text = text
@@ -21,11 +22,11 @@ class MessageSection(Section):
         '''
         rendered = {}
         if self.updated:
-            lines = tools.divide_into_lines(self.text,50)
+            lines = tools.divide_into_lines(self.text,self.max_char)
             index = 0
             for line in lines:
                 font_img = font.render(line,True,self.color)
-                font_loc = (self.dimension[0] + constants.OFF_MSG[0], self.dimension[1] + constants.OFF_MSG[1] + index * 30)
+                font_loc = (self.dimension[0] + constants.OFF_MSG[0], self.dimension[1] + constants.OFF_MSG[1] + index * 20)
                 index += 1
                 rendered[font_img] = font_loc
         return rendered

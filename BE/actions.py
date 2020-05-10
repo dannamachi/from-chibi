@@ -283,7 +283,7 @@ def reply(*args):
             reply_ids.append(repcode)
 
     if len(args) == 3:
-        result = ">>> Enter reply " + log_id + " followed by reply code. For eg: reply" + log_id + " a "
+        result = ">>> Enter reply " + log_id + " followed by reply code. For eg: reply " + log_id + " a "
         for code in reply_ids:
             result += "\n" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
         return result, current_time
@@ -509,18 +509,19 @@ def show_possible_replies(flags, current_time, log_id):
     '''
     Returns string of possible replies to a log
     '''
-    reply_id = logs_new.LOG_LINK_REPLIES[log_id]
-    reply_ids = []
-    # filter replies by flags
-    possible_reply_codes = list(filter(lambda item: can_reply(flags,item), list(logs_new.LOG_REPLIES.keys())))
-    # filter replies by log_id
-    for repcode in possible_reply_codes:
-        if repcode[:6] == reply_id and repcode[6] != "i":
-            reply_ids.append(repcode)
-    result = "\n>>> Enter reply " + log_id + " followed by reply code. For eg: reply " + log_id + " a "
-    for code in reply_ids:
-        result += "\n\t" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
-    return result
+    return "\n>>> Enter reply " + log_id + " for possible replies"
+    # reply_id = logs_new.LOG_LINK_REPLIES[log_id]
+    # reply_ids = []
+    # # filter replies by flags
+    # possible_reply_codes = list(filter(lambda item: can_reply(flags,item), list(logs_new.LOG_REPLIES.keys())))
+    # # filter replies by log_id
+    # for repcode in possible_reply_codes:
+    #     if repcode[:6] == reply_id and repcode[6] != "i":
+    #         reply_ids.append(repcode)
+    # result = "\n>>> Enter reply " + log_id + " followed by reply code. For eg: reply " + log_id + " a "
+    # for code in reply_ids:
+    #     result += "\n\t" + code[6] + ": " + logs_new.LOG_REPLIES[code] + "; "
+    # return result
 
 
 def read_log(flags,current_time):
