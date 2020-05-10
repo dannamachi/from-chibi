@@ -4,7 +4,7 @@ CREDENTIALS = {\
 }
 
 RESULTS = {
-    "Cassilin"   : "Unable to verify. Attempting to certify. Failed. Attempting to use temporary key. Success. +Do not forget 5222+",\
-    "Luvluv"     : "Permission denied. Attempting to bypass. Failed. Attempting to escalate privilege. Failed. Attempting to use emergency access. Failed. Intercepting security logs. Success => To: luvluv87696965667979@nfc.tc 3 unrecognized log-in attempts",\
-    "Chibi"      : "Attempting to establish connection... . Failed. Message: This terminal is currently inactive",\
+    "Cassilin"   : "Unable to verify... Attempting to certify... Failed\nAttempting to use temporary key... Failed\nIntercepting security logs => To: cass_5222@nfc.tc 10 unrecognized log-in attempt(s)",\
+    "Luvluv"     : "Permission denied. Attempting to bypass... Failed\nAttempting to escalate privilege. Failed\nIntercepting security logs. Success => To: luvluv87696965667979@nfc.tc 3 unrecognized log-in attempt(s)",\
+    "Chibi"      : "Attempting to establish connection... . Failed\nMessage: This terminal is currently inactive",\
 }

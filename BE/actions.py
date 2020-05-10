@@ -59,11 +59,11 @@ def chibi(*args):
     flags = args[0]
     current_time = args[1]
     if not is_flag_triggered(flags,"Another CHIBI"):
-        tips =  "File assembling in progress... Success. Running self replication sequence... Success. Scanning network for next target... Success. Initializing persona code 'chibisuke'... Success. Initializing file transfer to target... Success. Message: mission not fulfilled, please run mission"
+        tips =  "Running self replication sequence... Success. Scanning network for next target... Success\nInitializing persona code 'chibisuke'... Success. Initializing file transfer to target... Success\nMessage: mission not fulfilled, please run mission"
         flags["Another CHIBI"] = True
         current_time -= 2
     else:
-        tips = "Code assembled. File transfer already in progress. Message: mission not fulfilled, please run mission"
+        tips = "Code assembled. File transfer already in progress\nMessage: mission not fulfilled, please run mission"
     return tips, current_time
 
 def notes(*args):
@@ -740,4 +740,4 @@ def root(flags, current_time):
         flags["Root Access"] = True
         # update time
         current_time -= 2
-        return "Attempting to gain root access. Success. Syncing time settings. Success. Welcome back, Nekoi", current_time
+        return "Attempting to gain root access. Success\nSyncing time settings. Success\nWelcome back, Nekoi", current_time

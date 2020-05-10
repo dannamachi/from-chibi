@@ -96,7 +96,7 @@ while not api.IS_QUIT:
             for section in SHOWING_GAME.get_sections():
                 if section.has_id(section_id):
                     section.set_text(message_text)
-                elif api.TIME_SPENT != 0:
+                if api.TIME_SPENT != 0:
                     section.set_stale()
                 elif isinstance(section,NoteSection) and api.DECRYPT_ENQUEUD:
                     section.set_stale()

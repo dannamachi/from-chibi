@@ -162,7 +162,7 @@ def print_helpful_note(total_time,isRoot):
         tips = "<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">\n" + tips
     else:
         tips = "<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">\n" + tips
-    tips += "3. Windows are scrollable"
+    tips += "3. Windows are scrollable\n"
     if "Assembled" in list(flags.keys()) and not ("Another CHIBI" in list(flags.keys())):
         tips += "???Message: all code files detected, please run special command\n"
     return tips

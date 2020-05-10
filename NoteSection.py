@@ -45,8 +45,8 @@ class NoteSection(Section):
         index = 0
         # add reminder
         if not self.updated:
-            remind_img = font.render("This window may not be up to date",True,constants.RED)
-            rendered[remind_img] = (1,1)
+            remind_img = font.render("Refresh for up-to-date info",True,constants.RED)
+            rendered[remind_img] = (5,1)
         for i in range(self.start_line,self.end_line):
             line = self.lines[i]
             font_img = font.render(line,True,self.color)

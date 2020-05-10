@@ -26,6 +26,7 @@ FLAGS = old.flags
 # save and load commands to be saved as section-switching commands
 # button to return to main menu
 # button to reset all saves
+# save/load shortcut shown in save/load page
 
 # section mapping
 SECTION_MAPPING = {\
@@ -76,7 +77,7 @@ def run_game_command(comm_id, *args):
         if error_code == 1:
             return "Root access needed", constants.SECT_MSG
         else:
-            return "Command not recognized. Are you missing any package/script? Watch dtube or find files via logs", constants.SECT_MSG
+            return "Command not recognized. Are you missing any file/script?", constants.SECT_MSG
     # check correct syntac
     error_code = is_valid(comm_id, *argument_list)
     if error_code != 4:

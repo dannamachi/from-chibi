@@ -51,27 +51,26 @@ def get_possible_commands(flags):
     '''
     Returns string with possible commands
     '''
-    tips = "Enter help for general info, or help [commands/files/archive] for specific info"
-    tips += "\nEnter notes to read all notes, or notes [general/dt/work] for specific notes"
-    tips += "\nEnter dt to watch demtube"
-    tips += "\nEnter work to do your job"
-    tips += "\nEnter read to check only the latest log received/sent"
-    tips += "\nEnter read [block id] to read all logs in a block"
-    tips += "\nEnter decrypt [block id] to unlock blocks in archive"
-    tips += "\nEnter decode [file name] [key] to decode a file"
-    tips += "\nEnter download [log id] to save attachment"
-    tips += "\nEnter save or load to see save slots available for saving/loading"
-    tips += "\nEnter save [slot id] or load [slot id] to save or load respectively"
-    tips += "\nEnter load restart to restart the game"
-    tips += "\nEnter quit to quit the session"
+    tips = "help [commands | files | archive]: terminal info\n\n"
+    tips += "notes [general | dt | work]: helpful info\n\n"
+    tips += "dt: watch dtube\n\n"
+    tips += "work: do vsp work\n\n"
+    tips += "read [(block id)]: read latest log/read block\n\n"
+    tips += "decrypt (block id): decrypt archive\n\n"
+    tips += "decode (filename) (key): decode file\n\n"
+    tips += "download (log id): save attachment from log\n\n"
+    tips += "save: go to save menu\n\n"
+    tips += "load: go to load menu\n\n"
+    tips += "load restart: restart the game\n\n"
+    tips += "quit: quit the game\n\n"
     if is_flag_triggered(flags,"Change Time"):
-        tips += "\n! Enter time [address] to change the time of another terminal"
+        tips += "! time (address): change time of another terminal\n\n"
     if is_flag_triggered(flags,"Can Root Access"):
-        tips += "\n! Enter root to get root access"
+        tips += "! root: recover root access\n\n"
     if is_flag_triggered(flags,"Remote Access"):
-        tips += "\n! Enter remote [UID] [password] to remote access another terminal"
+        tips += "! remote (UID) (password): remote access another terminal\n\n"
     if is_flag_triggered(flags,"Assembled"):
-        tips += "\n! Enter chibi to run special command"
+        tips += "???chibi: run special command\n\n"
     if is_flag_triggered(flags,"Decode Cohab's relic"):
-        tips += "\n! Enter overspace to connect to Overspace - make sure your connection is uninterrupted"
+        tips += "! overspace: connect to Overspace - make sure your connection is uninterrupted\n\n"
     return tips
