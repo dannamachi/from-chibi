@@ -33,6 +33,9 @@ class SaveSection(Section):
         else:
             self.slot_info = []
 
+    def set_restart(self):
+        self.button = -2
+
     def select(self, button_name):
         if (button_name[:4] == "SLOT"):
             self.button = int(button_name.split(' ')[1]) - 1
@@ -40,7 +43,10 @@ class SaveSection(Section):
 
     def run_command(self):
         if self.button != -1:
-            result, text = api.run_command(11,self.button)
+            if self.button == -2:
+                result, text = api.run_command(12,'restart')
+            else:
+                result, text = api.run_command(11,self.button)
             self.reset()
             return result, text
         else:

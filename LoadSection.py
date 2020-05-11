@@ -33,6 +33,9 @@ class LoadSection(Section):
         else:
             self.slot_info = []
 
+    def set_restart(self):
+        self.button = -2
+
     def select(self, button_name):
         if (button_name[:4] == "SLOT"):
             self.button = int(button_name.split(' ')[1]) - 1
@@ -40,6 +43,8 @@ class LoadSection(Section):
 
     def run_command(self):
         if self.button != -1:
+            if self.button == -2:
+                self.button = 'restart'
             result, text = api.run_command(12,self.button)
             self.reset()
             return result, text

@@ -13,6 +13,7 @@ def change_hover_display(button_name):
 DISPLAY_RECT = {\
     constants.SECT_READ  : [(constants.GREEN, constants.RECT_READ, 1), (constants.GREEN, (constants.RECT_READ[0],constants.RECT_READ[1],constants.RECT_READ[2],constants.OFF_READ[1]), 1)],\
     constants.SECT_NOTE  : [(constants.GREEN, constants.RECT_NOTE, 1), (constants.GREEN, (constants.RECT_NOTE[0],constants.RECT_NOTE[1],constants.RECT_NOTE[2],constants.OFF_NOTE[1]), 1)],\
+    constants.SECT_CLI   : [(constants.GREEN, (0,constants.RECT_CLI[1] + constants.OFF_CLI[1],constants.RECT_CLI[2],constants.RECT_CLI[3] - constants.OFF_CLI[1]), 1)],\
 }
 
 BUTTON_RECT = {\
@@ -22,6 +23,7 @@ BUTTON_RECT = {\
     "LOAD"                : [(constants.MAGENTA, constants.LOAD_LOAD, 8), (constants.MAGENTA, constants.LOAD_LOAD)],\
     "RETURN"              : [(constants.GREEN, constants.LOAD_RETURN, 8), (constants.GREEN, constants.LOAD_RETURN)],\
     "RETURN GAME"         : [(constants.GREEN, constants.SAVE_RETURN, 8), (constants.GREEN, constants.SAVE_RETURN)],\
+    "RESTART"             : [(constants.MAGENTA, constants.RESTART, 8), (constants.MAGENTA, constants.RESTART)],\
 }
 
 BUTTON_DISPLAY_KEY = {\
@@ -31,6 +33,7 @@ BUTTON_DISPLAY_KEY = {\
     "LOAD"                : 0,\
     "RETURN"              : 0,\
     "RETURN GAME"         : 0,\
+    "RESTART"             : 0,\
 }
 
 SLOT_LIST = []

@@ -11,8 +11,8 @@ IS_QUIT = False
 IS_SAVING = False
 IS_LOADING = False
 IS_MENU = False
-END_GAME = False
-END_RESULT = 0
+END_GAME = old.end_game
+END_RESULT = old.end_result
 END_STATUS = ""
 END_MESSAGE = ""
 TOTAL_TIME = old.total_time
@@ -23,10 +23,9 @@ FLAGS = old.flags
 
 ### TO DO
 # end/start sequence
-# save and load commands to be saved as section-switching commands
+# end restart
 # button to return to main menu
 # button to reset all saves
-# save/load shortcut shown in save/load page
 
 # section mapping
 SECTION_MAPPING = {\
@@ -60,7 +59,7 @@ def run_command(comm_id, *args):
     '''
     Reserve for save/load
     '''
-    global IS_SAVING, IS_LOADING, END_GAME, TIME_SPENT, TOTAL_TIME
+    global IS_SAVING, IS_LOADING, END_GAME, TIME_SPENT, TOTAL_TIME, END_RESULT
     if not (comm_id in [11,12]):
         return False, "Not valid"
     argument_list = [FLAGS,TOTAL_TIME,*args]
@@ -71,6 +70,7 @@ def run_command(comm_id, *args):
         IS_LOADING = False
         END_GAME = False
         TIME_SPENT = 0
+        END_RESULT = 0
     if comm_id == 11:
         if text == 'Game saved':
             return True, text

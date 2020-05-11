@@ -61,7 +61,7 @@ def get_possible_commands(flags):
     tips += "download (log id): save attachment from log\n\n"
     tips += "save: go to save menu\n\n"
     tips += "load: go to load menu\n\n"
-    tips += "quit: quit the game\n\n"
+    tips += "quit: quit the session\n\n"
     if is_flag_triggered(flags,"Change Time"):
         tips += "! time (address): change time of another terminal\n\n"
     if is_flag_triggered(flags,"Can Root Access"):

@@ -48,8 +48,8 @@ SAVES = SaveSection()
 SHOWING_GAME = Page(constants.PAGE_GAME, [COMMANDLINE, MESSAGE, NOTES, READS, HELPS])
 SHOWING_END = Page(constants.PAGE_END, [ENDS])
 SHOWING_MAIN = Page(constants.PAGE_MAIN, [MAIN], ["START GAME", "LOAD GAME"])
-SHOWING_LOAD = Page(constants.PAGE_LOAD, [LOADS], ["RETURN","LOAD"])
-SHOWING_SAVE = Page(constants.PAGE_SAVE, [LOADS], ["RETURN GAME","SAVE"])
+SHOWING_LOAD = Page(constants.PAGE_LOAD, [LOADS], ["RESTART","RETURN","LOAD"])
+SHOWING_SAVE = Page(constants.PAGE_SAVE, [LOADS], ["RESTART","RETURN GAME","SAVE"])
 
 # starting
 previous_page = SHOWING_MAIN
@@ -88,6 +88,12 @@ while not api.IS_QUIT:
                         if load_result:
                             SAVES.reload()
                             LOADS.reload()
+                    elif buttons.is_clicked(event.pos,"RESTART"):
+                        SAVES.set_restart()
+                        load_result, message_text, section_id = *SAVES.run_command(), constants.SECT_MSG
+                        CURRENT_PAGE = SHOWING_END
+                        ENDS.set_text(api.get_intro())
+                        MESSAGE.set_text(message_text)
                     for button in display.SLOT_LIST:
                         if buttons.is_clicked(event.pos,button):
                             SAVES.select(button)
@@ -119,6 +125,13 @@ while not api.IS_QUIT:
                             HELPS = api.update_helpful_note(HELPS)
                             SAVES.reload()
                             LOADS.reload()
+                    elif buttons.is_clicked(event.pos,"RESTART"):
+                        LOADS.set_restart()
+                        load_result, message_text, section_id = *LOADS.run_command(), constants.SECT_MSG
+                        CURRENT_PAGE = SHOWING_END
+                        ENDS.set_text(api.get_intro())
+                        print(message_text)
+                        MESSAGE.set_text(message_text)
                     for button in display.SLOT_LIST:
                         if buttons.is_clicked(event.pos,button):
                             LOADS.select(button)
@@ -135,6 +148,7 @@ while not api.IS_QUIT:
                         CURRENT_PAGE = SHOWING_END
                         ENDS.set_text(api.get_intro())
                         MESSAGE.set_text("Session started")
+                        api.END_GAME = False
                     elif buttons.is_clicked(event.pos,"LOAD GAME"):
                         api.IS_LOADING = True
     ## Game page
@@ -174,6 +188,12 @@ while not api.IS_QUIT:
                     if len(TEXTINPUT) > 0:
                         TEXTINPUT = TEXTINPUT[:-1]
                     deleting = True
+                elif event.key == K_UP:
+                    COMMANDLINE.reverse_one_command()
+                    TEXTINPUT = COMMANDLINE.get_text()
+                elif event.key == K_DOWN:
+                    COMMANDLINE.forward_one_command()
+                    TEXTINPUT = COMMANDLINE.get_text()
                 else:
                     TEXTINPUT += event.unicode
             if event.type == KEYUP and deleting:
@@ -187,12 +207,15 @@ while not api.IS_QUIT:
             for section in SHOWING_GAME.get_sections():
                 if section.has_id(section_id):
                     section.set_text(message_text)
-                if api.TIME_SPENT != 0:
+                elif api.TIME_SPENT != 0:
                     section.set_stale()
-                elif isinstance(section,NoteSection) and api.DECRYPT_ENQUEUD:
+                elif isinstance(section,MessageSection):
+                    section.set_stale()
+                if isinstance(section,NoteSection) and api.DECRYPT_ENQUEUD:
                     section.set_stale()
             section_id = -1
             message_text = ""
+        
         # check switch page
         if api.END_GAME:
             CURRENT_PAGE = SHOWING_END
@@ -234,7 +257,7 @@ while not api.IS_QUIT:
                     CURRENT_PAGE = SHOWING_GAME
                 elif event.key == K_RETURN and api.END_GAME:
                     # switch to main menu
-                    api.IS_QUIT = True
+                    api.IS_MENU = True
         # update for end page
 
     # get rendered imgs from sections

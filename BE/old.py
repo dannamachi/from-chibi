@@ -168,7 +168,7 @@ def print_helpful_note(total_time,isRoot):
     return tips
 
 # SAVE INITIALIZING
-saving.initialize_save()
+# saving.initialize_save()
 actions.set_restart_point(flags,total_time)
 
 # RESTART LOOP

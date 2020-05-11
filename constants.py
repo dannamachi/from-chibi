@@ -31,8 +31,8 @@ RECT_SLOT = (0,int(SCREEN_SIZE[1] * 1/12), int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1
 # text offset
 OFF_CLI = (20,40)
 OFF_MSG = (20,0)
-OFF_READ = (20,25)
-OFF_NOTE = (20,25)
+OFF_READ = (20,28)
+OFF_NOTE = (20,28)
 OFF_HELP = (10,60)
 OFF_END = (50,100)
 OFF_SLOT = (10,10)
@@ -59,6 +59,7 @@ SAVE_SAVE   = (int(SCREEN_SIZE[0] * 4/5), int(SCREEN_SIZE[1] * 11/12), int(SCREE
 SAVE_RETURN = (0, int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
 LOAD_LOAD   = (int(SCREEN_SIZE[0] * 4/5), int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
 LOAD_RETURN = (0, int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
+RESTART = (int(SCREEN_SIZE[0] * 2/5), int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
 
 
 # section id

@@ -14,15 +14,17 @@ BUTTON_DICT = {\
     "LOAD"        : constants.LOAD_LOAD,\
     "RETURN"      : constants.LOAD_RETURN,\
     "RETURN GAME" : constants.SAVE_RETURN,\
+    "RESTART"     : constants.RESTART,\
 }
 
 BUTTON_FONT_COLOR = {\
     "START GAME"  : [constants.GREEN, constants.BLACK],\
     "LOAD GAME"   : [constants.GREEN, constants.BLACK],\
-    "SAVE"        : [constants.MAGENTA, constants.WHITE],\
-    "LOAD"        : [constants.MAGENTA, constants.WHITE],\
+    "SAVE"        : [constants.MAGENTA, constants.BLACK],\
+    "LOAD"        : [constants.MAGENTA, constants.BLACK],\
     "RETURN"      : [constants.GREEN, constants.BLACK],\
     "RETURN GAME" : [constants.GREEN, constants.BLACK],\
+    "RESTART"     : [constants.MAGENTA, constants.BLACK],\
 }
 
 for i in range(20):
