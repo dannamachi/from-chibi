@@ -10,6 +10,11 @@ class CommandSection(Section):
         self.past_commands = []
         self.past_index = -1
         self.color = constants.GREEN
+    
+    def reset(self):
+        self.command = -1
+        self.arguments = []
+        Section.reset(self)
 
     def set_text(self,text):
         if len(text) < 70:

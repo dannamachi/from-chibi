@@ -4,14 +4,14 @@ import constants
 import BE.logs_new as logs_new
 import BE.blocks as blocks
 import BE.decodes as decodes
+import BE.saving as saving
 
 # constants
 IS_QUIT = False
 IS_SAVING = False
 IS_LOADING = False
-IS_MENU = True
+IS_MENU = False
 END_GAME = False
-DEAD = False
 END_RESULT = 0
 END_STATUS = ""
 END_MESSAGE = ""
@@ -50,21 +50,48 @@ SECTION_MAPPING = {\
 def get_intro():
     return old.print_intro()
 
+def get_save_slot_info():
+    info = saving.read_save()
+    if info == 'Unable to load save file':
+        return False, info
+    return True, info
 
+def run_command(comm_id, *args):
+    '''
+    Reserve for save/load
+    '''
+    global IS_SAVING, IS_LOADING, END_GAME, TIME_SPENT, TOTAL_TIME
+    if not (comm_id in [11,12]):
+        return False, "Not valid"
+    argument_list = [FLAGS,TOTAL_TIME,*args]
+    text, TOTAL_TIME = old.action_command_call[comm_id](*argument_list)
+    # reset variables if load
+    if comm_id == 12:
+        IS_SAVING = False
+        IS_LOADING = False
+        END_GAME = False
+        TIME_SPENT = 0
+    if comm_id == 11:
+        if text == 'Game saved':
+            return True, text
+    else:
+        if text == 'Game loaded' or text == 'Game restarted':
+            return True, text
+    return False, text
 
 def run_game_command(comm_id, *args):
     '''
     Returns text, section id
     '''
     global END_GAME, END_RESULT, END_MESSAGE, END_STATUS, TOTAL_TIME, FLAGS, TIME_SPENT, DECRYPT_ENQUEUD
-    global IS_QUIT, IS_SAVING, IS_LOADING
+    global IS_QUIT, IS_SAVING, IS_LOADING, IS_MENU
     argument_list = [FLAGS,TOTAL_TIME,*args]
     # check quit
     error_code = is_special(comm_id)
     if error_code != 4:
         if error_code == 0:
-            IS_QUIT = True
-            return 'See you soon!', constants.SECT_MSG
+            IS_MENU = True
+            return 'Quitting the session...', constants.SECT_MSG
         if error_code == 5:
             IS_SAVING = True
             return 'Switching to saving...', constants.SECT_MSG

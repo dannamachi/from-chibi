@@ -10,8 +10,15 @@ class ReadSection(Section):
         self.start_line = 0
         self.end_line = 0
         self.max_row = 20
-        self.max_char = 28
+        self.max_char = 27
         self.updated = True
+
+    def reset(self):
+        self.updated = False
+        self.lines = []
+        self.start_line = 0
+        self.end_line = 0
+        Section.reset(self)
 
     def set_stale(self):
         if len(self.lines) != 0:
@@ -46,7 +53,7 @@ class ReadSection(Section):
         # add reminder
         if not self.updated:
             remind_img = font.render("New logs may be available",True,constants.RED)
-            rendered[remind_img] = (self.dimension[0] + 1,1)
+            rendered[remind_img] = (self.dimension[0] + 5,1)
         for i in range(self.start_line,self.end_line):
             line = self.lines[i]
             font_img = font.render(line,True,self.color)

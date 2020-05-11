@@ -10,8 +10,15 @@ class NoteSection(Section):
         self.start_line = 0
         self.end_line = 0
         self.max_row = 20
-        self.max_char = 30
+        self.max_char = 28
         self.updated = True
+
+    def reset(self):
+        self.updated = False
+        self.lines = []
+        self.start_line = 0
+        self.end_line = 0
+        Section.reset(self)
         
     def set_text(self,text):
         self.text = text

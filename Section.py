@@ -9,6 +9,9 @@ class Section(object):
         self.dimension = dimension
         self.color = constants.GREEN
 
+    def get_id(self):
+        return self.num
+
     def __eq__(self, aSect):
         return self.num == aSect.num 
 
@@ -29,6 +32,9 @@ class Section(object):
 
     def set_text(self, text):
         self.text = text
+
+    def reset(self):
+        self.text = ""
 
     def render_font(self, font):
         '''

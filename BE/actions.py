@@ -108,7 +108,7 @@ def save(*args):
             day_check,decrypt_track,blocks.BLOCKS,blocks.BLOCKS_ROOT,blocks.BLOCKS_SPECIAL_TWO,blocks.BLOCKS_SPECIAL_THREE,blocks.BLOCKS_NEW,\
             decodes.KEYFLAG,logs_new.LOGS_NEW,logs_new.LOG_NEED_REPLIES,logs_new.LOG_ATTACHMENT,slot_index)
         if save_success:
-            return 'Successfully saved to slot ' + str(slot_index), current_time
+            return 'Game saved', current_time
         else:
             return 'Unable to save', current_time
     return "This function is not yet supported", current_time
@@ -175,7 +175,7 @@ def load(*args):
 
         if slot_index == 'restart':
             return 'Game restarted', current_time
-        return 'Loaded slot ' + str(slot_index), current_time
+        return 'Game loaded', current_time
         
     return "This function is not yet supported", current_time
 
@@ -292,7 +292,7 @@ def reply(*args):
         if not (reply_code in reply_ids):
             return "Invalid reply code", current_time
         # update reply and flag
-        logs_new.LOGS_NEW[reply_id] = "Reply: " + logs_new.LOG_REPLIES[reply_code]
+        logs_new.LOGS_NEW[reply_id] = "REPLY: " + logs_new.LOG_REPLIES[reply_code]
         logs_new.LOG_NEED_REPLIES[log_id] = False
         if reply_code in list(logs_new.LOG_GIVE_FLAGS.keys()):
             flags[logs_new.LOG_GIVE_FLAGS[reply_code]] = True
@@ -395,12 +395,12 @@ def get_log_info(log_id, is_old):
             if log_id in logs.LOGS_RECIPIENT[address]:
                 receiver = address
                 break
-        return "Log " + log_id + " From " + address_to_name(sender) + " To " + address_to_name(receiver) + ": "
+        return "Log " + log_id + "\nFrom " + address_to_name(sender) + "\nTo " + address_to_name(receiver)
     else:
         for address in logs_new.LOGS_NEW_ADDRESS.keys():
             if log_id in logs_new.LOGS_NEW_ADDRESS[address]:
-                return "Log " + log_id + " " + address_to_name(address) + ": "
-        return "Log " + log_id + " Unknown: "
+                return "Log " + log_id + "\n" + address_to_name(address)
+        return "Log " + log_id + "\nUnknown"
 
 def log_reply_status(log_id, current_time):
     '''
@@ -642,11 +642,11 @@ def help(*args):
     current_time = args[1]
     if len(args) == 2:
         tips  = "You are a Virtual Police Officer, UID Nekoi, address cat_fish@vsp.tc"
-        tips += "\nYour job is to regularly delete old logs from earthline database - you can read the schedule by entering 'notes work'"
-        tips += "\nAs a security officer, you are closely watched by the channel admin and regulatory bots - read your logs regularly and reply on time"
-        tips += "\nDemTube is the universal platform for entertainment and learning - you can read the schedule by entering 'notes dt'"
-        tips += "\nEnter 'help commands' for a list of possible commands"
-        tips += "\n???Enter read 000"
+        tips += "\n\nYour job is to regularly delete old logs from earthline database - you can read the schedule by entering 'notes work'"
+        tips += "\n\nAs a security officer, you are closely watched by the channel admin and regulatory bots - read your logs regularly and reply on time"
+        tips += "\n\nDemTube is the universal platform for entertainment and learning - you can read the schedule by entering 'notes dt'"
+        tips += "\n\nEnter 'help commands' for a list of possible commands"
+        tips += "\n\n???Enter read 000"
         tips += "\n???Mission:contactoverspace ???Need:donotforgetlastpiece"
         return tips, current_time
     else:

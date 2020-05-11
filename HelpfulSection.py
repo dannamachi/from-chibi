@@ -9,8 +9,14 @@ class HelpfulSection(Section):
         self.lines = []
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 10
-        self.max_char = 20
+        self.max_row = 17
+        self.max_char = 18
+    
+    def reset(self):
+        self.lines = []
+        self.start_line = 0
+        self.end_line = 0
+        Section.reset(self)
 
     def set_text(self,text):
         self.text = text

@@ -11,7 +11,7 @@ def initialize_save():
     for index in range(TOTAL_SAVE_SLOT):
         DATA_SAVES[index] = {}
         DATA_SAVES[index]['Filled'] = 0
-    with open('saves.dat', 'w') as savefile:
+    with open('BE/saves.dat', 'w') as savefile:
         json.dump(DATA_SAVES, savefile)
         save_success = True
     return save_success
@@ -23,7 +23,7 @@ def read_data_from_file():
     '''
     DATA_SAVES = {'Success' : 0}
     # read from file
-    with open('saves.dat') as json_file:
+    with open('BE/saves.dat') as json_file:
         DATA_SAVES = json.load(json_file)
         return DATA_SAVES
 
@@ -54,7 +54,7 @@ def read_save():
     DATA_SAVES = read_data_from_file()
     if DATA_SAVES['Success'] != 1:
         return 'Unable to load save file'
-    tips = "Save slots:"
+    tips = ""
     for index in range(TOTAL_SAVE_SLOT):
         slot = str(index)
         isFilled = DATA_SAVES[slot]['Filled']
@@ -100,7 +100,7 @@ def save_data_to_file(\
     DATA_SAVES[slot_index]["LOGSATTACHMENT"] = log_attachment
     DATA_SAVES[slot_index]['Filled'] = 1
 
-    with open('saves.dat', 'w') as savefile:
+    with open('BE/saves.dat', 'w') as savefile:
         json.dump(DATA_SAVES, savefile)
         save_success = True
 

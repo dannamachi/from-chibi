@@ -156,20 +156,20 @@ def print_helpful_note(total_time,isRoot):
         day_int = 1
         time_offset = 0
         tips += "0612"
-    tips += " to check new logs\n"
-    tips += "2. Enter help commands to check available commands\n"
+    tips += " to check new logs\n\n"
+    tips += "2. Enter help commands to check available commands\n\n"
     if not isRoot:
-        tips = "<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">\n" + tips
+        tips = "<Day " + str(day_int) + " Time " + str(total_time - time_offset) + ">\n\n" + tips
     else:
-        tips = "<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">\n" + tips
-    tips += "3. Windows are scrollable\n"
+        tips = "<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">\n\n" + tips
+    tips += "3. Windows are scrollable\n\n"
     if "Assembled" in list(flags.keys()) and not ("Another CHIBI" in list(flags.keys())):
-        tips += "???Message: all code files detected, please run special command\n"
+        tips += "???Message: all code files detected, please run special command\n\n"
     return tips
 
 # SAVE INITIALIZING
-# saving.initialize_save()
-# actions.set_restart_point(flags,total_time)
+saving.initialize_save()
+actions.set_restart_point(flags,total_time)
 
 # RESTART LOOP
 not_quit = False

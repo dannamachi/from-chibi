@@ -10,49 +10,24 @@ SECTION_HOVER_ID = {\
 BUTTON_DICT = {\
     "START GAME"  : constants.MAIN_START,\
     "LOAD GAME"   : constants.MAIN_LOAD,\
-    "SLOT 1"      : constants.SAVE_SLOTS[0],\
-    "SLOT 2"      : constants.SAVE_SLOTS[1],\
-    "SLOT 3"      : constants.SAVE_SLOTS[2],\
-    "SLOT 4"      : constants.SAVE_SLOTS[3],\
-    "SLOT 5"      : constants.SAVE_SLOTS[4],\
-    "SLOT 6"      : constants.SAVE_SLOTS[5],\
-    "SLOT 7"      : constants.SAVE_SLOTS[6],\
-    "SLOT 8"      : constants.SAVE_SLOTS[7],\
-    "SLOT 9"      : constants.SAVE_SLOTS[8],\
-    "SLOT 10"      : constants.SAVE_SLOTS[9],\
-    "SLOT 11"      : constants.SAVE_SLOTS[10],\
-    "SLOT 12"      : constants.SAVE_SLOTS[11],\
-    "SLOT 13"      : constants.SAVE_SLOTS[12],\
-    "SLOT 14"      : constants.SAVE_SLOTS[13],\
-    "SLOT 15"      : constants.SAVE_SLOTS[14],\
-    "SLOT 16"      : constants.SAVE_SLOTS[15],\
-    "SLOT 17"      : constants.SAVE_SLOTS[16],\
-    "SLOT 18"      : constants.SAVE_SLOTS[17],\
-    "SLOT 19"      : constants.SAVE_SLOTS[18],\
-    "SLOT 20"      : constants.SAVE_SLOTS[19],\
     "SAVE"        : constants.SAVE_SAVE,\
     "LOAD"        : constants.LOAD_LOAD,\
     "RETURN"      : constants.LOAD_RETURN,\
     "RETURN GAME" : constants.SAVE_RETURN,\
-                            
 }
 
-COLOR_MAIN_BUTTONS = {\
-    constants.MAIN_START  : constants.GREEN,\
-    constants.MAIN_LOAD   : constants.MAGENTA,\
+BUTTON_FONT_COLOR = {\
+    "START GAME"  : [constants.GREEN, constants.BLACK],\
+    "LOAD GAME"   : [constants.GREEN, constants.BLACK],\
+    "SAVE"        : [constants.MAGENTA, constants.WHITE],\
+    "LOAD"        : [constants.MAGENTA, constants.WHITE],\
+    "RETURN"      : [constants.GREEN, constants.BLACK],\
+    "RETURN GAME" : [constants.GREEN, constants.BLACK],\
 }
 
-COLOR_SLOTS = constants.CYAN
-
-COLOR_SAVE_BUTTONS = {\
-    constants.SAVE_SAVE   : constants.BLUE,\
-    constants.SAVE_RETURN : constants.GREEN,\
-}
-
-COLOR_LOAD_BUTTONS = {\
-    constants.LOAD_LOAD   : constants.MAGENTA,\
-    constants.LOAD_RETURN : constants.GREEN,\
-}
+for i in range(20):
+    BUTTON_DICT["SLOT " + str(i + 1)] = constants.SAVE_SLOTS[i]
+    BUTTON_FONT_COLOR["SLOT " + str(i + 1)] = [constants.MAGENTA, constants.BLACK]
 
 def is_hovered(mouse_pos, section_id):
     if section_id in list(SECTION_HOVER_ID.keys()):
