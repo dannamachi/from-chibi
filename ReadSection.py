@@ -5,7 +5,7 @@ import tools
 class ReadSection(Section):
     def __init__(self):
         Section.__init__(self, constants.SECT_READ, constants.RECT_READ)
-        self.color = constants.BLUE
+        self.color = constants.GREEN
         self.lines = []
         self.start_line = 0
         self.end_line = 0

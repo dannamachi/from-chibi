@@ -5,11 +5,11 @@ import tools
 class HelpfulSection(Section):
     def __init__(self):
         Section.__init__(self, constants.SECT_HELP, constants.RECT_HELP)
-        self.color = constants.YELLOW
+        self.color = constants.GREEN
         self.lines = []
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 17
+        self.max_row = 18
         self.max_char = 18
     
     def reset(self):

@@ -11,6 +11,9 @@ YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 
+BLUEGRAY = (0, 14, 25)
+BLUEOKAY = (0, 42, 76)
+
 # dimensions
 SCREEN_SIZE = (800,600)
 RECT_1 = (50, 20, 120, 100)
@@ -33,10 +36,11 @@ OFF_CLI = (20,40)
 OFF_MSG = (20,0)
 OFF_READ = (20,28)
 OFF_NOTE = (20,28)
-OFF_HELP = (10,60)
+OFF_HELP = (10,40)
 OFF_END = (50,100)
 OFF_SLOT = (10,10)
 OFF_BUTTON = (10,10)
+OFF_SAVE = (7,7)
 
 # page id
 PAGE_MAIN = 0

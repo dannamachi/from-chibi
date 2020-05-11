@@ -18,14 +18,14 @@ end_statuses = {\
     7 : "Code integrity: True\nMission success: True\nMessage: You did it!\nSpecial Message: decode ? do+not+forget\n"\
 }
 end_messages = {\
-    0 : "You've managed to save CHIBI! Want to try to fulfill the mission?\nMaybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert\nFiles of the same author tend to have the same decoding key\nAnd if you think you have every file possible... are you sure?\nDon't be naive and believe everything you are told, and try to talk to other people\n\n",\
-    1 : "You've managed to save CHIBI and tell the truth to Luv!\nYou're almost there - did you decode every files possible?\nRun every command possible?\n\n",\
-    2 : "You are either missing files... or forgetting to run a specific command that's needed for your survival\n\n",\
-    3 : "You've exposed CHIBI to the authorities... don't be so honest in replying next time\n\n",\
-    4 : "You've acted too suspicious and drew suspicion from authorities\nTry to reply more often/differently next time\n\n",\
-    5 : "You've drawn suspicion to yourself either by replying wrongly or doing something you shouldn't be doing\n\n",\
-    6 : "You've exposed CHIBI and also drawn suspicion to yourself. The authorities had to take care of you\nDon't reply so honestly next time\n\n",\
-    7 : "You've managed to fulfill CHIBI's main mission while also surviving!\nDo you understand what CHIBI is now?\nIf you haven't... have you tried to decode all the files?\n\n"\
+    0 : "You've managed to save CHIBI! Want to try to fulfill the mission?\nMaybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert\nFiles of the same author tend to have the same decoding key\nAnd if you think you have every file possible... are you sure?\nDon't be naive and believe everything you are told, and try to talk to other people\n",\
+    1 : "You've managed to save CHIBI and tell the truth to Luv!\nYou're almost there - did you decode every files possible?\nRun every command possible?\n",\
+    2 : "You are either missing files... or forgetting to run a specific command that's needed for your survival\n",\
+    3 : "You've exposed CHIBI to the authorities... don't be so honest in replying next time\n",\
+    4 : "You've acted too suspicious and drew suspicion from authorities\nTry to reply more often/differently next time\n",\
+    5 : "You've drawn suspicion to yourself either by replying wrongly or doing something you shouldn't be doing\n",\
+    6 : "You've exposed CHIBI and also drawn suspicion to yourself. The authorities had to take care of you\nDon't reply so honestly next time\n",\
+    7 : "You've managed to fulfill CHIBI's main mission while also surviving!\nDo you understand what CHIBI is now?\nIf you haven't... have you tried to decode all the files?\n"\
 }
 end_result = actions.end_result
 
@@ -136,7 +136,7 @@ def print_intro():
     tips += "Connection status: Good\n"
     tips += "Address: cat_fish@vsp.tc\n"
     tips += "???Save CHIBI! Time is running out!\n"
-    tips += "=====================================\n\n"
+    tips += "====================================="
     return tips
 
 def print_helpful_note(total_time,isRoot):
@@ -163,6 +163,7 @@ def print_helpful_note(total_time,isRoot):
     else:
         tips = "<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">\n\n" + tips
     tips += "3. Windows are scrollable\n\n"
+    tips += "4. Press up/down to navigate past commands\n\n"
     if "Assembled" in list(flags.keys()) and not ("Another CHIBI" in list(flags.keys())):
         tips += "???Message: all code files detected, please run special command\n\n"
     return tips

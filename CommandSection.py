@@ -31,7 +31,10 @@ class CommandSection(Section):
             self.text = self.past_commands[self.past_index]
 
     def process_command(self):
-        self.past_commands.append(self.text)
+        if len(self.past_commands) == 0:
+            self.past_commands.append(self.text)
+        elif self.past_commands[-1] != self.text:
+            self.past_commands.append(self.text)
         self.past_index = -1
         command_list = self.text.strip().split(' ')
         if len(command_list) > 0:

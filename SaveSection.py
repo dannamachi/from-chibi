@@ -8,6 +8,8 @@ class SaveSection(Section):
         self.button = -1
         self.selected = ""
         self.slot_info = []
+        self.text = "SAVING"
+        self.color = constants.MAGENTA
     
     def get_selected(self):
         return self.selected
@@ -51,3 +53,10 @@ class SaveSection(Section):
             return result, text
         else:
             return False, "Unable to save"
+
+    def render_font(self,font):
+        rendered = {}
+        font_img = font.render(self.text,True,self.color)
+        font_loc = constants.OFF_SAVE
+        rendered[font_img] = font_loc
+        return rendered

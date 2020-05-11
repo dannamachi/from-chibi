@@ -11,9 +11,24 @@ def change_hover_display(button_name):
             BUTTON_DISPLAY_KEY[button] = 0
 
 DISPLAY_RECT = {\
-    constants.SECT_READ  : [(constants.GREEN, constants.RECT_READ, 1), (constants.GREEN, (constants.RECT_READ[0],constants.RECT_READ[1],constants.RECT_READ[2],constants.OFF_READ[1]), 1)],\
-    constants.SECT_NOTE  : [(constants.GREEN, constants.RECT_NOTE, 1), (constants.GREEN, (constants.RECT_NOTE[0],constants.RECT_NOTE[1],constants.RECT_NOTE[2],constants.OFF_NOTE[1]), 1)],\
-    constants.SECT_CLI   : [(constants.GREEN, (0,constants.RECT_CLI[1] + constants.OFF_CLI[1],constants.RECT_CLI[2],constants.RECT_CLI[3] - constants.OFF_CLI[1]), 1)],\
+    constants.SECT_READ  : [\
+        (constants.BLUEOKAY, constants.RECT_READ),\
+        (constants.GREEN, constants.RECT_READ, 1),\
+        (constants.GREEN, (constants.RECT_READ[0], constants.RECT_READ[1], constants.RECT_READ[2], constants.OFF_READ[1]))],\
+
+    constants.SECT_NOTE  : [\
+        (constants.BLUEOKAY, constants.RECT_NOTE),\
+        (constants.GREEN, constants.RECT_NOTE, 1),\
+        (constants.GREEN, (constants.RECT_NOTE[0], constants.RECT_NOTE[1], constants.RECT_NOTE[2], constants.OFF_NOTE[1]))],\
+
+    constants.SECT_CLI   : [\
+        (constants.BLUEOKAY, (constants.RECT_CLI[0],constants.RECT_CLI[1] + constants.OFF_CLI[1],constants.RECT_CLI[2],constants.RECT_CLI[3] - constants.OFF_CLI[1])),\
+        (constants.GREEN, (constants.RECT_CLI[0],constants.RECT_CLI[1] + constants.OFF_CLI[1],constants.RECT_CLI[2],constants.RECT_CLI[3] - constants.OFF_CLI[1]), 1)],\
+
+    constants.SECT_HELP  : [\
+        (constants.BLUEOKAY, constants.RECT_HELP),\
+        (constants.GREEN, (constants.RECT_HELP[0], constants.RECT_HELP[1], constants.RECT_HELP[2], constants.OFF_NOTE[1])),\
+        (constants.GREEN, constants.RECT_HELP, 1)],\
 }
 
 BUTTON_RECT = {\

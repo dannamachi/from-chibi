@@ -22,9 +22,6 @@ FLAGS = old.flags
 
 
 ### TO DO
-# end/start sequence
-# end restart
-# button to return to main menu
 # button to reset all saves
 
 # section mapping

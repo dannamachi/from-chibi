@@ -5,7 +5,7 @@ import tools
 class NoteSection(Section):
     def __init__(self):
         Section.__init__(self, constants.SECT_NOTE, constants.RECT_NOTE)
-        self.color = constants.CYAN
+        self.color = constants.GREEN
         self.lines = []
         self.start_line = 0
         self.end_line = 0
@@ -52,7 +52,7 @@ class NoteSection(Section):
         index = 0
         # add reminder
         if not self.updated:
-            remind_img = font.render("Refresh for up-to-date info",True,constants.RED)
+            remind_img = font.render("Info may not be up-to-date",True,constants.RED)
             rendered[remind_img] = (5,1)
         for i in range(self.start_line,self.end_line):
             line = self.lines[i]

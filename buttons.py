@@ -5,6 +5,7 @@ from pygame.rect import *
 SECTION_HOVER_ID = {\
     constants.SECT_READ   : constants.RECT_READ,\
     constants.SECT_NOTE   : constants.RECT_NOTE,\
+    constants.SECT_HELP   : constants.RECT_HELP,\
 }
 
 BUTTON_DICT = {\

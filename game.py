@@ -130,7 +130,6 @@ while not api.IS_QUIT:
                         load_result, message_text, section_id = *LOADS.run_command(), constants.SECT_MSG
                         CURRENT_PAGE = SHOWING_END
                         ENDS.set_text(api.get_intro())
-                        print(message_text)
                         MESSAGE.set_text(message_text)
                     for button in display.SLOT_LIST:
                         if buttons.is_clicked(event.pos,button):
@@ -177,6 +176,11 @@ while not api.IS_QUIT:
                     NOTES.shift_up_one_row()
                 elif event.button == 5 and buttons.is_hovered(event.pos,constants.SECT_NOTE):
                     NOTES.shift_down_one_row()
+                # scrolling for helps
+                elif event.button == 4 and buttons.is_hovered(event.pos,constants.SECT_HELP):
+                    HELPS.shift_up_one_row()
+                elif event.button == 5 and buttons.is_hovered(event.pos,constants.SECT_HELP):
+                    HELPS.shift_down_one_row()
             if event.type == KEYDOWN:
                 if event.key == K_RETURN:
                     COMMANDLINE.set_text(TEXTINPUT)
@@ -213,6 +217,8 @@ while not api.IS_QUIT:
                     section.set_stale()
                 if isinstance(section,NoteSection) and api.DECRYPT_ENQUEUD:
                     section.set_stale()
+            if api.TIME_SPENT != 0:
+                READS.set_stale()
             section_id = -1
             message_text = ""
         
@@ -248,16 +254,18 @@ while not api.IS_QUIT:
             if event.type == QUIT:
                 api.IS_QUIT = True
             if event.type == KEYDOWN:
-                if event.key == K_RETURN and not api.END_GAME:
+                if event.key == K_RETURN and not api.END_GAME and ENDS.finished():
                     COMMANDLINE.set_text("help")
                     COMMANDLINE.process_command()
                     message_text, section_id = COMMANDLINE.run_command()
                     HELPS = api.update_helpful_note(HELPS)
                     TEXTINPUT = ""
                     CURRENT_PAGE = SHOWING_GAME
-                elif event.key == K_RETURN and api.END_GAME:
+                elif event.key == K_RETURN and api.END_GAME and ENDS.finished():
                     # switch to main menu
                     api.IS_MENU = True
+                elif event.key == K_RETURN and not ENDS.finished():
+                    ENDS.advance()
         # update for end page
 
     # get rendered imgs from sections
