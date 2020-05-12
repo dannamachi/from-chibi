@@ -1,15 +1,17 @@
 ## From Chibi
 #### *Do you have what it takes to save Chibi?*
 
-#### text-based, console-inspired adventure game in Python
+#### text-based, console-inspired adventure game using PyGame
 
 ### how to run
 * install python 3
+* install pygame
 * cmd/bash
 * cd to extracted folder
 * python main.py
 
 ### version
+* v3.0.0: move to gui using pygame
 * v2.0.5: adjust content for plot consistency
 * v2.0.0: add restart option, add decrypt info
 * v1.9.0: adjust content, change decrypt system
