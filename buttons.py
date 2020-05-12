@@ -21,6 +21,12 @@ BUTTON_DICT = {\
     "CREDITS"     : constants.MAIN_CREDITS,\
     "QUIT GAME"   : constants.MAIN_QUIT,\
     "MUSIC"       : constants.RECT_MUSIC,\
+    "UP READ"     : constants.UP_READ,\
+    "DOWN READ"   : constants.DOWN_READ,\
+    "UP NOTE"     : constants.UP_NOTE,\
+    "DOWN NOTE"   : constants.DOWN_NOTE,\
+    "UP HELP"     : constants.UP_HELP,\
+    "DOWN HELP"   : constants.DOWN_HELP,\
 }
 
 BUTTON_FONT_COLOR = {\
@@ -33,6 +39,12 @@ BUTTON_FONT_COLOR = {\
     "RESTART"     : [constants.MAGENTA, constants.BLACK],\
     "CREDITS"     : [constants.GREEN, constants.BLACK],\
     "QUIT GAME"   : [constants.GREEN, constants.BLACK],\
+    "UP READ"     : [],\
+    "DOWN READ"   : [],\
+    "UP NOTE"     : [],\
+    "DOWN NOTE"   : [],\
+    "UP HELP"     : [],\
+    "DOWN HELP"   : [],\
 }
 
 for i in range(20):

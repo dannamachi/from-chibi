@@ -24,21 +24,21 @@ MAX_READ = 36
 
 # max rows
 MAX_R_CRED = 25
-MAX_R_HELP = 24
-MAX_R_MSG = 5
-MAX_R_NOTE = 25
-MAX_R_READ = 25
+MAX_R_HELP = 19
+MAX_R_MSG = 9
+MAX_R_NOTE = 20
+MAX_R_READ = 20
 
 # dimensions
 SCREEN_SIZE = (1280,720)
-RECT_MUSIC = (0,670,50,50)
+RECT_MUSIC = (0,SCREEN_SIZE[1] - 50,50,50)
 
 RECT_SCREEN = (0,0,int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1]))
 RECT_CLI = (0,int(SCREEN_SIZE[1] * 7/8), int(SCREEN_SIZE[0]), int(SCREEN_SIZE[1] * 1/8))
-RECT_MSG = (0,int(SCREEN_SIZE[1] * 6/8), int(SCREEN_SIZE[0]), int(SCREEN_SIZE[1] * 1/8))
-RECT_READ = (int(SCREEN_SIZE[0] * 5/8),0,int(SCREEN_SIZE[0] * 3/8), int(SCREEN_SIZE[1] * 6/8))
-RECT_NOTE = (0,0,int(SCREEN_SIZE[0] * 3/8), int(SCREEN_SIZE[1] * 6/8))
-RECT_HELP = (int(SCREEN_SIZE[0] * 3/8),0,int(SCREEN_SIZE[0] * 2/8),int(SCREEN_SIZE[1] * 6/8))
+RECT_MSG = (0,int(SCREEN_SIZE[1] * 5/8), int(SCREEN_SIZE[0]), int(SCREEN_SIZE[1] * 1/8))
+RECT_READ = (int(SCREEN_SIZE[0] * 5/8),0,int(SCREEN_SIZE[0] * 3/8), int(SCREEN_SIZE[1] * 5/8))
+RECT_NOTE = (0,0,int(SCREEN_SIZE[0] * 3/8), int(SCREEN_SIZE[1] * 5/8))
+RECT_HELP = (int(SCREEN_SIZE[0] * 3/8),0,int(SCREEN_SIZE[0] * 2/8),int(SCREEN_SIZE[1] * 5/8))
 RECT_END = (0,0,int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1] * 6/8))
 RECT_MAIN = (0,0,int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1] * 5/8))
 RECT_SLOT = (0,int(SCREEN_SIZE[1] * 1/12), int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1] * 5/6))
@@ -72,15 +72,21 @@ MAIN_QUIT = (SCREEN_SIZE[0] - 230, int(SCREEN_SIZE[1] * 1/6) + 60 + 3 * int(SCRE
 
 SAVE_SLOTS = {}
 for index in range(10):
-    SAVE_SLOTS[index] = (0, int(SCREEN_SIZE[1] * 1/12 + index * SCREEN_SIZE[1] * 5/6 / 10 - 10), int(SCREEN_SIZE[0] * 1/2), int(SCREEN_SIZE[1] * 5/6 / 10))
+    SAVE_SLOTS[index] = (0, int(SCREEN_SIZE[1] * 1/12 + index * SCREEN_SIZE[1] * 5/6 / 10 - 15), int(SCREEN_SIZE[0] * 1/2), int(SCREEN_SIZE[1] * 5/6 / 10))
 for index in range(10,20):
-    SAVE_SLOTS[index] = (int(SCREEN_SIZE[0] * 1/2), int(SCREEN_SIZE[1] * 1/12 + (index - 10) * SCREEN_SIZE[1] * 5/6 / 10 - 10), int(SCREEN_SIZE[0] * 1/2), int(SCREEN_SIZE[1] * 5/6 / 10))
+    SAVE_SLOTS[index] = (int(SCREEN_SIZE[0] * 1/2), int(SCREEN_SIZE[1] * 1/12 + (index - 10) * SCREEN_SIZE[1] * 5/6 / 10 - 15), int(SCREEN_SIZE[0] * 1/2), int(SCREEN_SIZE[1] * 5/6 / 10))
 
-SAVE_SAVE   = (int(SCREEN_SIZE[0] * 4/5), int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
-SAVE_RETURN = (0, int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
-LOAD_LOAD   = (int(SCREEN_SIZE[0] * 4/5), int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
-LOAD_RETURN = (0, int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
-RESTART = (int(SCREEN_SIZE[0] * 2/5), int(SCREEN_SIZE[1] * 11/12), int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
+SAVE_SAVE   = (int(SCREEN_SIZE[0] * 4/5) - 5, int(SCREEN_SIZE[1] * 11/12) - 5, int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
+SAVE_RETURN = (5, int(SCREEN_SIZE[1] * 11/12) - 5, int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
+LOAD_LOAD   = (int(SCREEN_SIZE[0] * 4/5) - 5, int(SCREEN_SIZE[1] * 11/12) - 5, int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
+LOAD_RETURN = (5, int(SCREEN_SIZE[1] * 11/12) - 5, int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
+RESTART = (int(SCREEN_SIZE[0] * 2/5), int(SCREEN_SIZE[1] * 11/12) - 5, int(SCREEN_SIZE[0] * 1/5), int(SCREEN_SIZE[1] * 1/12))
+UP_READ = (RECT_READ[0] + int(RECT_READ[2] * 9/10), RECT_READ[1] + OFF_READ[1], int(RECT_READ[2] * 1/10), int((RECT_READ[3] - OFF_READ[1]) * 1/2))
+DOWN_READ = (RECT_READ[0] + int(RECT_READ[2] * 9/10), UP_READ[1] + UP_READ[3], int(RECT_READ[2] * 1/10), int((RECT_READ[3] - OFF_READ[1]) * 1/2))
+UP_NOTE = (RECT_NOTE[0] + int(RECT_NOTE[2] * 9/10), RECT_NOTE[1] + OFF_NOTE[1], int(RECT_NOTE[2] * 1/10), int((RECT_NOTE[3] - OFF_NOTE[1]) * 1/2))
+DOWN_NOTE = (RECT_NOTE[0] + int(RECT_NOTE[2] * 9/10), UP_NOTE[1] + UP_NOTE[3], int(RECT_NOTE[2] * 1/10), int((RECT_NOTE[3] - OFF_NOTE[1]) * 1/2))
+UP_HELP = (RECT_READ[0] - int(RECT_NOTE[2] * 1/10), RECT_HELP[1] + OFF_NOTE[1], int(RECT_NOTE[2] * 1/10), int((RECT_HELP[3] - OFF_NOTE[1]) * 1/2))
+DOWN_HELP = (RECT_READ[0] - int(RECT_NOTE[2] * 1/10), UP_HELP[1] + UP_HELP[3], int(RECT_NOTE[2] * 1/10), int((RECT_HELP[3] - OFF_NOTE[1]) * 1/2))
 
 
 # section id

@@ -13,10 +13,12 @@ class Section(object):
         return self.num
 
     def __eq__(self, aSect):
+        if aSect == None:
+            return False
         return self.num == aSect.num 
 
     def __ne__(self, aSect):
-        return self.num != aSect.num
+        return not (self == aSect)
 
     def has_id(self,num):
         return self.num == num

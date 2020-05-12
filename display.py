@@ -58,6 +58,12 @@ BUTTON_RECT = {\
     "RESTART"             : [(constants.MAGENTA, constants.RESTART, 8), (constants.MAGENTA, constants.RESTART)],\
     "CREDITS"             : [(constants.GREEN, constants.MAIN_CREDITS, 8), (constants.GREEN, constants.MAIN_CREDITS)],\
     "QUIT GAME"           : [(constants.GREEN, constants.MAIN_QUIT, 8), (constants.GREEN, constants.MAIN_QUIT)],\
+    "UP READ"             : [(constants.GREEN, constants.UP_READ, 1), (constants.GREEN, constants.UP_READ)],\
+    "DOWN READ"           : [(constants.GREEN, constants.DOWN_READ, 1), (constants.GREEN, constants.DOWN_READ)],\
+    "UP NOTE"             : [(constants.GREEN, constants.UP_NOTE, 1), (constants.GREEN, constants.UP_NOTE)],\
+    "DOWN NOTE"           : [(constants.GREEN, constants.DOWN_NOTE, 1), (constants.GREEN, constants.DOWN_NOTE)],\
+    "UP HELP"             : [(constants.GREEN, constants.UP_HELP, 1), (constants.GREEN, constants.UP_HELP)],\
+    "DOWN HELP"           : [(constants.GREEN, constants.DOWN_HELP, 1), (constants.GREEN, constants.DOWN_HELP)],\
 }
 
 BUTTON_DISPLAY_KEY = {\
@@ -70,6 +76,13 @@ BUTTON_DISPLAY_KEY = {\
     "RESTART"             : 0,\
     "CREDITS"             : 0,\
     "QUIT GAME"           : 0,\
+    "UP READ"             : 0,\
+    "DOWN READ"           : 0,\
+    "UP NOTE"             : 0,\
+    "DOWN NOTE"           : 0,\
+    "UP HELP"             : 0,\
+    "DOWN HELP"           : 0,\
+    
 }
 
 SLOT_LIST = []

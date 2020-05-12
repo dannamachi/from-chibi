@@ -47,7 +47,13 @@ PLAYING = True
 TEXTINPUT = ""
 FONT_IMAGES = {}  # map rendered img to location (x,y)
 deleting = False
-delete_speed = 20
+delete_speed = 10
+
+# manual scrolling setup
+scrolling = False
+scrolling_speed = 10
+scrolling_section = None
+scrolling_up = None
 
 # sections setup
 message_text = ""
@@ -63,11 +69,11 @@ LOADS = LoadSection()
 SAVES = SaveSection()
 CREDITS = CreditSection()
 
-SHOWING_GAME = Page(constants.PAGE_GAME, [COMMANDLINE, MESSAGE, NOTES, READS, HELPS])
+SHOWING_GAME = Page(constants.PAGE_GAME, [COMMANDLINE, MESSAGE, NOTES, READS, HELPS], ["UP READ", "DOWN READ", "UP NOTE", "DOWN NOTE", "UP HELP", "DOWN HELP"])
 SHOWING_END = Page(constants.PAGE_END, [ENDS])
 SHOWING_MAIN = Page(constants.PAGE_MAIN, [MAIN], ["START GAME", "LOAD GAME","CREDITS","QUIT GAME"])
 SHOWING_LOAD = Page(constants.PAGE_LOAD, [LOADS], ["RESTART","RETURN","LOAD"])
-SHOWING_SAVE = Page(constants.PAGE_SAVE, [LOADS], ["RESTART","RETURN GAME","SAVE"])
+SHOWING_SAVE = Page(constants.PAGE_SAVE, [SAVES], ["RESTART","RETURN GAME","SAVE"])
 SHOWING_CREDITS = Page(constants.PAGE_CRED, [CREDITS], ["RETURN"])
 
 # starting
@@ -248,11 +254,22 @@ while not api.IS_QUIT:
         if deleting: 
             delete_speed -= 1
             if delete_speed == 0:
-                delete_speed = 20
+                delete_speed = 10
                 if len(TEXTINPUT) > 0:
                     TEXTINPUT = TEXTINPUT[:-1]
         else:
-            delete_speed = 20
+            delete_speed = 10
+        # scrolling
+        if scrolling_section != None and scrolling_up != None and scrolling:
+            scrolling_speed -= 1
+            if scrolling_speed == 0:
+                scrolling_speed = 10
+                if not scrolling_up:
+                    scrolling_section.shift_down_one_row()
+                else:
+                    scrolling_section.shift_up_one_row()
+        else:
+            scrolling_speed = 10
 
         # event detection for game page
         for event in pygame.event.get():
@@ -321,6 +338,52 @@ while not api.IS_QUIT:
             if event.type == KEYUP:
                 if event.key == K_BACKSPACE and deleting:
                     deleting = False
+            if event.type == MOUSEBUTTONUP:
+                if event.button == 1:
+                    scrolling = False
+                    scrolling_up = None
+                    scrolling_section = None       
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    # manual scroll note
+                    if buttons.is_clicked(event.pos,"UP NOTE"):
+                        NOTES.shift_up_one_row()
+                        scrolling = True
+                        scrolling_up = True
+                        scrolling_speed = 20
+                        scrolling_section = NOTES
+                    elif buttons.is_clicked(event.pos,"DOWN NOTE"):
+                        NOTES.shift_down_one_row()
+                        scrolling = True
+                        scrolling_up = False
+                        scrolling_speed = 20
+                        scrolling_section = NOTES
+                    # manual scroll help
+                    elif buttons.is_clicked(event.pos,"UP HELP"):
+                        HELPS.shift_up_one_row()
+                        scrolling = True
+                        scrolling_up = True
+                        scrolling_speed = 20
+                        scrolling_section = HELPS
+                    elif buttons.is_clicked(event.pos,"DOWN HELP"):
+                        HELPS.shift_down_one_row()
+                        scrolling = True
+                        scrolling_up = False
+                        scrolling_speed = 20
+                        scrolling_section = HELPS
+                    # manual scroll read
+                    elif buttons.is_clicked(event.pos,"UP READ"):
+                        READS.shift_up_one_row()
+                        scrolling = True
+                        scrolling_up = True
+                        scrolling_speed = 20
+                        scrolling_section = READS
+                    elif buttons.is_clicked(event.pos,"DOWN READ"):
+                        READS.shift_down_one_row()
+                        scrolling = True
+                        scrolling_up = False
+                        scrolling_speed = 20
+                        scrolling_section = READS
 
         COMMANDLINE.set_text(TEXTINPUT)
         TEXTINPUT = COMMANDLINE.get_text()
@@ -434,11 +497,12 @@ while not api.IS_QUIT:
     # buttons
     for button in CURRENT_PAGE.get_buttons():
         pygame.draw.rect(SCREEN,*display.BUTTON_RECT[button][display.BUTTON_DISPLAY_KEY[button]])
-        button_img = FONT.render(button,True,buttons.BUTTON_FONT_COLOR[button][display.BUTTON_DISPLAY_KEY[button]])
-        button_loc = [*buttons.BUTTON_DICT[button]]
-        button_loc[0] += constants.OFF_BUTTON[0]
-        button_loc[1] += constants.OFF_BUTTON[1]
-        FONT_IMAGES[button_img] = button_loc
+        if len(buttons.BUTTON_FONT_COLOR[button]) > 0:
+            button_img = FONT.render(button,True,buttons.BUTTON_FONT_COLOR[button][display.BUTTON_DISPLAY_KEY[button]])
+            button_loc = [*buttons.BUTTON_DICT[button]]
+            button_loc[0] += constants.OFF_BUTTON[0]
+            button_loc[1] += constants.OFF_BUTTON[1]
+            FONT_IMAGES[button_img] = button_loc
 
     # img/text
     for img,loc in FONT_IMAGES.items():
