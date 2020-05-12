@@ -9,7 +9,7 @@ class HelpfulSection(Section):
         self.lines = []
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 18
+        self.max_row = 19
         self.max_char = 16
         self.is_reset = True
     
@@ -28,18 +28,20 @@ class HelpfulSection(Section):
             self.is_reset = False
             self.start_line = 0
             self.end_line = self.start_line + self.max_row
-        if self.end_line > len(self.lines):
-            self.end_line = len(self.lines)
 
     def shift_up_one_row(self):
         if self.start_line > 0:
             self.start_line -= 1
-            self.end_line -= 1
+            self.end_line = self.start_line + self.max_row
+            if self.end_line > len(self.lines):
+                self.end_line = len(self.lines)
     
     def shift_down_one_row(self):
         if self.end_line < len(self.lines):
-            self.end_line += 1
             self.start_line += 1
+            self.end_line = self.start_line + self.max_row
+            if self.end_line > len(self.lines):
+                self.end_line = len(self.lines)
         
     def render_font(self, font):
         '''

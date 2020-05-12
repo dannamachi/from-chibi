@@ -39,5 +39,6 @@ def divide_into_lines(text_string, max_char):
             # check still have word left
             if len(words) == 0:
                 break
+            # TO DO: break up if there is a string > max_char
     return lines
 

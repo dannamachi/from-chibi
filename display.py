@@ -27,9 +27,7 @@ DISPLAY_RECT = {\
 
     constants.SECT_HELP  : [\
         (constants.BLUEOKAY, constants.RECT_HELP),\
-        (constants.GREEN, (constants.RECT_HELP[0], constants.RECT_HELP[1], constants.RECT_HELP[2], constants.OFF_NOTE[1]))
-        
-        ,\
+        (constants.GREEN, (constants.RECT_HELP[0], constants.RECT_HELP[1], constants.RECT_HELP[2], constants.OFF_NOTE[1])),\
         (constants.GREEN, constants.RECT_HELP, 1)],\
 }
 
@@ -41,6 +39,8 @@ BUTTON_RECT = {\
     "RETURN"              : [(constants.GREEN, constants.LOAD_RETURN, 8), (constants.GREEN, constants.LOAD_RETURN)],\
     "RETURN GAME"         : [(constants.GREEN, constants.SAVE_RETURN, 8), (constants.GREEN, constants.SAVE_RETURN)],\
     "RESTART"             : [(constants.MAGENTA, constants.RESTART, 8), (constants.MAGENTA, constants.RESTART)],\
+    "CREDITS"             : [(constants.GREEN, constants.MAIN_CREDITS, 8), (constants.GREEN, constants.MAIN_CREDITS)],\
+    "QUIT GAME"           : [(constants.GREEN, constants.MAIN_QUIT, 8), (constants.GREEN, constants.MAIN_QUIT)],\
 }
 
 BUTTON_DISPLAY_KEY = {\
@@ -51,6 +51,8 @@ BUTTON_DISPLAY_KEY = {\
     "RETURN"              : 0,\
     "RETURN GAME"         : 0,\
     "RESTART"             : 0,\
+    "CREDITS"             : 0,\
+    "QUIT GAME"           : 0,\
 }
 
 SLOT_LIST = []

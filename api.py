@@ -22,9 +22,6 @@ FLAGS = old.flags
 
 
 ### TO DO
-# title image
-# credits and quit button
-# credits page
 # play music
 # button to toggle music
 # button to reset all saves
@@ -57,6 +54,24 @@ def get_save_slot_info():
         return False, info
     return True, info
 
+def what_day_is_it():
+    if TOTAL_TIME > 24:
+        return 1
+    elif TOTAL_TIME > 12:
+        return 2
+    else:
+        return 3
+    return 0
+
+def what_ending_is_it():
+    if END_RESULT == 0:
+        return 'base'
+    if END_RESULT == 1:
+        return 'good'
+    if END_RESULT == 7:
+        return 'final'
+    return "bad"
+
 def run_command(comm_id, *args):
     '''
     Reserve for save/load
@@ -80,6 +95,16 @@ def run_command(comm_id, *args):
         if text == 'Game loaded' or text == 'Game restarted':
             return True, text
     return False, text
+
+def check_end():
+    end_result = 0
+    if "Luca's secret" in list(FLAGS.keys()):
+        end_result = 1
+    if "MISSION END" in list(FLAGS.keys()):
+        end_result = 7
+    end_mes = old.end_messages[end_result]
+    end_stat = old.end_statuses[end_result]
+    return end_result, end_stat, end_mes
 
 def run_game_command(comm_id, *args):
     '''
@@ -135,11 +160,12 @@ def run_game_command(comm_id, *args):
         old.day_check["Day 2"] = True
     if TOTAL_TIME <= 0 and not old.day_check["Day 3"]:
         END_GAME = True
-        return "Time's up", constants.SECT_END
+        END_RESULT, END_STATUS, END_MESSAGE = check_end()
+        return "Time's up", constants.SECT_MSG
     # update special command
     if "p5-9" in list(FLAGS.keys()) and decodes.KEYFLAG["last_piece.bpt"] and not ("Assembled" in list(FLAGS.keys())):
         FLAGS["Assembled"] = True
-    # check end game
+    # check final end
     if "MISSION END" in list(FLAGS.keys()):
         END_RESULT = 7
         END_GAME = True
@@ -174,7 +200,7 @@ def update_helpful_note(helpful_section):
         actions.decrypt_track.pop(item, None)
     tips = old.print_helpful_note(TOTAL_TIME,isRoot)
     if len(remove_list) > 0:
-        tips += "! Some block(s) have finished decrypting"
+        tips += "\n\n! Some block(s) have finished decrypting"
     helpful_section.set_text(tips)
     return helpful_section
 

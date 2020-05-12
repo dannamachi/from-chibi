@@ -18,7 +18,7 @@ end_statuses = {\
     7 : "Code integrity: True\nMission success: True\nMessage: You did it!\nSpecial Message: decode ? do+not+forget\n"\
 }
 end_messages = {\
-    0 : "You've managed to save CHIBI! Want to try to fulfill the mission?\nMaybe you can try decoding files you have - the password can be found by remote accessing or talking to an expert\nFiles of the same author tend to have the same decoding key\nAnd if you think you have every file possible... are you sure?\nDon't be naive and believe everything you are told, and try to talk to other people\n",\
+    0 : "You've managed to save CHIBI! Want to try to fulfill the mission?\nMaybe you can try decoding files you have - the password can be found by remote accessing or talking to others\nFiles of the same author tend to have the same decoding key\nAnd if you think you have every file possible... are you sure?\n",\
     1 : "You've managed to save CHIBI and tell the truth to Luv!\nYou're almost there - did you decode every files possible?\nRun every command possible?\n",\
     2 : "You are either missing files... or forgetting to run a specific command that's needed for your survival\n",\
     3 : "You've exposed CHIBI to the authorities... don't be so honest in replying next time\n",\
@@ -128,7 +128,7 @@ def print_intro():
     tips += "Security warning (Level 2): Change detected in time display\n"
     tips += "Security warning (Level 2): Change detected in message display\n"
     tips += "Security warning (Level 2): Change detected in help display\n"
-    tips += "Due to security warning(s), root privilege will be disabled. Some functionalities may be unavailable\n"
+    tips += "Due to security warning(s), root privilege will be disabled\nSome functionalities may be unavailable\n"
     tips += "Establishing connection...\n"
     tips += "=====================================\n"
     tips += "Year: 7204\n"
@@ -162,9 +162,9 @@ def print_helpful_note(total_time,isRoot):
     else:
         tips = "<Day " + str(4 - day_int) + " Time " + str(12 - (total_time - time_offset)) + ">\n\n" + tips
     tips += "3. Windows are scrollable\n\n"
-    tips += "4. Press up/down to navigate past commands\n\n"
+    tips += "4. Press up/down to navigate past commands"
     if "Assembled" in list(flags.keys()) and not ("Another CHIBI" in list(flags.keys())):
-        tips += "???Message: all code files detected, please run special command\n\n"
+        tips += "\n\n???Message: all code files detected, please run special command"
     return tips
 
 # SAVE INITIALIZING

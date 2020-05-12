@@ -6,6 +6,8 @@ SECTION_HOVER_ID = {\
     constants.SECT_READ   : constants.RECT_READ,\
     constants.SECT_NOTE   : constants.RECT_NOTE,\
     constants.SECT_HELP   : constants.RECT_HELP,\
+    constants.SECT_CRED   : constants.RECT_CRED,\
+    constants.SECT_MSG    : constants.RECT_MSG,\
 }
 
 BUTTON_DICT = {\
@@ -16,6 +18,9 @@ BUTTON_DICT = {\
     "RETURN"      : constants.LOAD_RETURN,\
     "RETURN GAME" : constants.SAVE_RETURN,\
     "RESTART"     : constants.RESTART,\
+    "CREDITS"     : constants.MAIN_CREDITS,\
+    "QUIT GAME"   : constants.MAIN_QUIT,\
+    "MUSIC"       : constants.RECT_MUSIC,\
 }
 
 BUTTON_FONT_COLOR = {\
@@ -26,6 +31,8 @@ BUTTON_FONT_COLOR = {\
     "RETURN"      : [constants.GREEN, constants.BLACK],\
     "RETURN GAME" : [constants.GREEN, constants.BLACK],\
     "RESTART"     : [constants.MAGENTA, constants.BLACK],\
+    "CREDITS"     : [constants.GREEN, constants.BLACK],\
+    "QUIT GAME"   : [constants.GREEN, constants.BLACK],\
 }
 
 for i in range(20):

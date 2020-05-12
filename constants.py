@@ -16,10 +16,7 @@ BLUEOKAY = (0, 42, 76)
 
 # dimensions
 SCREEN_SIZE = (800,600)
-RECT_1 = (50, 20, 120, 100)
-RECT_2 = (100, 60, 120, 100)
-RECT_3 = (350, 20, 120, 100)
-RECT_4 = (400, 60, 120, 100)
+RECT_MUSIC = (0,550,50,50)
 
 RECT_SCREEN = (0,0,int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1]))
 RECT_CLI = (0,int(SCREEN_SIZE[1] * 7/8), int(SCREEN_SIZE[0]), int(SCREEN_SIZE[1] * 1/8))
@@ -30,10 +27,12 @@ RECT_HELP = (int(SCREEN_SIZE[0] * 3/8),0,int(SCREEN_SIZE[0] * 2/8),int(SCREEN_SI
 RECT_END = (0,0,int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1] * 6/8))
 RECT_MAIN = (0,0,int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1] * 5/8))
 RECT_SLOT = (0,int(SCREEN_SIZE[1] * 1/12), int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1] * 5/6))
+RECT_CRED = RECT_END
+
 
 # text offset
 OFF_CLI = (20,40)
-OFF_MSG = (20,0)
+OFF_MSG = (20,5)
 OFF_READ = (20,28)
 OFF_NOTE = (20,28)
 OFF_HELP = (10,40)
@@ -48,10 +47,13 @@ PAGE_SAVE = 1
 PAGE_LOAD = 2
 PAGE_GAME = 3
 PAGE_END  = 4
+PAGE_CRED = 5
 
 # button rects
-MAIN_START = (int(SCREEN_SIZE[0] * 1/8), int(SCREEN_SIZE[1] * 5/8), int(SCREEN_SIZE[0] * 2/8), int(SCREEN_SIZE[1] * 1/8))
-MAIN_LOAD  = (int(SCREEN_SIZE[0] * 5/8), int(SCREEN_SIZE[1] * 5/8), int(SCREEN_SIZE[0] * 2/8), int(SCREEN_SIZE[1] * 1/8))
+MAIN_START = (570, 100, 180, 60)
+MAIN_LOAD  = (570, 210, 180, 60)
+MAIN_CREDITS = (570, 320, 180, 60)
+MAIN_QUIT = (570, 430, 180, 60)
 
 SAVE_SLOTS = {}
 for index in range(10):
@@ -76,6 +78,7 @@ SECT_HELP = 5
 SECT_MAIN = 6
 SECT_LOAD = 7
 SECT_SAVE = 8
+SECT_CRED = 9
 
 # actions
 ACTIONS = {\
@@ -100,3 +103,32 @@ ACTIONS = {\
 }
 
 ACTION_COMMANDS = range(18)
+
+CREDITS  = "Developed by Mochimochi95 with PyGame"
+CREDITS += "\nBeta-ed by Seairah and Bambosh"
+CREDITS += "\nMusic by Kevin MacLeod - scroll down for detailed credits"
+CREDITS += "\n-----"
+CREDITS += "\nMany thanks to my beloved friends who helped make this game more playable for others, and for sticking with it until the end"
+CREDITS += "\nI suppose this can be called the game I make that is passable for others to play"
+CREDITS += "\nI hope you enjoy this and figure out CHIBI's identity by the end of the game"
+CREDITS += "\n-----"
+CREDITS += "\nCredits for music used:"
+CREDITS += "\nLicense: http://creativecommons.org/licenses/by/4.0/"
+CREDITS += "\n\nScreen Saver by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n5715-screen-saver"
+CREDITS += "\n\nLimit 70 by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n5710-limit-70"
+CREDITS += "\n\nFloating Cities by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3765-floating-cities"
+CREDITS += "\n\nLong note One by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3992-long-note-one"
+CREDITS += "\n\nComfortable Mystery 3 by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3529-comfortable-mystery-3"
+CREDITS += "\n\nBeauty Flow by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n5025-beauty-flow"
+CREDITS += "\n\nInspired by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3918-inspired"
+CREDITS += "\n\nChill Wave by Kevin MacLeod"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3498-chill-wave"
+
+
