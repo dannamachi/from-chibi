@@ -1,4 +1,4 @@
-from Section import Section
+from Sections.Section import Section
 import api
 import constants
 
@@ -77,7 +77,7 @@ class CommandSection(Section):
         '''
         rendered = {}
         font_img = font.render("Nekoi>> " + self.text, True, self.color)
-        font_loc = (self.dimension[0] + constants.OFF_CLI[0], self.dimension[1] + constants.OFF_CLI[1])
+        font_loc = (self.dimension[0] + constants.OFF_CLI[0], self.dimension[1] + constants.OFF_CLI[1] + 5)
         rendered[font_img] = font_loc
         return rendered
         

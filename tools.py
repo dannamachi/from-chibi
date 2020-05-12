@@ -29,12 +29,12 @@ def divide_into_lines(text_string, max_char):
             segment_string = ""
             # add word to segment string until reached max_char
             while True:
-                segment_string += words.pop(0) + " "
                 # check still have word left
                 if len(words) == 0:
                     break
                 if len(segment_string) + len(words[0]) > max_char:
                     break
+                segment_string += words.pop(0) + " "
             lines.append(segment_string)
             # check still have word left
             if len(words) == 0:

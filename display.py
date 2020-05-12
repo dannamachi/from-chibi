@@ -27,7 +27,9 @@ DISPLAY_RECT = {\
 
     constants.SECT_HELP  : [\
         (constants.BLUEOKAY, constants.RECT_HELP),\
-        (constants.GREEN, (constants.RECT_HELP[0], constants.RECT_HELP[1], constants.RECT_HELP[2], constants.OFF_NOTE[1])),\
+        (constants.GREEN, (constants.RECT_HELP[0], constants.RECT_HELP[1], constants.RECT_HELP[2], constants.OFF_NOTE[1]))
+        
+        ,\
         (constants.GREEN, constants.RECT_HELP, 1)],\
 }
 

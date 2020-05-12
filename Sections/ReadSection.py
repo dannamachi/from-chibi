@@ -1,4 +1,4 @@
-from Section import Section
+from Sections.Section import Section
 import constants
 import tools
 
@@ -10,7 +10,7 @@ class ReadSection(Section):
         self.start_line = 0
         self.end_line = 0
         self.max_row = 20
-        self.max_char = 27
+        self.max_char = 22
         self.updated = True
 
     def reset(self):
@@ -57,7 +57,7 @@ class ReadSection(Section):
         for i in range(self.start_line,self.end_line):
             line = self.lines[i]
             font_img = font.render(line,True,self.color)
-            font_loc = (self.dimension[0] + constants.OFF_READ[0], self.dimension[1] + constants.OFF_READ[1] + index * 20)
+            font_loc = (self.dimension[0] + constants.OFF_READ[0], self.dimension[1] + constants.OFF_READ[1] + index * 20 + 5)
             index += 1
             rendered[font_img] = font_loc
         return rendered

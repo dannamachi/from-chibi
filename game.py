@@ -8,23 +8,23 @@ import api
 import buttons
 import display
 
-from CommandSection import CommandSection
-from MessageSection import MessageSection
-from ReadSection import ReadSection
-from NoteSection import NoteSection
-from HelpfulSection import HelpfulSection
-from EndSection import EndSection
-from MainSection import MainSection
-from LoadSection import LoadSection
-from SaveSection import SaveSection
+from Sections.CommandSection import CommandSection
+from Sections.MessageSection import MessageSection
+from Sections.ReadSection import ReadSection
+from Sections.NoteSection import NoteSection
+from Sections.HelpfulSection import HelpfulSection
+from Sections.EndSection import EndSection
+from Sections.MainSection import MainSection
+from Sections.LoadSection import LoadSection
+from Sections.SaveSection import SaveSection
 
 from Page import Page
 
 pygame.init()
 
 SCREEN = pygame.display.set_mode(constants.SCREEN_SIZE)
-FONT = pygame.font.SysFont('tahoma',20)
-pygame.display.set_caption("From Chibi")
+FONT = pygame.font.SysFont('consolas',20)
+pygame.display.set_caption("From CHIBI")
 
 # text input setup
 TEXTINPUT = ""

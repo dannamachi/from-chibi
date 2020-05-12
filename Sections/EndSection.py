@@ -1,6 +1,6 @@
 import pygame
 
-from Section import Section
+from Sections.Section import Section
 import constants
 import tools
 
@@ -9,7 +9,7 @@ class EndSection(Section):
         Section.__init__(self, constants.SECT_END, constants.RECT_END)
         self.color = constants.GREEN
         self.lines = []
-        self.max_char = 70
+        self.max_char = 60
         self.count = 1
 
     def finished(self):
@@ -19,6 +19,8 @@ class EndSection(Section):
         self.count = 1
         self.text =  text
         self.text = "Press enter to proceed\n" + self.text
+        self.text += "=====================================\n"
+        self.text += "Proceeding in:\n3\n2\n1"
         self.lines = tools.divide_into_lines(self.text,self.max_char)
 
     def advance(self):

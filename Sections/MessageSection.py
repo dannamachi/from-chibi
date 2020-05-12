@@ -1,4 +1,4 @@
-from Section import Section
+from Sections.Section import Section
 import constants
 import tools
 
@@ -7,7 +7,7 @@ class MessageSection(Section):
         Section.__init__(self, constants.SECT_MSG, constants.RECT_MSG)
         self.color = constants.GREEN
         self.updated = True
-        self.max_char = 70
+        self.max_char = 60
 
     def set_text(self,text):
         self.text = text

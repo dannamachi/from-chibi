@@ -1,4 +1,4 @@
-from Section import Section
+from Sections.Section import Section
 import constants
 import api
 

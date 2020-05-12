@@ -22,6 +22,11 @@ FLAGS = old.flags
 
 
 ### TO DO
+# title image
+# credits and quit button
+# credits page
+# play music
+# button to toggle music
 # button to reset all saves
 
 # section mapping
@@ -134,6 +139,13 @@ def run_game_command(comm_id, *args):
     # update special command
     if "p5-9" in list(FLAGS.keys()) and decodes.KEYFLAG["last_piece.bpt"] and not ("Assembled" in list(FLAGS.keys())):
         FLAGS["Assembled"] = True
+    # check end game
+    if "MISSION END" in list(FLAGS.keys()):
+        END_RESULT = 7
+        END_GAME = True
+        END_MESSAGE = old.end_messages[END_RESULT]
+        END_STATUS = old.end_statuses[END_RESULT]
+        return "Code running...", constants.SECT_MSG
     # check dead
     for i in range(len(old.flag_dead)):
         if old.flag_dead[i] in FLAGS:
@@ -143,13 +155,6 @@ def run_game_command(comm_id, *args):
             END_MESSAGE = old.end_messages[END_RESULT]
             END_STATUS = old.end_statuses[END_RESULT]
             return "Disconnected", constants.SECT_MSG
-    # check end game
-    if "MISSION END" in list(FLAGS.keys()):
-        END_RESULT = 7
-        END_GAME = True
-        END_MESSAGE = old.end_messages[END_RESULT]
-        END_STATUS = old.end_statuses[END_RESULT]
-        return "Code running...", constants.SECT_MSG
     # check which section do info text go to
     return text, SECTION_MAPPING[comm_id]
 
