@@ -9,25 +9,23 @@ class HelpfulSection(Section):
         self.lines = []
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 19
-        self.max_char = 16
-        self.is_reset = True
+        self.max_row = constants.MAX_R_HELP
+        self.max_char = constants.MAX_HELP
     
     def reset(self):
         self.lines = []
         self.start_line = 0
         self.end_line = 0
         Section.reset(self)
-        self.is_reset = True
 
     def set_text(self,text):
         self.text = text
         self.lines = tools.divide_into_lines(self.text,self.max_char)
         # scrolling variables
-        if self.is_reset:
-            self.is_reset = False
-            self.start_line = 0
-            self.end_line = self.start_line + self.max_row
+        self.start_line = 0
+        self.end_line = self.start_line + self.max_row
+        if self.end_line > len(self.lines):
+                self.end_line = len(self.lines)      
 
     def shift_up_one_row(self):
         if self.start_line > 0:

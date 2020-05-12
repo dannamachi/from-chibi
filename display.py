@@ -12,23 +12,40 @@ def change_hover_display(button_name):
 
 DISPLAY_RECT = {\
     constants.SECT_READ  : [\
+        # blue backdrop
         (constants.BLUEOKAY, constants.RECT_READ),\
+        # green outline
         (constants.GREEN, constants.RECT_READ, 1),\
-        (constants.GREEN, (constants.RECT_READ[0], constants.RECT_READ[1], constants.RECT_READ[2], constants.OFF_READ[1]))],\
+        # green ribbon
+        (constants.GREEN, (constants.RECT_READ[0], constants.RECT_READ[1], constants.RECT_READ[2], constants.OFF_READ[1])),\
+        # scrolling outline
+        (constants.GREEN, (constants.RECT_READ[0] + int(constants.RECT_READ[2] * 9/10), constants.RECT_READ[1] + constants.OFF_READ[1], int(constants.RECT_READ[2] * 1/10), constants.RECT_READ[3] - constants.OFF_READ[1]), 1)],\
 
     constants.SECT_NOTE  : [\
+        # blue backdrop
         (constants.BLUEOKAY, constants.RECT_NOTE),\
+        # green outline
         (constants.GREEN, constants.RECT_NOTE, 1),\
-        (constants.GREEN, (constants.RECT_NOTE[0], constants.RECT_NOTE[1], constants.RECT_NOTE[2], constants.OFF_NOTE[1]))],\
+        # green ribbon
+        (constants.GREEN, (constants.RECT_NOTE[0], constants.RECT_NOTE[1], constants.RECT_NOTE[2], constants.OFF_NOTE[1])),\
+        # scrolling outline
+        (constants.GREEN, (constants.RECT_NOTE[0] + int(constants.RECT_NOTE[2] * 9/10), constants.RECT_NOTE[1] + constants.OFF_NOTE[1], int(constants.RECT_NOTE[2] * 1/10), constants.RECT_NOTE[3] - constants.OFF_NOTE[1]), 1)],\
 
     constants.SECT_CLI   : [\
+        # blue backdrop
         (constants.BLUEOKAY, (constants.RECT_CLI[0],constants.RECT_CLI[1] + constants.OFF_CLI[1],constants.RECT_CLI[2],constants.RECT_CLI[3] - constants.OFF_CLI[1])),\
+        # green outline
         (constants.GREEN, (constants.RECT_CLI[0],constants.RECT_CLI[1] + constants.OFF_CLI[1],constants.RECT_CLI[2],constants.RECT_CLI[3] - constants.OFF_CLI[1]), 1)],\
 
     constants.SECT_HELP  : [\
+        # blue backdrop
         (constants.BLUEOKAY, constants.RECT_HELP),\
+        # green ribbon
         (constants.GREEN, (constants.RECT_HELP[0], constants.RECT_HELP[1], constants.RECT_HELP[2], constants.OFF_NOTE[1])),\
-        (constants.GREEN, constants.RECT_HELP, 1)],\
+        # green outline
+        (constants.GREEN, constants.RECT_HELP, 1),\
+        # scrolling outline
+        (constants.GREEN, (constants.RECT_READ[0] - int(constants.RECT_NOTE[2] * 1/10), constants.RECT_HELP[1] + constants.OFF_NOTE[1], int(constants.RECT_NOTE[2] * 1/10), constants.RECT_HELP[3] - constants.OFF_NOTE[1]), 1)],\
 }
 
 BUTTON_RECT = {\

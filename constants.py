@@ -14,9 +14,24 @@ MAGENTA = (255, 0, 255)
 BLUEGRAY = (0, 14, 25)
 BLUEOKAY = (0, 42, 76)
 
+# max chars
+MAX_CLI = 80
+MAX_CRED = 80
+MAX_HELP = 22
+MAX_MSG = 80
+MAX_NOTE = 36
+MAX_READ = 36
+
+# max rows
+MAX_R_CRED = 25
+MAX_R_HELP = 24
+MAX_R_MSG = 5
+MAX_R_NOTE = 25
+MAX_R_READ = 25
+
 # dimensions
-SCREEN_SIZE = (800,600)
-RECT_MUSIC = (0,550,50,50)
+SCREEN_SIZE = (1280,720)
+RECT_MUSIC = (0,670,50,50)
 
 RECT_SCREEN = (0,0,int(SCREEN_SIZE[0]),int(SCREEN_SIZE[1]))
 RECT_CLI = (0,int(SCREEN_SIZE[1] * 7/8), int(SCREEN_SIZE[0]), int(SCREEN_SIZE[1] * 1/8))
@@ -32,7 +47,7 @@ RECT_CRED = RECT_END
 
 # text offset
 OFF_CLI = (20,40)
-OFF_MSG = (20,5)
+OFF_MSG = (20,10)
 OFF_READ = (20,28)
 OFF_NOTE = (20,28)
 OFF_HELP = (10,40)
@@ -50,10 +65,10 @@ PAGE_END  = 4
 PAGE_CRED = 5
 
 # button rects
-MAIN_START = (570, 100, 180, 60)
-MAIN_LOAD  = (570, 210, 180, 60)
-MAIN_CREDITS = (570, 320, 180, 60)
-MAIN_QUIT = (570, 430, 180, 60)
+MAIN_START = (SCREEN_SIZE[0] - 230, int(SCREEN_SIZE[1] * 1/6) + 60, 180, 60)
+MAIN_LOAD  = (SCREEN_SIZE[0] - 230, int(SCREEN_SIZE[1] * 1/6) + 60 + 1 * int(SCREEN_SIZE[1] / 6), 180, 60)
+MAIN_CREDITS = (SCREEN_SIZE[0] - 230, int(SCREEN_SIZE[1] * 1/6) + 60 + 2 * int(SCREEN_SIZE[1] / 6), 180, 60)
+MAIN_QUIT = (SCREEN_SIZE[0] - 230, int(SCREEN_SIZE[1] * 1/6) + 60 + 3 * int(SCREEN_SIZE[1] / 6), 180, 60)
 
 SAVE_SLOTS = {}
 for index in range(10):
@@ -115,20 +130,20 @@ CREDITS += "\n-----"
 CREDITS += "\nCredits for music used:"
 CREDITS += "\nLicense: http://creativecommons.org/licenses/by/4.0/"
 CREDITS += "\n\nScreen Saver by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n5715-screen-saver"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/5715-screen-saver"
 CREDITS += "\n\nLimit 70 by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n5710-limit-70"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/5710-limit-70"
 CREDITS += "\n\nFloating Cities by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3765-floating-cities"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/3765-floating-cities"
 CREDITS += "\n\nLong note One by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3992-long-note-one"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/3992-long-note-one"
 CREDITS += "\n\nComfortable Mystery 3 by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3529-comfortable-mystery-3"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/3529-comfortable-mystery-3"
 CREDITS += "\n\nBeauty Flow by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n5025-beauty-flow"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/5025-beauty-flow"
 CREDITS += "\n\nInspired by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3918-inspired"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/3918-inspired"
 CREDITS += "\n\nChill Wave by Kevin MacLeod"
-CREDITS += "\nLink: https://incompetech.filmmusic.io/song/\n3498-chill-wave"
+CREDITS += "\nLink: https://incompetech.filmmusic.io/song/3498-chill-wave"
 
 

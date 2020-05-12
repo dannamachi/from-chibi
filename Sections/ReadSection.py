@@ -9,8 +9,8 @@ class ReadSection(Section):
         self.lines = []
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 20
-        self.max_char = 22
+        self.max_row = constants.MAX_R_READ
+        self.max_char = constants.MAX_READ
         self.updated = True
 
     def reset(self):

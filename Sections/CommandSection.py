@@ -10,6 +10,7 @@ class CommandSection(Section):
         self.past_commands = []
         self.past_index = -1
         self.color = constants.GREEN
+        self.max_char = constants.MAX_CLI
     
     def reset(self):
         self.command = -1
@@ -17,13 +18,13 @@ class CommandSection(Section):
         Section.reset(self)
 
     def set_text(self,text):
-        if len(text) < 70:
+        if len(text) < self.max_char:
             self.text = text
 
     def reverse_one_command(self):
-        if len(self.past_commands) + self.past_index >= 0 :
-            self.text = self.past_commands[self.past_index]
+        if len(self.past_commands) + self.past_index > 0 :
             self.past_index -= 1
+            self.text = self.past_commands[self.past_index]
             
     def forward_one_command(self):
         if self.past_index < -1:
@@ -77,7 +78,7 @@ class CommandSection(Section):
         '''
         rendered = {}
         font_img = font.render("Nekoi>> " + self.text, True, self.color)
-        font_loc = (self.dimension[0] + constants.OFF_CLI[0], self.dimension[1] + constants.OFF_CLI[1] + 5)
+        font_loc = (self.dimension[0] + constants.OFF_CLI[0], self.dimension[1] + constants.OFF_CLI[1] + 10)
         rendered[font_img] = font_loc
         return rendered
         

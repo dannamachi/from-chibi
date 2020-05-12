@@ -9,8 +9,8 @@ class NoteSection(Section):
         self.lines = []
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 20
-        self.max_char = 23
+        self.max_row = constants.MAX_R_NOTE
+        self.max_char = constants.MAX_NOTE
         self.updated = True
 
     def reset(self):

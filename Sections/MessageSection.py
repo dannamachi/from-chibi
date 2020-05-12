@@ -7,10 +7,10 @@ class MessageSection(Section):
         Section.__init__(self, constants.SECT_MSG, constants.RECT_MSG)
         self.color = constants.GREEN
         self.updated = True
-        self.max_char = 60
+        self.max_char = constants.MAX_MSG
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 5
+        self.max_row = constants.MAX_R_MSG
         self.lines = []
 
     def set_text(self,text):

@@ -47,7 +47,7 @@ PLAYING = True
 TEXTINPUT = ""
 FONT_IMAGES = {}  # map rendered img to location (x,y)
 deleting = False
-delete_speed = 60
+delete_speed = 20
 
 # sections setup
 message_text = ""
@@ -125,6 +125,8 @@ while not api.IS_QUIT:
                         SAVES.set_restart()
                         load_result, message_text, section_id = *SAVES.run_command(), constants.SECT_MSG
                         CURRENT_PAGE = SHOWING_END
+                        for section in SHOWING_GAME.get_sections():
+                            section.reset()
                         ENDS.set_text(api.get_intro())
                         MESSAGE.set_text(message_text)
                         # music
@@ -186,6 +188,8 @@ while not api.IS_QUIT:
                         LOADS.set_restart()
                         load_result, message_text, section_id = *LOADS.run_command(), constants.SECT_MSG
                         CURRENT_PAGE = SHOWING_END
+                        for section in SHOWING_GAME.get_sections():
+                            section.reset()
                         ENDS.set_text(api.get_intro())
                         MESSAGE.set_text(message_text)
                         # music
@@ -244,11 +248,11 @@ while not api.IS_QUIT:
         if deleting: 
             delete_speed -= 1
             if delete_speed == 0:
-                delete_speed = 60
+                delete_speed = 20
                 if len(TEXTINPUT) > 0:
                     TEXTINPUT = TEXTINPUT[:-1]
         else:
-            delete_speed = 60
+            delete_speed = 20
 
         # event detection for game page
         for event in pygame.event.get():
@@ -305,6 +309,7 @@ while not api.IS_QUIT:
                     if len(TEXTINPUT) > 0:
                         TEXTINPUT = TEXTINPUT[:-1]
                     deleting = True
+                    delete_speed = 160
                 elif event.key == K_UP:
                     COMMANDLINE.reverse_one_command()
                     TEXTINPUT = COMMANDLINE.get_text()
@@ -313,11 +318,12 @@ while not api.IS_QUIT:
                     TEXTINPUT = COMMANDLINE.get_text()
                 else:
                     TEXTINPUT += event.unicode
-            if event.type == KEYUP and deleting:
-                if event.key == K_BACKSPACE:
+            if event.type == KEYUP:
+                if event.key == K_BACKSPACE and deleting:
                     deleting = False
 
         COMMANDLINE.set_text(TEXTINPUT)
+        TEXTINPUT = COMMANDLINE.get_text()
 
         # update for game page
         if section_id != -1:

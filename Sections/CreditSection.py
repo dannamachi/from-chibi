@@ -9,8 +9,8 @@ class CreditSection(Section):
         self.lines = []
         self.start_line = 0
         self.end_line = 0
-        self.max_row = 19
-        self.max_char = 60
+        self.max_row = constants.MAX_R_CRED
+        self.max_char = constants.MAX_CRED
 
     def reset(self):
         self.lines = []

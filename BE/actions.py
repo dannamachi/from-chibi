@@ -646,8 +646,8 @@ def help(*args):
         tips += "\n\nAs a security officer, you are closely watched by the channel admin and regulatory bots - read your logs regularly and reply on time"
         tips += "\n\nDemTube is the universal platform for entertainment and learning - you can read the schedule by entering 'notes dt'"
         tips += "\n\nEnter 'help commands' for a list of possible commands"
-        tips += "\n\n???Message: enterread000"
-        tips += "\n???Mission: contactoverspace ???Need: donotforgetlastpiece"
+        tips += "\n\n???Message: enterread0000"
+        tips += "\n???Mission: contactoverspace\n???Need: donotforgetlastpiece"
         return tips, current_time
     else:
         key = args[2]

@@ -9,7 +9,7 @@ class EndSection(Section):
         Section.__init__(self, constants.SECT_END, constants.RECT_END)
         self.color = constants.GREEN
         self.lines = []
-        self.max_char = 60
+        self.max_char = constants.MAX_CRED
         self.count = 1
 
     def finished(self):
