@@ -11,6 +11,7 @@
 * python main.py
 
 ### version
+* v3.1.0: add manual scrolling, adjust window sizes
 * v3.0.5: switch from 4:3 to 16:9
 * v3.0.0: move to gui using pygame
 * v2.0.5: adjust content for plot consistency
