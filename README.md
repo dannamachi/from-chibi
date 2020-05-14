@@ -8,7 +8,7 @@
 * install pygame
 * cmd/bash
 * cd to extracted folder
-* python main.py
+* python game.py
 
 ### version
 * v3.1.0: add manual scrolling, adjust window sizes
